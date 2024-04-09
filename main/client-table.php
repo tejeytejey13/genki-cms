@@ -57,6 +57,9 @@ include 'component/head.php';
                 </div>
             </div> -->
 
+
+
+
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
                     <div class="b-table has-pagination">
@@ -143,29 +146,37 @@ include 'component/head.php';
         </section>
         <div id="view-med-form" class="modal">
             <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Medical Form</p>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Medical Form</h2>
                     <button class="delete jb-modal-close" aria-label="close"></button>
-                </header>
-                <section class="modal-card-body">
+                </div>
+                <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-4">
-                                <p id="heading-name"></p>
+                            <div class="col-md-6">
+                                <div class="patient-details">
+                                    <h2 id="heading-name">Client Name</h2>
+                                    <p class="heading-date">Date Created: January 1, 2022</p>
+                                </div>
                             </div>
-                            <div class="col-md-4 ml-auto">
-                                <p id="heading-status">test</p>
+                            <div class="col-md-6">
+                                <div class="status-details">
+                                    <p class="heading-status">Status: In Progress</p>
+                                    <p class="attending-nurse">Attending Nurse: John Doe</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <footer class="modal-card-foot">
+                </div>
+                <div class="modal-footer">
                     <!-- <button class="button jb-modal-close">Cancel</button>
-                <button class="button is-success jb-modal-close">Delete</button> -->
-                </footer>
+            <button class="button is-success jb-modal-close">Delete</button> -->
+                </div>
             </div>
             <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
         </div>
+
+
     </div>
     <?php require 'component/footer.php' ?>

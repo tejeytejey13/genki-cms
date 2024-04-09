@@ -24,6 +24,7 @@
                     <span class="menu-item-label">Medical Form</span>
                 </a>
             </li>
+        
             <?php
             if ($user_type == 'client') {
                 echo '';
@@ -80,7 +81,7 @@
                 </a>
             </li>
             <li>
-                <a href="profile.php" class="has-icon">
+                <a href="about.php" class="has-icon">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>
                     <span class="menu-item-label">About Us</span>
                 </a>

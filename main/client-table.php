@@ -147,17 +147,21 @@ include 'component/head.php';
         <div id="view-med-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="display: flex;">
                     <h2 class="modal-title">Medical Form</h2>
                     <button class="delete jb-modal-close" aria-label="close"></button>
+
                 </div>
                 <div class="modal-body">
+
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="patient-details">
                                     <h2 id="heading-name">Client Name</h2>
                                     <p class="heading-date">Date Created: January 1, 2022</p>
+                                    <p class="heading-date1">Date of Clinic: January 1, 2022</p>
+
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -169,12 +173,11 @@ include 'component/head.php';
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" status="display: flex; justify-content: center: gap: 30px;">
                     <!-- <button class="button jb-modal-close">Cancel</button>
-            <button class="button is-success jb-modal-close">Delete</button> -->
+                    <button class="button is-success jb-modal-close">Delete</button> -->
                 </div>
             </div>
-            <button class="modal-close is-large jb-modal-close" aria-label="close"></button>
         </div>
 
 

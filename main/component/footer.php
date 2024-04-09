@@ -1,0 +1,28 @@
+
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    © 2024, GENKI
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+    <!-- Scripts below are for demo only -->
+    <script type="text/javascript" src="js/main.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="js/chart.sample.min.js"></script>
+    <script src="./backend/js-backend/handler.js"></script>
+    <script src="./backend/js-backend/medical-handler.js"></script>
+    <script src="./backend/js-backend/medical-history-handler.js"></script>
+    <script src="./backend/js-backend/profile-handler.js"></script>
+
+    <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+</body>
+
+</html>

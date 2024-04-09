@@ -49,9 +49,13 @@
                             <div class="select is-fullwidth">
                                 <select name="grade-level">
                                     <option selected hidden>Grade Level</option>
-                                    <option value="">Business development</option>
-                                    <option value="">Marketing</option>
-                                    <option value="">Sales</option>
+                                    <?php 
+                                        $sql = "SELECT * FROM grade_levels";
+                                        $result = mysqli_query($conn, $sql);
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -212,9 +216,9 @@
                             <div class="select is-fullwidth">
                                 <select name="alergy">
                                     <option selected hidden>Alergy Selection</option>
-                                    <option value="">Business development</option>
-                                    <option value="">Marketing</option>
-                                    <option value="">Sales</option>
+                                    <option value="">Medicine</option>
+                                    <option value="">Food</option>
+                                    <option value="">Others (Specify)</option>
                                 </select>
                             </div>
                         </div>

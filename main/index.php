@@ -26,6 +26,7 @@
 
             </div>
         </section>
+        <?php include 'component/404.php'?>
         <!-- <section class="hero is-hero-bar">
             <div class="hero-body">
                 <div class="level">

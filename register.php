@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Genki School Clinic Management System</title>
+	<title>Genki School Clinic Management System</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="font/flaticon.css">
@@ -35,6 +35,10 @@
 				</div>
 				<div class="fxt-form">
 					<form method="POST">
+						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
+							<input type="text" class="form-control" name="name" placeholder="School ID" required="required">
+							<i class="flaticon-user"></i>
+						</div>
 						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
 							<input type="text" class="form-control" name="name" placeholder="Full Name" required="required">
 							<i class="flaticon-user"></i>

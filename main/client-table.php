@@ -58,8 +58,6 @@ include 'component/head.php';
             </div> -->
 
 
-
-
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
                     <div class="b-table has-pagination">

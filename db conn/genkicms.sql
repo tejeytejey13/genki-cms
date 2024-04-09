@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 06:32 AM
+-- Generation Time: Apr 09, 2024 at 01:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `genkicms`
 --
-DROP DATABASE IF EXISTS `genkicms`;
 CREATE DATABASE IF NOT EXISTS `genkicms` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `genkicms`;
 
@@ -86,8 +85,26 @@ CREATE TABLE `medical_form` (
 --
 
 INSERT INTO `medical_form` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `grade`, `section`, `adviser`, `birthdate`, `place_of_birth`, `address`, `parent_guardian`, `rel_to_stud`, `contact_num`, `emergency_name`, `emergency_num`, `alergy`, `reason`, `treatment`, `immunization`, `date_created`, `date_med`, `time_med`) VALUES
-(1, 1, 'ace', 'a', 'batingal', '', '', 'john doe', '2024-04-04', 'davao', 'davao city', 'kristelle ira', 'parent', 123456789, 'lorem ipsum', 123456789, '', 'shrimps', 'ceterizine', 'yes', '2024-04-06', '2024-04-09 00:00:00', 'pm'),
-(25, 1, 'ace', 'a', 'batingal', '', '', 'john doe', '2024-04-03', 'davao', 'davao city', 'john doe', 'parent', 132456789, 'john doe', 132465798, '', 'shrimp', 'ceterizine', 'yes', '2024-04-06', '2024-04-08 00:00:00', 'am');
+(27, 1, 'ace', 'a', 'batingal', 'Grade Level', '', '', '0000-00-00', '', '', '', '', 0, '', 0, 'Alergy Selection', '', '', 'yes', '2024-04-09', '2024-04-07 00:00:00', 'am');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `med_form_status`
+--
+
+CREATE TABLE `med_form_status` (
+  `id` int(255) NOT NULL,
+  `form_id` int(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `med_form_status`
+--
+
+INSERT INTO `med_form_status` (`id`, `form_id`, `status`) VALUES
+(1, 27, 'pending');
 
 -- --------------------------------------------------------
 
@@ -129,6 +146,13 @@ ALTER TABLE `medical_form`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `med_form_status`
+--
+ALTER TABLE `med_form_status`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `form_id` (`form_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -148,7 +172,13 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `medical_form`
 --
 ALTER TABLE `medical_form`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `med_form_status`
+--
+ALTER TABLE `med_form_status`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -165,6 +195,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `client`
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `med_form_status`
+--
+ALTER TABLE `med_form_status`
+  ADD CONSTRAINT `med_form_status_ibfk_1` FOREIGN KEY (`form_id`) REFERENCES `medical_form` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

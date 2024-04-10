@@ -15,8 +15,8 @@ include 'component/head.php';
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                            <?= ($user_type == 'client') ? '<li>Student</li>' : (($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'); ?>
-                            <li>Medical History</li>
+                            <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
+                            <li>Clinic Appointments</li>
                         </ul>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Medical History
+                                Clinic Appointments
                             </h1>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ include 'component/head.php';
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataTable">
+                                <tbody id="nurseTable">
                                     <!-- <tr>
                                         <td class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox">
@@ -142,7 +142,7 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
-        <div id="view-med-form" class="modal">
+        <div id="nurse-view-med-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="modal-header" style="display: flex;">
@@ -157,25 +157,62 @@ include 'component/head.php';
                             <div class="col-md-6">
                                 <div class="patient-details">
                                     <h2 id="heading-name">Client Name</h2>
-                                    <p class="heading-date">Date Created: January 1, 2022</p>
-                                    <p class="heading-date1">Date of Clinic: January 1, 2022</p>
+                                    <p id="heading-date" class="heading-date">Date Created: January 1, 2022</p>
+                                    <p id="heading-date1" class="heading-date1">Date of Clinic: January 1, 2022</p>
 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="status-details">
-                                    <p class="heading-status">Status: In Progress</p>
-                                    <p class="attending-nurse">Attending Nurse: John Doe</p>
+                                    <p id="heading-status" class="heading-status">Status: In Progress</p>
+                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" status="display: flex; justify-content: center: gap: 30px;">
-                    <button class="button jb-modal-close">Cancel</button>
-                    <button class="button is-success jb-modal-close">Delete</button>
+                    <!-- <button class="button jb-modal-close">Cancel</button>
+                    <button class="button is-success jb-modal-close">Delete</button> -->
                 </div>
+
             </div>
+        </div>
+        <div id="nurse-edit-med-form" class="modal">
+            <form method="POST">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="modal-header" style="display: flex;">
+                        <h2 class="modal-title">Medical Form</h2>
+                        <button class="delete jb-modal-close" aria-label="close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="patient-details">
+                                        <h2 id="heading-name-edit">Client Name</h2>
+                                        <p class="heading-date">Select Status:</p>
+                                        <div class="select is-narrow">
+                                            <select id="heading-status-edit" name="status">
+                                                <option selected hidden>Select Status</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="approved">Approved</option>
+                                                <option value="rejected">Rejected</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
+                        <button class="button jb-modal-close">Cancel</button>
+                        <button id="update-form-btn" type="submit" class="button is-success">Update</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
 

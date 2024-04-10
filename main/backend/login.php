@@ -5,7 +5,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE email = '$email' OR school_id = '$email' AND password = '$password'";
         $query = mysqli_query($conn, $sql);
         $response = [];
         if(mysqli_num_rows($query) > 0) {

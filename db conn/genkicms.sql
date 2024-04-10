@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2024 at 01:10 PM
+-- Generation Time: Apr 10, 2024 at 03:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -51,6 +51,35 @@ INSERT INTO `client` (`id`, `user_id`, `first_name`, `middle_initial`, `last_nam
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `grade_levels`
+--
+
+CREATE TABLE `grade_levels` (
+  `id` int(11) NOT NULL,
+  `level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grade_levels`
+--
+
+INSERT INTO `grade_levels` (`id`, `level`) VALUES
+(1, 'Grade 1'),
+(2, 'Grade 2'),
+(3, 'Grade 3'),
+(4, 'Grade 4'),
+(5, 'Grade 5'),
+(6, 'Grade 6'),
+(7, 'Grade 7'),
+(8, 'Grade 8'),
+(9, 'Grade 9 '),
+(10, 'Grade 10'),
+(11, 'Grade 11'),
+(12, 'Grade 12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `medical_form`
 --
 
@@ -85,7 +114,7 @@ CREATE TABLE `medical_form` (
 --
 
 INSERT INTO `medical_form` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `grade`, `section`, `adviser`, `birthdate`, `place_of_birth`, `address`, `parent_guardian`, `rel_to_stud`, `contact_num`, `emergency_name`, `emergency_num`, `alergy`, `reason`, `treatment`, `immunization`, `date_created`, `date_med`, `time_med`) VALUES
-(27, 1, 'ace', 'a', 'batingal', 'Grade Level', '', '', '0000-00-00', '', '', '', '', 0, '', 0, 'Alergy Selection', '', '', 'yes', '2024-04-09', '2024-04-07 00:00:00', 'am');
+(1, 1, 'ace', 'a', 'batingal', 'Grade 8', '', 'john doe', '0000-00-00', '', '', 'john raven', '', 0, '', 0, 'Alergy Selection', '', '', 'yes', '2024-04-10', '2024-04-11 00:00:00', 'pm');
 
 -- --------------------------------------------------------
 
@@ -96,15 +125,41 @@ INSERT INTO `medical_form` (`id`, `user_id`, `first_name`, `middle_initial`, `la
 CREATE TABLE `med_form_status` (
   `id` int(255) NOT NULL,
   `form_id` int(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `nurse_id` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `date_updated` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `med_form_status`
 --
 
-INSERT INTO `med_form_status` (`id`, `form_id`, `status`) VALUES
-(1, 27, 'pending');
+INSERT INTO `med_form_status` (`id`, `form_id`, `nurse_id`, `status`, `date_updated`) VALUES
+(7, 1, 0, 'pending', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nurse`
+--
+
+CREATE TABLE `nurse` (
+  `id` int(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_initial` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` int(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nurse`
+--
+
+INSERT INTO `nurse` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `email`, `phone_number`, `password`) VALUES
+(1, 2, 'john', 'a', 'doe', 'nurse@gmail.com', 987654321, '123456789');
 
 -- --------------------------------------------------------
 
@@ -115,6 +170,7 @@ INSERT INTO `med_form_status` (`id`, `form_id`, `status`) VALUES
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `user_type` varchar(255) NOT NULL,
+  `school_id` int(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -123,10 +179,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_type`, `email`, `password`) VALUES
-(1, 'client', 'user@gmail.com', '123456789'),
-(2, 'nurse', 'nurse@gmail.com', '123456789'),
-(3, 'admin', 'admin@gmail.com', '123456789');
+INSERT INTO `users` (`id`, `user_type`, `school_id`, `email`, `password`) VALUES
+(1, 'client', 123456, 'user@gmail.com', '123456789'),
+(2, 'nurse', 654321, 'nurse@gmail.com', '123456789'),
+(3, 'admin', 615243, 'admin@gmail.com', '123456789');
 
 --
 -- Indexes for dumped tables
@@ -140,6 +196,12 @@ ALTER TABLE `client`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `grade_levels`
+--
+ALTER TABLE `grade_levels`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `medical_form`
 --
 ALTER TABLE `medical_form`
@@ -150,7 +212,15 @@ ALTER TABLE `medical_form`
 --
 ALTER TABLE `med_form_status`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `form_id` (`form_id`);
+  ADD KEY `form_id` (`form_id`),
+  ADD KEY `nurse_id` (`nurse_id`);
+
+--
+-- Indexes for table `nurse`
+--
+ALTER TABLE `nurse`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -169,15 +239,27 @@ ALTER TABLE `client`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `grade_levels`
+--
+ALTER TABLE `grade_levels`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `medical_form`
 --
 ALTER TABLE `medical_form`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `med_form_status`
 --
 ALTER TABLE `med_form_status`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nurse`
+--
+ALTER TABLE `nurse`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -201,6 +283,12 @@ ALTER TABLE `client`
 --
 ALTER TABLE `med_form_status`
   ADD CONSTRAINT `med_form_status_ibfk_1` FOREIGN KEY (`form_id`) REFERENCES `medical_form` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nurse`
+--
+ALTER TABLE `nurse`
+  ADD CONSTRAINT `nurse_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

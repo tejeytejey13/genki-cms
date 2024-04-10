@@ -216,9 +216,9 @@
                             <div class="select is-fullwidth">
                                 <select name="alergy">
                                     <option selected hidden>Alergy Selection</option>
-                                    <option value="">Medicine</option>
-                                    <option value="">Food</option>
-                                    <option value="">Others (Specify)</option>
+                                    <option value="medicine">Medicine</option>
+                                    <option value="food">Food</option>
+                                    <option value="others">Others (Specify)</option>
                                 </select>
                             </div>
                         </div>

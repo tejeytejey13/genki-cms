@@ -19,6 +19,7 @@
     <script src="./backend/js-backend/handler.js"></script>
     <script src="./backend/js-backend/medical-handler.js"></script>
     <script src="./backend/js-backend/medical-history-handler.js"></script>
+    <script src="./backend/js-backend/nurse-medical-handler.js"></script>
     <script src="./backend/js-backend/profile-handler.js"></script>
 
     <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->

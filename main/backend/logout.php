@@ -1,7 +1,7 @@
 <?php
-    // session_start();
-    // session_destroy();
-    // session_abort();
+    session_start();
+    session_destroy();
+    session_abort();
 
     $response = array(
         'status' => 'success',

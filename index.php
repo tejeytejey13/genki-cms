@@ -40,7 +40,7 @@
                 <div class="fxt-form">
                     <form id="login-form" method="POST">
                         <div class="form-group fxt-transformY-50 fxt-transition-delay-1">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address"
+                            <input type="text" class="form-control" name="email" placeholder="Email Address"
                                 required="required">
                             <i class="flaticon-envelope"></i>
                         </div>

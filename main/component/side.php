@@ -18,21 +18,29 @@
         </ul>
         <p class="menu-label">Medical Information</p>
         <ul class="menu-list">
-            <li>
+            <?php
+            if ($user_type == 'client') {
+                echo '<li>
                 <a href="appointment.php" class="has-icon">
                     <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
                     <span class="menu-item-label">Medical Form</span>
                 </a>
-            </li>
-        
+            </li>';
+            } else if ($user_type == 'nurse') {
+                echo '';
+            } else if ($user_type == 'admin') {
+                echo '';
+            }
+            ?>
+
             <?php
             if ($user_type == 'client') {
                 echo '';
             } else if ($user_type == 'nurse') {
                 echo '<li>
-                    <a href="client.php" class="has-icon">
+                    <a href="nurse-table.php" class="has-icon">
                         <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
-                        <span class="menu-item-label">Tables</span>
+                        <span class="menu-item-label">Clinic Appointments</span>
                     </a>
                 </li>';
             } else if ($user_type == 'admin') {
@@ -44,12 +52,7 @@
             </li>';
             }
             ?>
-            <!-- <li>
-                <a href="client.php" class="has-icon">
-                    <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
-                    <span class="menu-item-label">Tables</span>
-                </a>
-            </li> -->
+
             <li>
                 <a class="has-icon has-dropdown-icon">
                     <span class="icon"><i class="mdi mdi-view-list"></i></span>
@@ -59,11 +62,28 @@
                     </div>
                 </a>
                 <ul>
-                    <li>
+                    <?php
+                    if ($user_type == 'client') {
+                        echo '<li>
                         <a href="client-table.php">
                             <span><i class="mdi mdi-view-list"></i> Medical History</span>
                         </a>
-                    </li>
+                    </li>';
+                    } else if ($user_type == 'nurse') {
+                        echo '<li>
+                        <a href="nurse-medical-history.php">
+                            <span><i class="mdi mdi-view-list"></i> Medical History</span>
+                        </a>
+                    </li>';
+                    } else if ($user_type == 'admin') {
+                        echo '<li>
+                        <a href="client-table.php">
+                            <span><i class="mdi mdi-view-list"></i> Medical History</span>
+                        </a>
+                    </li>';
+                    }
+                    ?>
+
                     <li>
                         <a href="#void">
                             <span><i class="mdi mdi-view-list"></i> Medical Clearance</span>

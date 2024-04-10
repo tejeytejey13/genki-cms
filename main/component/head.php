@@ -23,19 +23,36 @@
 <?php
 include('backend/config.php');
 // session_start();
-$user_type = $_SESSION['user_type'];
-$user_id = $_SESSION['user_id'];
+ $user_type = $_SESSION['user_type'];
+ $user_id = $_SESSION['user_id'];
 
 $getSql = "SELECT * FROM users WHERE id = '$user_id'";
 $getQuery = mysqli_query($conn, $getSql);
 $getrow = mysqli_fetch_assoc($getQuery);
 $user_email = $getrow['email'];
 
-$sql = "SELECT * FROM client WHERE id = '$user_id'";
-$query = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($query);
-$user_fname = $row['first_name'];
-$user_mname = $row['middle_initial'];
-$user_lname = $row['last_name'];
-
+if ($user_type == 'client') {
+    $sqlclient = "SELECT * FROM client WHERE user_id = '$user_id'";
+    $queryclient = mysqli_query($conn, $sqlclient);
+    $row = mysqli_fetch_array($queryclient);
+    $user_fname = $row['first_name'];
+    $user_mname = $row['middle_initial'];
+    $user_lname = $row['last_name'];
+} else if ($user_type == 'nurse') {
+    $sql = "SELECT * FROM nurse WHERE user_id = '$user_id'";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query);
+    $user_fname = $row['first_name'];
+    $user_mname = $row['middle_initial'];
+    $user_lname = $row['last_name'];
+} else if ($user_type == 'admin') {
+    $sql = "SELECT * FROM admin WHERE user_id = '$user_id'";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query);
+    $user_fname = $row['first_name'];
+    $user_mname = $row['middle_initial'];
+    $user_lname = $row['last_name'];
+}else{
+    die("User not found");
+}
 ?>

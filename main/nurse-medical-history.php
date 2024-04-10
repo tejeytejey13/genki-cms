@@ -15,7 +15,7 @@ include 'component/head.php';
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                            <?= ($user_type == 'client') ? '<li>Student</li>' : (($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'); ?>
+                            <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
                             <li>Medical History</li>
                         </ul>
                     </div>
@@ -81,7 +81,7 @@ include 'component/head.php';
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataTable">
+                                <tbody id="nurseHistoryTable">
                                     <!-- <tr>
                                         <td class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox">
@@ -180,4 +180,4 @@ include 'component/head.php';
 
 
     </div>
-    <?php require 'component/footer.php' ?>
+<?php require 'component/footer.php' ?>

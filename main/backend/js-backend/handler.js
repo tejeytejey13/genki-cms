@@ -28,24 +28,23 @@ $(function () {
     });
   });
 
-  $('#logout-btn').click(function() {
+  $('#logout-btn, #logout-btn-2').click(function() {
     $.ajax({
       type: "POST",
       url: "./backend/logout.php",
       success: function (response) {
         var data = JSON.parse(response);
-        if(data.status === "success"){
-            window.location.href = '../index.php';
-        }else{
-            alert(data.message);
+        if (data.status === "success") {
+          window.location.href = '../index.php';
+        } else {
+          alert(data.message);
         }
-
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
       },
     });
-
   });
+  
 
 });

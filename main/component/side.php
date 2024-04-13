@@ -83,15 +83,59 @@
                     </li>';
                     }
                     ?>
-
-                    <li>
-                        <a href="#void">
+                    <?php
+                    if ($user_type == 'client') {
+                        echo '<li>
+                        <a href="client-table.php">
+                            <span><i class="mdi mdi-view-list"></i> Medical History</span>
+                        </a>
+                    </li>';
+                    } else if ($user_type == 'nurse') {
+                        echo '<li>
+                        <a href="medical-clearance.php">
                             <span><i class="mdi mdi-view-list"></i> Medical Clearance</span>
                         </a>
-                    </li>
+                    </li>';
+                    } else if ($user_type == 'admin') {
+                        echo '<li>
+                        <a href="medical-clearance.php">
+                            <span><i class="mdi mdi-view-list"></i> Medical Clearance</span>
+                        </a>
+                    </li>';
+                    }
+                    ?>
                 </ul>
             </li>
         </ul>
+
+        <?php
+        if ($user_type == 'client') {
+            echo '';
+        } else if ($user_type == 'nurse') {
+            echo '
+                <p class="menu-label">Clinic Management</p>
+                <ul class="menu-list">
+                    <li>
+                <a href="clinic-inventory.php" class="has-icon">
+                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                    <span class="menu-item-label">Clinic Inventory</span>
+                </a>
+            </li>
+            </ul>';
+        } else if ($user_type == 'admin') {
+            echo '
+                <p class="menu-label">Clinic Management</p>
+                <ul class="menu-list">
+                <li>
+                <a href="clinic-inventory.php" class="has-icon">
+                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                    <span class="menu-item-label">Clinic Inventory</span>
+                </a>
+            </li>
+            </ul>';
+        }
+        ?>
+
         <p class="menu-label">OTHERS</p>
         <ul class="menu-list">
             <li>

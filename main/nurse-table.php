@@ -179,14 +179,13 @@ include 'component/head.php';
             </div>
         </div>
         <div id="nurse-edit-med-form" class="modal">
-            <form method="POST">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                    <div class="modal-header" style="display: flex;">
-                        <h2 class="modal-title">Medical Form</h2>
-                        <button class="delete jb-modal-close" aria-label="close"></button>
-
-                    </div>
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex;">
+                    <h2 class="modal-title">Medical Form</h2>
+                    <button class="delete jb-modal-close" aria-label="close"></button>
+                </div>
+                <form method="POST">
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
@@ -208,13 +207,11 @@ include 'component/head.php';
                         </div>
                     </div>
                     <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
-                        <button class="button jb-modal-close">Cancel</button>
                         <button id="update-form-btn" type="submit" class="button is-success">Update</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+                <button class="button jb-modal-close">Cancel</button>
+            </div>
         </div>
-
-
+    </div>
     </div>
     <?php require 'component/footer.php' ?>

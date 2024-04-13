@@ -34,13 +34,21 @@
 					</div>
 				</div>
 				<div class="fxt-form">
-					<form method="POST">
+					<form id="register-form" method="POST">
 						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
-							<input type="text" class="form-control" name="name" placeholder="School ID" required="required">
+							<input type="number" maxlength="6" class="form-control" name="schoolID" placeholder="School ID" required="required">
 							<i class="flaticon-user"></i>
 						</div>
 						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
-							<input type="text" class="form-control" name="name" placeholder="Full Name" required="required">
+							<input type="text" class="form-control" name="firstname" placeholder="First Name" required="required">
+							<i class="flaticon-user"></i>
+						</div>
+						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
+							<input type="text" class="form-control" name="middlename" placeholder="Middle Name" required="required">
+							<i class="flaticon-user"></i>
+						</div>
+						<div class="form-group fxt-transformY-50 fxt-transition-delay-1">
+							<input type="text" class="form-control" name="lastname" placeholder="Last Name" required="required">
 							<i class="flaticon-user"></i>
 						</div>
 						<div class="form-group fxt-transformY-50 fxt-transition-delay-2">
@@ -55,7 +63,7 @@
 							<div class="fxt-content-between">
 								<button type="submit" class="fxt-btn-fill">Register</button>
 								<div class="checkbox">
-									<input id="checkbox1" type="checkbox">
+									<input id="checkbox1" type="checkbox" required>
 									<label for="checkbox1">I agree the terms of services</label>
 								</div>
 							</div>
@@ -79,7 +87,7 @@
 	<script src="js/imagesloaded.pkgd.min.js"></script>
 	<script src="js/validator.min.js"></script>
 	<script src="js/main.js"></script>
-
+	<script src="main/backend/js-backend/handler.js"></script>
 </body>
 
 </html>

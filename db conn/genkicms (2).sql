@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 04:35 AM
+-- Generation Time: Apr 13, 2024 at 05:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -46,7 +46,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `email`, `grade_level`, `phone_number`, `password`) VALUES
-(1, 1, 'ace', 'a', 'batingal', 'user@gmail.com', '', 123456789, '123456789');
+(1, 1, 'ace', 'a', 'batingal', 'user@gmail.com', '', 123456789, '123456789'),
+(2, 5, 'test', 'test1', 'test2', 'test@gmail.com', '', 0, '123456789'),
+(3, 6, 'test', 'test1', 'test2', 'test2@gmail.com', '', 0, '123456789');
 
 -- --------------------------------------------------------
 
@@ -182,7 +184,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `user_type`, `school_id`, `email`, `password`) VALUES
 (1, 'client', 123456, 'user@gmail.com', '123456789'),
 (2, 'nurse', 654321, 'nurse@gmail.com', '123456789'),
-(3, 'admin', 615243, 'admin@gmail.com', '123456789');
+(3, 'admin', 615243, 'admin@gmail.com', '123456789'),
+(4, 'client', 987654, 'test@gmail.com', '123456789'),
+(5, 'client', 321654, 'test1@gmail.com', '123456789'),
+(6, 'client', 987654, 'test2@gmail.com', '123456789');
 
 --
 -- Indexes for dumped tables
@@ -226,7 +231,8 @@ ALTER TABLE `nurse`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -236,7 +242,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grade_levels`
@@ -266,7 +272,7 @@ ALTER TABLE `nurse`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

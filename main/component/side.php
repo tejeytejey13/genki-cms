@@ -85,11 +85,7 @@
                     ?>
                     <?php
                     if ($user_type == 'client') {
-                        echo '<li>
-                        <a href="client-table.php">
-                            <span><i class="mdi mdi-view-list"></i> Medical History</span>
-                        </a>
-                    </li>';
+                        echo '';
                     } else if ($user_type == 'nurse') {
                         echo '<li>
                         <a href="medical-clearance.php">

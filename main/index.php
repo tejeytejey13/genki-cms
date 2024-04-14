@@ -26,8 +26,10 @@
 
             </div>
         </section>
-        <?php include 'component/404.php'?>
-        <!-- <section class="hero is-hero-bar">
+        <?php 
+            if($user_type == 'nurse' || $user_type == 'admin') {
+        ?>
+        <section class="hero is-hero-bar">
             <div class="hero-body">
                 <div class="level">
                     <div class="level-left">
@@ -55,7 +57,7 @@
                                             Students
                                         </h3>
                                         <h1 class="title">
-                                            512
+                                            <?=$user_count?>
                                         </h1>
                                     </div>
                                 </div>
@@ -74,10 +76,10 @@
                                 <div class="level-item">
                                     <div class="is-widget-label">
                                         <h3 class="subtitle is-spaced">
-                                            Appointment
+                                            Clinic Appointment
                                         </h3>
                                         <h1 class="title">
-                                            333
+                                            <?=$form_count?>
                                         </h1>
                                     </div>
                                 </div>
@@ -96,7 +98,7 @@
                                 <div class="level-item">
                                     <div class="is-widget-label">
                                         <h3 class="subtitle is-spaced">
-                                            Performance
+                                            Inventory
                                         </h3>
                                         <h1 class="title">
                                             256%
@@ -138,8 +140,10 @@
                     </div>
                 </div>
             </div>
-
-        </section> -->
-
+        </section>
+        <?php }else{ 
+                include('component/404.php');
+            }
+        ?>     
     </div>
 <?php include './component/footer.php'; ?>

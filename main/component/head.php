@@ -31,6 +31,14 @@ $getQuery = mysqli_query($conn, $getSql);
 $getrow = mysqli_fetch_assoc($getQuery);
 $user_email = $getrow['email'];
 
+$number_of_students = "SELECT * FROM users WHERE user_type = 'client'";
+$runquery = mysqli_query($conn, $number_of_students);
+$user_count = mysqli_num_rows($runquery);
+
+$number_of_forms = "SELECT * FROM medical_form";
+$runcom = mysqli_query($conn, $number_of_forms);
+$form_count = mysqli_num_rows($runcom);
+
 if ($user_type == 'client') {
     $sqlclient = "SELECT * FROM client WHERE user_id = '$user_id'";
     $queryclient = mysqli_query($conn, $sqlclient);

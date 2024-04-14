@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/404.css?ver=1.1">
     <link rel="stylesheet" href="./css/modal.css?ver=1.1">
     <link rel="stylesheet" href="./css/about.css?ver=1.1">
+    <link rel="stylesheet" href="./css/calendar.css?ver=1.0">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -52,7 +53,13 @@ if ($user_type == 'client') {
     $user_fname = $row['first_name'];
     $user_mname = $row['middle_initial'];
     $user_lname = $row['last_name'];
-}else{
+} else {
+ 
+    header('Location: ../index.php');
     die("User not found");
 }
+
+
+
 ?>
+

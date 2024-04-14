@@ -81,6 +81,7 @@
                             <span><i class="mdi mdi-view-list"></i> Medical History</span>
                         </a>
                     </li>';
+                    
                     }
                     ?>
                     <?php

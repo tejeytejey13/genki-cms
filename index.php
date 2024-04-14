@@ -78,12 +78,12 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.5.0.min.js"></script>
+    <script src="js/jquery-3.5.0.min.js?ver=1.0"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="main/backend/js-backend/handler.js"></script>
+    <script src="main/backend/js-backend/handler.js?ver=1.0"></script>
 </body>
 
 </html>

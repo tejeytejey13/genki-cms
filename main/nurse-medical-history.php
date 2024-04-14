@@ -56,7 +56,38 @@ include 'component/head.php';
                     </div>
                 </div>
             </div> -->
-
+            <div class="filter-container" style="display: flex; gap: 30px;">
+                <div class="field">
+                    <label class="label">Date:</label>
+                    <input type="date" id="dateFilter">
+                </div>
+                <div class="field">
+                    <label class="label">Section:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="sectionFilter">
+                                <option value="">All Sections</option>
+                                <option value="A">Section A</option>
+                                <option value="B">Section B</option>
+                                <option value="C">Section C</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Grade:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="gradeFilter">
+                                <option value="">All Grades</option>
+                                <option value="1">Grade 1</option>
+                                <option value="2">Grade 2</option>
+                                <option value="3">Grade 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
@@ -180,4 +211,5 @@ include 'component/head.php';
 
 
     </div>
-<?php require 'component/footer.php' ?>
+   
+    <?php require 'component/footer.php' ?>

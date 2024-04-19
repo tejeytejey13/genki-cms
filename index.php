@@ -61,7 +61,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="fxt-footer">
+                <!-- <div class="fxt-footer">
                     <ul class="fxt-socials">
                         <li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-5"><a href="#"
                                 title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
@@ -74,16 +74,16 @@
                         <li class="fxt-pinterest fxt-transformY-50 fxt-transition-delay-9"><a href="#"
                                 title="pinterest"><i class="fab fa-pinterest-p"></i></a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.5.0.min.js"></script>
+    <script src="js/jquery-3.5.0.min.js?ver=1.0"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="main/backend/js-backend/handler.js"></script>
+    <script src="main/backend/js-backend/handler.js?ver=1.0"></script>
 </body>
 
 </html>

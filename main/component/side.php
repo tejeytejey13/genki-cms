@@ -61,7 +61,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="<?php echo ($current_page == 'medical-clearance.php') ? 'is-active' : ''; ?>">
+                            <a href="medical-clearance.php" class="<?php echo ($current_page == 'medical-clearance.php') ? 'is-active' : ''; ?>">
                                 <span><i class="mdi mdi-view-list"></i> Medical Clearance</span>
                             </a>
                         </li>

@@ -76,46 +76,12 @@ include 'component/head.php';
                                         <th>Item Quantity</th>
                                         <th>Date Placed</th>
                                         <th>Date Updated</th>
-                                        <th>Status</th>
+                                        <th>Action</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody id="dataTable-inventory">
-                                    <!-- <tr>
-                                        <td class="is-checkbox-cell">
-                                            <label class="b-checkbox checkbox">
-                                                <input type="checkbox" value="false">
-                                                <span class="check"></span>
-                                            </label>
-                                        </td>
-                                        <td class="is-image-cell">
-                                            <div class="image">
-                                                <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"
-                                                    class="is-rounded">
-                                            </div>
-                                        </td>
-                                        <td data-label="Name">Lonzo Steuber</td>
-                                        <td data-label="Company">Skiles Ltd</td>
-                                        <td data-label="City">Marilouville</td>
-                                        <td data-label="Progress" class="is-progress-cell">
-                                            <progress max="100" class="progress is-small is-primary"
-                                                value="17">17</progress>
-                                        </td>
-                                        <td data-label="Created">
-                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                                2020</small>
-                                        </td>
-                                        <td class="is-actions-cell">
-                                            <div class="buttons is-right">
-                                                <button class="button is-small is-primary" type="button">
-                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                                </button>
-                                                <button class="button is-small is-danger" type="button">
-                                                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr> -->
+
                                 </tbody>
                             </table>
                         </div>
@@ -124,9 +90,9 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button is-active">1</button>
-                                            <button type="button" class="button">2</button>
-                                            <button type="button" class="button">3</button>
+                                            <button class="button is-active" onclick="inventoryTable(1, 10)">1</button>
+                                            <button class="button" onclick="inventoryTable(2, 10)">2</button>
+                                            <button class="button" onclick="inventoryTable(3, 10)">3</button>
                                         </div>
                                     </div>
                                 </div>
@@ -140,8 +106,6 @@ include 'component/head.php';
                     </div>
                 </div>
             </div>
-
         </section>
-
     </div>
     <?php require 'component/footer.php' ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 05:28 AM
+-- Generation Time: Apr 21, 2024 at 03:30 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -22,6 +22,19 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `genkicms` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `genkicms`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clearance_slots`
+--
+
+CREATE TABLE `clearance_slots` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `slots` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -121,6 +134,64 @@ INSERT INTO `medical_form` (`id`, `user_id`, `first_name`, `middle_initial`, `la
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `med_despensary`
+--
+
+CREATE TABLE `med_despensary` (
+  `id` int(11) NOT NULL,
+  `item_id` bigint(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `quantity` bigint(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `med_despensary`
+--
+
+INSERT INTO `med_despensary` (`id`, `item_id`, `name`, `quantity`, `date_created`, `date_updated`, `status`) VALUES
+(2, 1, 'Band-Aids', 100, '2024-04-19 23:31:48', '2024-04-19 23:31:48', 0),
+(3, 2, 'Ibuprofen Tablets', 50, '2024-04-19 23:31:48', '2024-04-19 23:31:48', 0),
+(4, 3, 'Acetaminophen Tablets', 30, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(5, 4, 'Antihistamine Syrup', 40, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(6, 5, 'Adhesive Tape', 20, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(7, 6, 'Hydrogen Peroxide', 5, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(8, 7, 'Thermometer', 10, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(9, 8, 'Rubbing Alcohol', 15, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(10, 9, 'Burn Cream', 25, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(11, 10, 'Antiseptic Wipes', 50, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(12, 11, 'Cold Compress Packs', 30, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(13, 12, 'Calamine Lotion', 10, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(14, 13, 'Eye Wash Solution', 20, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(15, 14, 'Antacid Tablets', 40, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(16, 15, 'EpiPen', 5, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(17, 16, 'Inhaler', 10, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(18, 17, 'Aloe Vera Gel', 15, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(19, 18, 'Cough Drops', 50, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(20, 19, 'First Aid Manual', 5, '2024-04-19 23:31:49', '2024-04-19 23:31:49', 0),
+(21, 20, 'Hand Sanitizer', 30, '2024-04-19 23:31:50', '2024-04-19 23:31:50', 0);
+
+--
+-- Triggers `med_despensary`
+--
+DELIMITER $$
+CREATE TRIGGER `set_created_date` BEFORE INSERT ON `med_despensary` FOR EACH ROW BEGIN
+    SET NEW.date_created = NOW();
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_date_updated` BEFORE UPDATE ON `med_despensary` FOR EACH ROW BEGIN
+    SET NEW.date_updated = NOW();
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `med_form_status`
 --
 
@@ -194,6 +265,12 @@ INSERT INTO `users` (`id`, `user_type`, `school_id`, `email`, `password`) VALUES
 --
 
 --
+-- Indexes for table `clearance_slots`
+--
+ALTER TABLE `clearance_slots`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -210,6 +287,12 @@ ALTER TABLE `grade_levels`
 -- Indexes for table `medical_form`
 --
 ALTER TABLE `medical_form`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `med_despensary`
+--
+ALTER TABLE `med_despensary`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -239,6 +322,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `clearance_slots`
+--
+ALTER TABLE `clearance_slots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
@@ -255,6 +344,12 @@ ALTER TABLE `grade_levels`
 --
 ALTER TABLE `medical_form`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `med_despensary`
+--
+ALTER TABLE `med_despensary`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `med_form_status`

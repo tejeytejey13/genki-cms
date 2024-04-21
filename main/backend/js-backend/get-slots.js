@@ -3,9 +3,13 @@ $(function () {
     type: "POST",
     url: "backend/get-slots-clearance.php",
     success: function (result) {
-
       var data = JSON.parse(result);
-      localStorage.setItem('eventDates', JSON.stringify(data.map(item => item.date)));
+
+      if(data.status === 'error') {
+        localStorage.clear();
+      }
+
+      localStorage.setItem('eventDates', JSON.stringify(data.map(item => item)));
       $.each(data, function (index, item) {
         let htmlContent = 
         '<div class="container-selectedDate" >' +

@@ -68,7 +68,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+.modal-lead{
     background-color: #fefefe;
     margin: 20% auto;
     padding: 20px;
@@ -77,11 +77,12 @@
     align-items: center;
     text-align: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .close {
-    color: #aaa;
     float: right;
+    color: red;
     font-size: 28px;
     font-weight: bold;
 }
@@ -135,4 +136,10 @@
 
 .dropdown-menu.show {
     display: block;
+}
+
+@media only screen and (max-width: 600px){
+    #sched-btn{
+        padding: 1px;
+    }
 }

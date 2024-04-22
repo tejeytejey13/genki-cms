@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const calendar = document.getElementById("calendar");
     const modal = document.getElementById("modal");
-    const modalContent = document.querySelector(".modal-content");
+    const modalContent = document.querySelector(".modal-content-main");
     const modalBtn = document.querySelector(".modal-btn");
     const closeBtn = document.querySelector(".close");
 

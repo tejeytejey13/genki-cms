@@ -64,16 +64,20 @@ include 'component/head.php';
             </div>
 
 
-            <div id="modal" class="modal">
-                <div class="modal-content-main">
-                    <span class="close">&times;</span>
-                    <div class="modal-content"></div>
-                    <div class="modal-btn"></div>
-                </div>
-            </div>
+
         </section>
 
     </div>
+    <div id="modal" class="modal">
+        <div class="modal-lead">
+            <span class="close">&times;</span>
+            <div class="modal-content-main">
+
+            </div>
+
+        </div>
+    </div>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const dropdownToggle = document.querySelector('.container-selectedDate .dropdown-toggle');
@@ -93,4 +97,4 @@ include 'component/head.php';
     });
     </script>
     <?php require 'component/footer.php' ?>
-    <script src="backend/js-backend/calendar.js"></script>
+    <script src="backend/js-backend/calendar.js?ver=1"></script>

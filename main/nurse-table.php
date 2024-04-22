@@ -122,7 +122,7 @@ include 'component/head.php';
                         </div>
                         <div class="notification">
                             <div class="level">
-                                <div class="level-left">
+                                <!-- <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
                                             <button type="button" class="button is-active">1</button>
@@ -135,7 +135,7 @@ include 'component/head.php';
                                     <div class="level-item">
                                         <small>Page 1 of 3</small>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@ include 'component/head.php';
         </div>
         <div id="nurse-edit-med-form" class="modal">
             <div class="modal-background"></div>
-            <div class="modal-content">
+            <div class="modal-content modal-content-main-1">
                 <div class="modal-header" style="display: flex;">
                     <h2 class="modal-title">Medical Form</h2>
                     <button class="delete jb-modal-close" aria-label="close"></button>

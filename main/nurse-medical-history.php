@@ -152,7 +152,7 @@ include 'component/head.php';
                             </table>
                         </div>
                         <div class="notification">
-                            <div class="level">
+                            <!-- <div class="level">
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
@@ -167,7 +167,7 @@ include 'component/head.php';
                                         <small>Page 1 of 3</small>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

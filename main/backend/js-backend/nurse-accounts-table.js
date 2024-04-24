@@ -20,7 +20,7 @@ $(function() {
                 tr += '<td data-label="status">' + item.status + '</td>';
                 tr += '<td class="is-actions-cell"><div class="buttons is-left">'
                 + '<button class="button is-small is-primary" type="button"><span class="icon"><i class="mdi mdi-pen"></i></span></button>'
-                + '<button class="button is-small is-danger" type="button"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
+                + '<button class="button is-small is-danger" type="button" onclick="deleteData()"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
                 tr += "</tr>";
                 $("#nurseAccounts").append(tr);
             });
@@ -33,3 +33,23 @@ $(function() {
      }); 
    };
 });
+
+function deleteData(){
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }

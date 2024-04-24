@@ -71,7 +71,7 @@ include 'component/head.php';
     <div id="modal" class="modal">
         <div class="modal-lead">
             <span class="close">&times;</span>
-            <div class="modal-content-main">
+            <div class="modal-content-main" style="font-size: 30px; font-weight: 900;">
                 
             </div>
 

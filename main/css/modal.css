@@ -55,13 +55,23 @@
 }
 
 
-.delete {
-    /* background-color: transparent; */
+.delete1 {
+    background-color: transparent;
     border: none;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    color: #333;
     cursor: pointer;
     float: right;
     margin-left: 380px;
+    transition: transform .3s;
+}
+
+.delete1:hover{
+    color: red;
+    transform: scale(1.0);
+}
+
+p{
+   
+    font-weight: 700;
 }

@@ -86,7 +86,7 @@
             <ul class="menu-list">
                 <li>
                     <a href="clinic-inventory.php" class="<?php echo ($current_page == 'clinic-inventory.php') ? 'is-active' : ''; ?> has-icon">
-                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                        <span class="icon"><i class="mdi mdi-database"></i></span>
                         <span class="menu-item-label">Clinic Inventory</span>
                     </a>
                 </li>
@@ -113,7 +113,7 @@
             </li>
             <li>
                 <a href="about.php" class="<?php echo ($current_page == 'about.php') ? 'is-active' : ''; ?> has-icon">
-                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="icon"><i class="mdi mdi-account"></i></span>
                     <span class="menu-item-label">About Us</span>
                 </a>
             </li>

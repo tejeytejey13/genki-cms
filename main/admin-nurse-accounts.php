@@ -39,24 +39,9 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
+
         <section class="section is-main-section">
-
-            <!-- <div class="notification is-info">
-                <div class="level">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <div>
-                                <span class="icon"><i class="mdi mdi-buffer default"></i></span>
-                                <b>Tightly wrapped.</b> Table header becomes card header
-                            </div>
-                        </div>
-                    </div>
-                    <div class="level-right">
-                        <button type="button" class="button is-small is-white jb-notification-dismiss">Dismiss</button>
-                    </div>
-                </div>
-            </div> -->
-
+        <button class="btn btn-info" style="font-size: 20px; font-weight: 900; margin-bottom: 15px;">Add <span class="icon" ><i class="mdi mdi-plus"></i></span></button>
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">

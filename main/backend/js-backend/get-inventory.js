@@ -37,7 +37,7 @@ function inventoryTable(page, limit) {
           '<button class="button is-small is-primary" type="button">' +
           '<span class="icon"><i class="mdi mdi-eye"></i></span>' +
           "</button>" +
-          '<button class="button is-small is-danger" type="button">' +
+          '<button class="button is-small is-danger" type="button" onclick="deleteData()">' +
           '<span class="icon"><i class="mdi mdi-trash-can"></i></span>' +
           "</button></div></td>";
 
@@ -45,5 +45,25 @@ function inventoryTable(page, limit) {
       });
 
     },
+  });
+}
+
+function deleteData(){
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+    }
   });
 }

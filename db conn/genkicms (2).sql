@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 03:30 PM
+-- Generation Time: Apr 24, 2024 at 04:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -26,6 +26,27 @@ USE `genkicms`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_initial` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`) VALUES
+(1, 3, 'Admin', '', 'Admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `clearance_slots`
 --
 
@@ -35,6 +56,17 @@ CREATE TABLE `clearance_slots` (
   `time` varchar(255) NOT NULL,
   `slots` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `clearance_slots`
+--
+
+INSERT INTO `clearance_slots` (`id`, `date`, `time`, `slots`) VALUES
+(61, '2024-04-09', 'AM', 15),
+(62, '2024-04-10', 'PM', 15),
+(63, '2024-04-11', 'AM', 15),
+(64, '2024-04-12', 'PM', 15),
+(65, '2024-04-13', 'AM', 15);
 
 -- --------------------------------------------------------
 
@@ -208,7 +240,7 @@ CREATE TABLE `med_form_status` (
 --
 
 INSERT INTO `med_form_status` (`id`, `form_id`, `nurse_id`, `status`, `date_updated`) VALUES
-(7, 1, 0, 'pending', '');
+(7, 1, 2, 'pending', '2024-04-24 14:52:08');
 
 -- --------------------------------------------------------
 
@@ -224,15 +256,17 @@ CREATE TABLE `nurse` (
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone_number` int(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nurse`
 --
 
-INSERT INTO `nurse` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `email`, `phone_number`, `password`) VALUES
-(1, 2, 'john', 'a', 'doe', 'nurse@gmail.com', 987654321, '123456789');
+INSERT INTO `nurse` (`id`, `user_id`, `first_name`, `middle_initial`, `last_name`, `email`, `phone_number`, `password`, `date_created`, `status`) VALUES
+(1, 2, 'john', 'a', 'doe', 'nurse@gmail.com', 987654321, '123456789', '2024-04-24 21:06:53', 'active');
 
 -- --------------------------------------------------------
 
@@ -263,6 +297,13 @@ INSERT INTO `users` (`id`, `user_type`, `school_id`, `email`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `clearance_slots`
@@ -322,10 +363,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `clearance_slots`
 --
 ALTER TABLE `clearance_slots`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -372,6 +419,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `admin`
+--
+ALTER TABLE `admin`
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `client`

@@ -43,6 +43,7 @@ function inventoryTable(page, limit) {
 
         $("#dataTable-inventory").append(tr);
       });
+
     },
   });
 }

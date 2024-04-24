@@ -24,6 +24,7 @@
     <script src="./backend/js-backend/get-slots.js"></script>
     <script src="./backend/js-backend/get-inventory.js"></script>
     <script src="./backend/js-backend/set-clearance-slots.js"></script>
+    <script src="./backend/js-backend/nurse-accounts-table.js"></script>
 
     <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">

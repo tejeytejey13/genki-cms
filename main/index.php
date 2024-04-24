@@ -101,7 +101,7 @@
                                             Inventory
                                         </h3>
                                         <h1 class="title">
-                                            256%
+                                            <?= $inv_count ?>
                                         </h1>
                                     </div>
                                 </div>

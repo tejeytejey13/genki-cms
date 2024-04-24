@@ -17,16 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function renderCalendar(month, year) {
         calendar.innerHTML = "";
 
-        // var monthYear = $('.month-name').html();
-        // var monthName = monthYear.split(" ")[0];
-        // var monthYear = monthYear.split(" ")[1];
-        // monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-
-        // var monthNumber = new Date(monthName +' 1, ' + monthYear);
-        // var mn = monthNumber.getMonth() + 1;
-        // var yr = monthNumber.getFullYear();
-        
-
         const monthName = new Intl.DateTimeFormat('en-US', {
             month: 'long'
         }).format(new Date(year, month));
@@ -90,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentYear--;
             }
             renderCalendar(currentMonth, currentYear);
+            
         });
 
         const nextBtn = document.createElement("button");
@@ -122,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
             };
              
         });
-        
         
 
         btnContainer.appendChild(prevBtn);

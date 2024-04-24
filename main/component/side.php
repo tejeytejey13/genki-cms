@@ -38,9 +38,9 @@
                 </li>
             <?php elseif ($user_type == 'admin'): ?>
                 <li>
-                    <a href="client.php" class="<?php echo ($current_page == 'client.php') ? 'is-active' : ''; ?> has-icon">
+                    <a href="client.php" class="<?php echo ($current_page == 'nurse-table.php') ? 'is-active' : ''; ?> has-icon">
                         <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
-                        <span class="menu-item-label">Tables</span>
+                        <span class="menu-item-label">Clinic Appointments</span>
                     </a>
                 </li>
             <?php endif; ?>
@@ -91,6 +91,16 @@
                     </a>
                 </li>
             </ul>
+            <?php if ($user_type == 'admin'): ?>
+            <ul class="menu-list">
+                <li>
+                    <a href="admin-nurse-accounts.php" class="<?php echo ($current_page == 'admin-nurse-accounts.php') ? 'is-active' : ''; ?> has-icon">
+                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                        <span class="menu-item-label">Nurse Management</span>
+                    </a>
+                </li>
+            </ul>
+            <?php endif; ?>
         <?php endif; ?>
 
         <p class="menu-label">OTHERS</p>

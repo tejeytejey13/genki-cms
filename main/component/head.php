@@ -40,6 +40,10 @@ $number_of_forms = "SELECT * FROM medical_form";
 $runcom = mysqli_query($conn, $number_of_forms);
 $form_count = mysqli_num_rows($runcom);
 
+$number_of_inv = "SELECT * FROM med_despensary";
+$runinv = mysqli_query($conn, $number_of_inv);
+$inv_count = mysqli_num_rows($runinv);
+
 if ($user_type == 'client') {
     $sqlclient = "SELECT * FROM client WHERE user_id = '$user_id'";
     $queryclient = mysqli_query($conn, $sqlclient);

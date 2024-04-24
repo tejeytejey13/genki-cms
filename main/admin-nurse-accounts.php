@@ -15,8 +15,8 @@ include 'component/head.php';
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                            <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Medical History</li>
+                            <li>Nurse</li>
+                            <li>Nurse Accounts</li>
                         </ul>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Medical History
+                                Nurse Accounts
                             </h1>
                         </div>
                     </div>
@@ -56,38 +56,7 @@ include 'component/head.php';
                     </div>
                 </div>
             </div> -->
-            <div class="filter-container" style="display: flex; gap: 30px;">
-                <div class="field">
-                    <label class="label">Date:</label>
-                    <input type="date" id="dateFilter">
-                </div>
-                <div class="field">
-                    <label class="label">Section:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="sectionFilter">
-                                <option value="">All Sections</option>
-                                <option value="A">Section A</option>
-                                <option value="B">Section B</option>
-                                <option value="C">Section C</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Grade:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="gradeFilter">
-                                <option value="">All Grades</option>
-                                <option value="1">Grade 1</option>
-                                <option value="2">Grade 2</option>
-                                <option value="3">Grade 3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
@@ -103,16 +72,16 @@ include 'component/head.php';
                                             </label>
                                         </th>
                                         <th></th>
+                                        <th>Nurse ID</th>
                                         <th>Name</th>
-                                        <th>Grade Level</th>
-                                        <th>Parent's Name</th>
+                                        <th>Email</th>
                                         <th>Date Created</th>
-                                        <th>Date of Clinic</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody id="nurseHistoryTable">
+                                <tbody id="nurseAccounts">
                                     <!-- <tr>
                                         <td class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox">
@@ -173,43 +142,8 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
-        <div id="view-med-form" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title">Medical Form</h2>
-                    <button class="delete jb-modal-close" aria-label="close"></button>
-
-                </div>
-                <div class="modal-body">
-
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="patient-details">
-                                    <h2 id="heading-name">Client Name</h2>
-                                    <p class="heading-date">Date Created: January 1, 2022</p>
-                                    <p class="heading-date1">Date of Clinic: January 1, 2022</p>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="status-details">
-                                    <p class="heading-status">Status: In Progress</p>
-                                    <p class="attending-nurse">Attending Nurse: John Doe</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" status="display: flex; justify-content: center: gap: 30px;">
-                    <button class="button jb-modal-close">Cancel</button>
-                    <button class="button is-success jb-modal-close">Delete</button>
-                </div>
-            </div>
-        </div>
 
 
     </div>
-   
+    </div>
     <?php require 'component/footer.php' ?>

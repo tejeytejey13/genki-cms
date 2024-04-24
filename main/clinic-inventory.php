@@ -16,7 +16,7 @@ include 'component/head.php';
                     <div class="level-item">
                         <ul>
                             <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Clinic Despensary</li>
+                            <li>Clinic Dispensary</li>
                         </ul>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Clinic Despensary
+                                Clinic Dispensary
                             </h1>
                         </div>
                     </div>

@@ -41,7 +41,7 @@ $(function () {
                 trNurse += "<td data-label='status'>" + row.status + "</td>";
                 trNurse += "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-view-btn' data-target-uid='"+ row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>"
                 + "<button class='button is-small is-warning nurse-edit-btn' data-target-uid='"+ row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button>"
-                + "<button class='button is-small is-danger' type='button'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
+                + "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
                 trNurse += "</tr>";
             }
             
@@ -59,7 +59,7 @@ $(function () {
             trhistoryNurse += "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" + formatDate(row.date_med) + "</small></td>";
             trhistoryNurse += "<td data-label='status'>" + row.status + "</td>";
             trhistoryNurse += "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-view-btn' data-target-uid='"+ row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>"
-            + "<button class='button is-small is-danger' type='button'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
+            + "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
             trhistoryNurse += "</tr>";
   
             $("#nurseTable").append(trNurse);
@@ -149,6 +149,26 @@ $(function () {
     });
     // setInterval(refreshTable, 2000);
   });
+
+  function deleteData(){
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
   
   function formatDate(date) {
     var timestamp = new Date(date);
@@ -157,5 +177,7 @@ $(function () {
     var year = timestamp.getFullYear(); // Get the year
     var formattedDate = month + " " + day + ", " + year;
     return formattedDate;
-  }
+  };
+
+
   

@@ -72,7 +72,7 @@ include 'component/head.php';
         <div class="modal-lead">
             <span class="close">&times;</span>
             <div class="modal-content-main">
-
+                
             </div>
 
         </div>

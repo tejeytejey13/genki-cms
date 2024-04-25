@@ -16,6 +16,18 @@
             $_SESSION['user_type'] = $user_type;
             $_SESSION['user_id'] = $userid;
             
+            if ($user_type == 'nurse') {
+                $checkAcc = "SELECT * FROM nurse WHERE user_id = '$userid'";
+                $queryAcc = mysqli_query($conn, $checkAcc);
+                $row = mysqli_fetch_array($queryAcc);
+                if($row['status'] !== 'active'){
+                    $response['status'] = 'error';
+                    $response['message'] = 'Please activate your account first';
+                    $response['user_type'] = $user_type;
+                    echo json_encode($response);
+                    exit();
+                }
+            }
             // $response = array(
             //     'status' => 'success',
             //     'message' => 'Login successful',

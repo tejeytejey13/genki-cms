@@ -41,7 +41,9 @@ include 'component/head.php';
         </section>
 
         <section class="section is-main-section">
-        <button class="btn btn-info" style="font-size: 20px; font-weight: 900; margin-bottom: 15px;">Add <span class="icon" ><i class="mdi mdi-plus"></i></span></button>
+            <button class="btn btn-info" id="addnursebtn" style="font-size: 15px; font-weight: 900; margin-bottom: 10px;">
+                Add <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </button>
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
@@ -127,7 +129,48 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
+        <div id="addnursemodal" class="modal">
+            <div class="modal-content">
+                <form id="add_nurse" method="POST">
+                    <span class="close jb-modal-close" aria-label="close">&times;</span>
+                    <div class="modal-content-main" style="font-size: 30px; font-weight: 900;">
+                        <h2 class="modal-title">Nurse Accounts Form</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="#">
+                                        <label for="first_name">First Name</label>
+                                        <input id="first_name" name="fname" type="text" placeholder="First Name" />
+                                        <label for="middle_name">Middle Name</label>
+                                        <input id="middle_name" name="mname" type="text" placeholder="Middle Name" />
+                                        <label for="last_name">Last Name</label>
+                                        <input id="last_name" name="lname" type="text" placeholder="Last Name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="#">
+                                        <label for="phone_num">Phone Number</label>
+                                        <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" />
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" type="text" placeholder="Email" />
+                                        <label for="password">password</label>
+                                        <input id="password" name="password" type="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
+                            <button class="button is-success jb-modal-close">Save</button>
+
+                            <button class="button jb-modal-close">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     </div>
     </div>

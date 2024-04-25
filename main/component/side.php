@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="<?php echo ($current_page == 'email.php') ? 'is-active' : ''; ?> router-link-active has-icon">
+                <a href="component/page404.php" class="<?php echo ($current_page == 'email.php') ? 'is-active' : ''; ?> router-link-active has-icon">
                     <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
                     <span class="menu-item-label">Emails</span>
                 </a>
@@ -38,7 +38,7 @@
                 </li>
             <?php elseif ($user_type == 'admin'): ?>
                 <li>
-                    <a href="client.php" class="<?php echo ($current_page == 'nurse-table.php') ? 'is-active' : ''; ?> has-icon">
+                    <a href="nurse-table.php" class="<?php echo ($current_page == 'nurse-table.php') ? 'is-active' : ''; ?> has-icon">
                         <span class="icon has-update-mark"><i class="mdi mdi-table"></i></span>
                         <span class="menu-item-label">Clinic Appointments</span>
                     </a>

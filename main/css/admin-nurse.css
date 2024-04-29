@@ -1,0 +1,43 @@
+.row{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.col{
+    flex: 1;
+    margin-right: 10px;
+}
+
+.col:last-child{
+    margin-right: 0;
+
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"]{
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 3px;
+}
+
+input[type="submit"]{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: #45a049;
+}

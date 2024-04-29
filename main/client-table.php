@@ -125,7 +125,7 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button is-active">1</button>
+                                            <button type="button" class="button">1</button>
                                             <button type="button" class="button">2</button>
                                             <button type="button" class="button">3</button>
                                         </div>
@@ -145,10 +145,10 @@ include 'component/head.php';
         <div id="view-med-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title">Medical Form</h2>
+                <div class="modal-header" style="display: flex; gap: 70%;">
+                    <h2 class="modal-title">Medical Form
+                    </h2>
                     <button class="delete jb-modal-close" aria-label="close"></button>
-
                 </div>
                 <div class="modal-body">
 

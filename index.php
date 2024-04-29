@@ -83,7 +83,7 @@
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="main/backend/js-backend/handler.js?ver=1.0"></script>
+    <script src="main/backend/js-backend/handler.js?ver=1.2"></script>
 </body>
 
 </html>

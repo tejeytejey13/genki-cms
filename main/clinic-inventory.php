@@ -83,7 +83,7 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button class="button is-active" onclick="inventoryTable(1, 10)">1</button>
+                                            <button class="button " onclick="inventoryTable(1, 10)">1</button>
                                             <button class="button " onclick="inventoryTable(2, 10)">2</button>
                                             <button class="button" onclick="inventoryTable(3, 10)">3</button>
                                         </div>

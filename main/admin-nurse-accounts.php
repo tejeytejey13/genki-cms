@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+    <link rel="stylesheet" href="css/admin-nurse.css">
 <?php
 include 'component/head.php';
 ?>
@@ -41,7 +42,8 @@ include 'component/head.php';
         </section>
 
         <section class="section is-main-section">
-            <button class="btn btn-info" id="addnursebtn" style="font-size: 15px; font-weight: 900; margin-bottom: 10px;">
+            <button class="btn btn-info" id="addnursebtn"
+                style="font-size: 15px; font-weight: 900; margin-bottom: 10px;">
                 Add <span class="icon"><i class="mdi mdi-plus"></i></span>
             </button>
 
@@ -112,7 +114,7 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button is-active">1</button>
+                                            <button type="button" class="button">1</button>
                                             <button type="button" class="button">2</button>
                                             <button type="button" class="button">3</button>
                                         </div>
@@ -138,29 +140,40 @@ include 'component/head.php';
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="#">
-                                        <label for="first_name">First Name</label>
-                                        <input id="first_name" name="fname" type="text" placeholder="First Name" />
-                                        <label for="middle_name">Middle Name</label>
-                                        <input id="middle_name" name="mname" type="text" placeholder="Middle Name" />
-                                        <label for="last_name">Last Name</label>
-                                        <input id="last_name" name="lname" type="text" placeholder="Last Name" />
-                                    </div>
+                                <div class="col">
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" name="fname" type="text" placeholder="First Name" />
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="#">
-                                        <label for="phone_num">Phone Number</label>
-                                        <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" />
-                                        <label for="email">Email</label>
-                                        <input id="email" name="email" type="text" placeholder="Email" />
-                                        <label for="password">password</label>
-                                        <input id="password" name="password" type="password" placeholder="Password" />
-                                    </div>
+
+                                <div class="col">
+                                    <label for="middle_name">Middle Name</label>
+                                    <input id="middle_name" name="mname" type="text" placeholder="Middle Name" />
+                                </div>
+
+                                <div class="col">
+
+                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" name="lname" type="text" placeholder="Last Name" />
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="phone_num">Phone Number</label>
+                                    <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" />
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email</label>
+                                    <input id="email" name="email" type="text" placeholder="Email" />
+                                </div>
+                                <div class="col">
+                                    <label for="password">password</label>
+                                    <input id="password" name="password" type="password" placeholder="Password" />
+                                </div>
+                            </div>
+
+                            
                         </div>
                         <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
                             <button class="button is-success jb-modal-close">Save</button>

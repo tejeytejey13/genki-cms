@@ -20,6 +20,7 @@
                 $checkAcc = "SELECT * FROM nurse WHERE user_id = '$userid'";
                 $queryAcc = mysqli_query($conn, $checkAcc);
                 $row = mysqli_fetch_array($queryAcc);
+
                 if($row['status'] !== 'active'){
                     $response['status'] = 'error';
                     $response['message'] = 'Please activate your account first';
@@ -28,11 +29,7 @@
                     exit();
                 }
             }
-            // $response = array(
-            //     'status' => 'success',
-            //     'message' => 'Login successful',
-            //     'user_type' => $user_type
-            // );
+
             $response['status'] = 'success';
             $response['message'] = 'Login successful';
             $response['user_type'] = $user_type;
@@ -40,10 +37,7 @@
             echo json_encode($response);
 
         }else{
-            // $response = array(
-            //     'status' => 'error',
-            //     'message' => 'Invalid email or password'
-            // );
+
             $response['status'] = 'error';
             $response['message'] = 'Invalid email or password';
             echo json_encode($response);

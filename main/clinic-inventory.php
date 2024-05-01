@@ -38,6 +38,8 @@ include 'component/head.php';
                     </div>
                 </div>
             </div>
+
+
         </section>
         <section class="section is-main-section">
             <div class="card has-table has-table-container-upper-radius">
@@ -46,9 +48,15 @@ include 'component/head.php';
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
-                                <div class="control">
+                                <div class="control" style="display: flex; margin: 5px; gap: 10px;">
                                     <input class="input" type="text" id="searchInput" placeholder="Enter search ">
+
+                                    <button class="btn btn-info" onclick="openModal()"
+                                        style="display: flex; margin: 0 auto; text-align: center; align-items: center; font-size: 20px;">Add
+                                        <i class="mdi mdi-plus"></i></button>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -101,4 +109,119 @@ include 'component/head.php';
             </div>
         </section>
     </div>
+
+    <!-- Modal Add -->
+    <div id="modal" class="modal">
+        <div class="modal-lead" style="height: 30%; width: 40vw;">
+            <span class="close" onclick="closeModal()">&times;</span>
+
+
+        </div>
+    </div>
+
+    <!-- Modal View Quantity -->
+    <div id="modal1" class="modal">
+        <div class="modal-lead" style="height: 10%; width: 40vw;">
+            <span class="close" onclick="closeModal1()">&times;</span>
+
+            <div class="input-group"
+                style="display: flex; justify-content: center; align-items: center; margin: 30px auto;">
+                <div class="group">
+                    <label for="">Quantiy</label>
+                    <input type="number">
+                </div>
+
+                <div class="group">
+                    <label for="">Price</label>
+                    <input type="text">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+    function openModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'block';
+
+
+
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = 'none';
+    }
+
+    function openModal1() {
+        const modal = document.getElementById('modal1');
+        modal.style.display = 'block';
+
+
+
+    }
+
+    function closeModal1() {
+        const modal = document.getElementById('modal1');
+        modal.style.display = 'none';
+    }
+    </script>
     <?php require 'component/footer.php' ?>
+
+    <style>
+    .modal-lead .input-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px auto;
+    }
+
+    .modal-lead .group {
+        margin-right: 20px;
+    }
+
+    .modal-lead label {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .modal-lead input[type="number"],
+    .modal-lead input[type="text"] {
+        width: 120px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .modal-lead input[type="number"]:focus,
+    .modal-lead input[type="text"]:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+    @media (max-width: 768px) {
+        .modal-lead {
+            width: 80vw;
+           
+        }
+    }
+
+    @media (max-width: 576px) {
+        .modal-lead {
+            width: 90vw;
+           
+        }
+
+        .modal-lead .input-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .modal-lead .group {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+    </style>

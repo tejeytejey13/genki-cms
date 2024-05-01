@@ -22,7 +22,7 @@
     <script src="./backend/js-backend/nurse-medical-handler.js"></script>
     <script src="./backend/js-backend/profile-handler.js"></script>
     <script src="./backend/js-backend/get-slots.js"></script>
-    <script src="./backend/js-backend/get-inventory.js"></script>
+    <script src="./backend/js-backend/get-inventory.js?ver=1.0"></script>
     <script src="./backend/js-backend/set-clearance-slots.js"></script>
     <script src="./backend/js-backend/nurse-accounts-table.js"></script>
 

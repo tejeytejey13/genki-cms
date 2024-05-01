@@ -43,8 +43,8 @@ include 'component/head.php';
 
         <section class="section is-main-section">
             <button class="btn btn-info" id="addnursebtn"
-                style="font-size: 15px; font-weight: 900; margin-bottom: 10px;">
-                Add <span class="icon"><i class="mdi mdi-plus"></i></span>
+                style="font-size: 15px; font-weight: 900; margin-bottom: 10px; text-align: center; align-items: center;">
+                Add <i class="mdi mdi-plus"></i>
             </button>
 
             <div class="card has-table has-table-container-upper-radius">

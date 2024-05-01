@@ -34,7 +34,7 @@ function inventoryTable(page, limit) {
         tr +=
           '<td class="is-actions-cell">' +
           '<div class="buttons is-right">' +
-          '<button class="button is-small is-primary" type="button">' +
+          '<button class="button is-small is-primary" type="button" onclick="openModal1()">' +
           '<span class="icon"><i class="mdi mdi-eye"></i></span>' +
           "</button>" +
           '<button class="button is-small is-danger" type="button" onclick="deleteData()">' +

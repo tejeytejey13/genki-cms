@@ -19,35 +19,42 @@ $(function() {
                 tr += '<td data-label="Date"><small class="has-text-grey is-abbr-like"">' + item.date_created + '</small></td>';
                 tr += '<td data-label="status">' + item.status + '</td>';
                 tr += '<td class="is-actions-cell"><div class="buttons is-left">'
-                + '<button class="button is-small is-primary" type="button" ><span class="icon"><i class="mdi mdi-pen"></i></span></button>'
+                + '<button class="button is-small is-primary view-edit-nurse-status" data-target-uid="' + item.user_id +'" type="button"><span class="icon"><i class="mdi mdi-pen"></i></span></button>'
                 + '<button class="button is-small is-danger" type="button" onclick="deleteData()"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
                 tr += "</tr>";
                 $("#nurseAccounts").append(tr);
             });
 
-
+            $('.view-edit-nurse-status').click(function() {
+              $('#vd-nurse-status').addClass('is-active');
+                const uid = $(this).data('target-uid');
+                console.log(uid);
+             });
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
         }
      }); 
+     
    };
 
    $('#addnursebtn').click(function() {
     $('#addnursemodal').addClass('is-active');
-    const forms = $('#add_nurse').serialize();
-    // $.ajax({
-    //   url: 'backend/add-nurse.php',
-    //   type: 'POST',
-    //   data: forms,
-    //   success: function(response) {
-    //     console.log(response);
-    //     // $('#addnursemodal').removeClass('is-active');
-    //     // $('#nurseAccounts').empty();
-    //     // nurseAccount();
-    //   }
-    // })
-   });
+    $('#submitnursebtn').click(function() {
+      const forms = $('#add_nurse').serialize();
+      $.ajax({
+        url: 'backend/add-nurse.php',
+        type: 'POST',
+        data: forms,
+        success: function(response) {
+          console.log(response);
+          // $('#addnursemodal').removeClass('is-active');
+          // $('#nurseAccounts').empty();
+          // nurseAccount();
+        }
+      })
+    })
+  });
 });
 
 function deleteData(){

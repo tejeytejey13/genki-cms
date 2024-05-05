@@ -39,6 +39,7 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
+        
         <section class="section is-main-section">
 
             <!-- <div class="notification is-info">
@@ -79,10 +80,13 @@ include 'component/head.php';
                     <div class="control">
                         <div class="select">
                             <select id="gradeFilter">
-                                <option value="">All Grades</option>
-                                <option value="1">Grade 1</option>
-                                <option value="2">Grade 2</option>
-                                <option value="3">Grade 3</option>
+                                <option value="" hidden selected>All Grades</option>
+                                <?php 
+                                    $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
+                                    while ($row = mysqli_fetch_assoc($getlvl)) {
+                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -172,42 +176,40 @@ include 'component/head.php';
                     </div>
                 </div>
             </div>
-        </section>
-        <div id="view-med-form" class="modal">
-            <div class="modal-background"></div>
+            <div id="view-med-form" class="modal">
             <div class="modal-content">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title">Medical Form</h2>
-                    <button class="delete jb-modal-close" aria-label="close"></button>
-
+                <div class="modal-header">
+                    <h1 class="modal-title" style="font-weight: 900">Medical Form <button class="delete1 jb-modal-close"
+                            aria-label="close">&times</button>
+                    </h1>
                 </div>
                 <div class="modal-body">
-
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="patient-details">
                                     <h2 id="heading-name">Client Name</h2>
-                                    <p class="heading-date">Date Created: January 1, 2022</p>
-                                    <p class="heading-date1">Date of Clinic: January 1, 2022</p>
-
+                                    <p id="heading-date" class="heading-date"></p>
+                                    <p id="heading-date1" class="heading-date1"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="status-details">
-                                    <p class="heading-status">Status: In Progress</p>
-                                    <p class="attending-nurse">Attending Nurse: John Doe</p>
+                                    <p id="heading-status" class="heading-status"></p>
+                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer" status="display: flex; justify-content: center: gap: 30px;">
-                    <button class="button jb-modal-close">Cancel</button>
-                    <button class="button is-success jb-modal-close">Delete</button>
+                <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
+                    <!-- <button class="button jb-modal-close">Cancel</button>
+            <button class="button is-success jb-modal-close">Delete</button> -->
                 </div>
             </div>
         </div>
+        </section>
+
 
 
     </div>

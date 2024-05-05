@@ -176,15 +176,46 @@ include 'component/head.php';
                             
                         </div>
                         <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
-                            <button class="button is-success jb-modal-close">Save</button>
-
+                            <button class="button is-success jb-modal-close" id="submitnursebtn" type="submit">Save</button>
                             <button class="button jb-modal-close">Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
-    </div>
+        <div id="vd-nurse-status" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content modal-content-main-1">
+                <div class="modal-header" style="display: flex;">
+                    <h2 class="modal-title" style="font-weight: 900">Nurse Status</h2>
+                    <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                </div>
+                <form method="POST">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="patient-details">
+                                        <h2 id="heading-nurse-name-edit">Nurse Name</h2>
+                                        <p class="heading-date">Select Status:</p>
+                                        <div class="select is-narrow">
+                                            <select id="heading-status-edit" name="status">
+                                                <option selected hidden>Select Status</option>
+                                                <option value="active">Active</option>
+                                                <option value="disabled">Disabled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
+                        <button id="update-form-btn" type="submit" class="button is-success">Update</button>
+                </form>
+                <button class="button jb-modal-close">Cancel</button>
+            </div>
+        </div>
+        
     </div>
     <?php require 'component/footer.php' ?>

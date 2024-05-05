@@ -144,7 +144,7 @@ include 'component/head.php';
                             <div class="col-md-6">
                                 <div class="status-details">
                                     <p id="heading-status" class="heading-status"></p>
-                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
+                                    <!-- <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p> -->
                                 </div>
                             </div>
                         </div>

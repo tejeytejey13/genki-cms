@@ -8,6 +8,7 @@ function inventoryTable(page, limit) {
     data: { page: page, limit: limit },
     success: function (response) {
       $("#dataTable-inventory").empty();
+      
       $.each(response, function (index, item) {
         var tr = "<tr>";
         tr +=
@@ -34,7 +35,7 @@ function inventoryTable(page, limit) {
         tr +=
           '<td class="is-actions-cell">' +
           '<div class="buttons is-right">' +
-          '<button class="button is-small is-primary" type="button" onclick="openModal1()">' +
+          '<button class="button is-small is-primary edit-inventory" id="edit-med-item" data-target-item-id="'+item.item_id+'" type="button"' +
           '<span class="icon"><i class="mdi mdi-eye"></i></span>' +
           "</button>" +
           '<button class="button is-small is-danger" type="button" onclick="deleteData()">' +
@@ -42,6 +43,14 @@ function inventoryTable(page, limit) {
           "</button></div></td>";
 
         $("#dataTable-inventory").append(tr);
+
+        $('.edit-inventory').click(function() {
+          const modal = document.getElementById('modal1');
+          modal.style.display = 'block';
+
+          const itemId = $(this).data('target-item-id');
+          $('#item_id').val(itemId);
+        });
       });
 
     },
@@ -90,4 +99,24 @@ function formatDate(date) {
   var year = timestamp.getFullYear(); // Get the year
   var formattedDate = month + " " + day + ", " + year;
   return formattedDate;
+}
+
+function openModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'block';
+  
+}
+
+function closeModal() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'none';
+}
+
+function openModal1() {
+  
+}
+
+function closeModal1() {
+  const modal = document.getElementById('modal1');
+  modal.style.display = 'none';
 }

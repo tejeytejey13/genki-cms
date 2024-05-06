@@ -124,46 +124,22 @@ include 'component/head.php';
 
             <div class="input-group"
                 style="display: flex; justify-content: center; align-items: center; margin: 30px auto;">
+                <input id="item_id" type="text" name="quantity" hidden>
                 <div class="group">
                     <label for="">Quantiy</label>
-                    <input type="number">
+                    <input type="number" name="quantity">
                 </div>
 
                 <div class="group">
                     <label for="">Price</label>
-                    <input type="text">
+                    <input type="number" name="price">
                 </div>
             </div>
-
+            <button class="button is-small is-secobdary" type="button">
+                SAVE</span>
+            </button>
         </div>
     </div>
-    <script>
-    function openModal() {
-        const modal = document.getElementById('modal');
-        modal.style.display = 'block';
-
-
-
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('modal');
-        modal.style.display = 'none';
-    }
-
-    function openModal1() {
-        const modal = document.getElementById('modal1');
-        modal.style.display = 'block';
-
-
-
-    }
-
-    function closeModal1() {
-        const modal = document.getElementById('modal1');
-        modal.style.display = 'none';
-    }
-    </script>
     <?php require 'component/footer.php' ?>
 
     <style>

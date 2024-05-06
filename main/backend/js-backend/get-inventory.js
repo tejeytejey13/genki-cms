@@ -35,7 +35,7 @@ function inventoryTable(page, limit) {
         tr +=
           '<td class="is-actions-cell">' +
           '<div class="buttons is-right">' +
-          '<button class="button is-small is-primary edit-inventory" id="edit-med-item" data-target-item-id="'+item.item_id+'" type="button"' +
+          '<button class="button is-small is-primary edit-inventory" id="edit-med-item" data-target-item-id="'+item.item_id+'" data-target-item-quantity="'+item.quantity+'" type="button"' +
           '<span class="icon"><i class="mdi mdi-eye"></i></span>' +
           "</button>" +
           '<button class="button is-small is-danger" type="button" onclick="deleteData()">' +
@@ -49,7 +49,11 @@ function inventoryTable(page, limit) {
           modal.style.display = 'block';
 
           const itemId = $(this).data('target-item-id');
-          $('#item_id').val(itemId);
+          const itemQuantity = $(this).data('target-item-quantity');
+          $('#id_item').val(itemId);
+          $('#quantity_item').val(itemQuantity);
+          
+          
         });
       });
 
@@ -57,6 +61,18 @@ function inventoryTable(page, limit) {
   });
 }
 
+$('.save-med-item').click(function() {
+  var updateItem = $('#updateItem').serialize();
+  $.ajax({
+    url: "backend/edit-med-item.php",
+    type: "POST",
+    data: updateItem,
+    success: function (response) {
+      console.log(response);
+    }
+    
+  })
+});
 function searchTable(){
   var search = $("#searchInput").val().toLowerCase(); 
     

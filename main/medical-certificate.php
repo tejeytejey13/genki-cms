@@ -4,52 +4,6 @@
 <?php
 include 'component/head.php';
 ?>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-.input-container {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="date"],
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-top: 5px;
-}
-
-
-
-.btn-submit {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-@media (max-width: 768px) {
-    .input-container {
-        width: 100%;
-    }
-}
-</style>
 
 <body>
     <div id="app">
@@ -62,7 +16,7 @@ select {
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                            <li>Admin</li>
+                            <li>Nurse</li>
                             <li>Medical Certificate</li>
                         </ul>
                     </div>
@@ -88,59 +42,211 @@ select {
         </section>
 
         <section class="section is-main-section">
-            <!-- <button class="btn btn-info" id="addnursebtn"
-                style="font-size: 15px; font-weight: 900; margin-bottom: 10px; text-align: center; align-items: center;">
-                Add <i class="mdi mdi-plus"></i>
-            </button> -->
-
-            <div class="card has-table has-table-container-upper-radius">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                        Medical Certificate
+                    </p>
+                </header>
                 <div class="card-content">
-                    <div class="b-table has-pagination">
-                        <div class="table-wrapper has-mobile-cards">
-                            <form>
-                            <div class="input-container">
-                                    <label for="date">Date:</label>
-                                    <input type="date" id="date" name="date" required>
+                    <form id="medical-certificate-form" method="POST">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Student Details</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <p class="control is-expanded has-icons-left">
+                                            <input class="input" id="stud_search" name="search_stud" type="text" placeholder="Search Student by ID">
+                                            <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="input-container">
-                                    <label for="name">Name:</label>
-                                    <input type="text" id="name" name="name" required>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input class="input" name="student_name" id="student_fullname" type="text" placeholder="Student Name" readonly>
+                                        <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
+                                        <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
+                                    </p>
                                 </div>
-                                <div class="input-container">
-                                    <label for="gender">Gender:</label>
-                                    <select id="gender" name="gender" required>
-                                        <option value="">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <!-- <label class="label">Student Address</label> -->
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <p class="control is-expanded has-icons-left">
+                                            <input class="input" id="grade_level" name="grade_lvl" type="text" placeholder="Grade Level">
+                                            <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="input-container">
-                                    <label for="age">Age:</label>
-                                    <input type="number" id="age" name="age" required>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input class="input" id="adviser" name="adviser" type="text" placeholder="Adviser" readonly>
+                                        <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
+                                        <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
+                                    </p>
                                 </div>
-                                <div class="input-container">
-                                    <label for="residing">Residing At:</label>
-                                    <input type="text" id="residing" name="residing" required>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <!-- <label class="label">Student Address</label> -->
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" name="birthdate" type="date" placeholder="Date of Birth" readonly>
+                                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                    </p>
+                                    <p class="help">
+                                        Birthdate
+                                    </p>
                                 </div>
-                                <div class="input-container">
-                                    <label for="treatment_since">Was under my treatment since:</label>
-                                    <input type="date" id="treatment_since" name="treatment_since" required>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input class="input" name="birthplace" type="text" placeholder="Place of Birth" readonly>
+                                        <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
+                                        <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
+                                    </p>
                                 </div>
-                                <div class="input-container">
-                                    <label for="suffering_from">Suffering From:</label>
-                                    <input type="text" id="suffering_from" name="suffering_from" required>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <!-- <label class="label">Student Address</label> -->
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left has-icons-right">
+                                        <input class="input" name="address" type="text" placeholder="Address" readonly>
+                                        <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
+                                        <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
+                                    </p>
                                 </div>
-                                <div class="input-container">
-                                    <label for="advice">He/She is/Was advised treatment or rest for this period:</label>
-                                    <textarea id="advice" name="advice" rows="3" cols="200" required></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Doctors Details</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" name="parent_name" type="text" placeholder="Doctors Name">
+                                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                    </p>
                                 </div>
-                                <button type="submit" class="btn-submit">Submit</button>
-                            </form>
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" name="birthdate" type="date" placeholder="Date of Birth">
+                                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                    </p>
+                                    <p class="help">
+                                        Date of Clinic
+                                    </p>
+                                </div>
 
+                            </div>
                         </div>
 
-                    </div>
+                        <hr>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Findings</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <p class="control">
+                                        <input class="input" name="reason" type="text" placeholder="Type">
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control">
+                                        <input class="input" name="reason" type="text" placeholder="Reason/s">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Special Treatment</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-narrow">
+                                    <div class="control">
+                                        <div class="select is-fullwidth">
+                                            <select name="alergy">
+                                                <option selected hidden>Medications</option>
+                                                <?php
+                                                $sql = "SELECT * FROM med_despensary";
+                                                $result = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field is-narrow">
+                                    <p class="control">
+                                        <input class="input" name="reason" type="text" placeholder="Quantity">
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" name="treatment" type="text" placeholder="Specify treatment for the findings">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Date of Medical</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" name="date_med" type="date" placeholder="#">
+                                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+                                <!-- Left empty for spacing -->
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <button type="submit" class="button is-primary">
+                                                <span>Submit</span>
+                                            </button>
+                                        </div>
+                                        <div class="control">
+                                            <button type="button" class="button is-primary is-outlined">
+                                                <span>Reset</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

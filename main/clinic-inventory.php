@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
+<link rel="stylesheet" href="css/admin-nurse.css">
+
 <?php
 include 'component/head.php';
 ?>
@@ -49,7 +51,8 @@ include 'component/head.php';
                         <div class="field-body">
                             <div class="field">
                                 <div class="control" style="display: flex; margin: 5px; gap: 10px;">
-                                    <input class="input" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Enter search ">
+                                    <input class="input" type="text" id="searchInput" onkeyup="searchTable()"
+                                        placeholder="Enter search ">
 
                                     <button class="btn btn-info" onclick="openModal()"
                                         style="display: flex; margin: 0 auto; text-align: center; align-items: center; font-size: 20px;">Add
@@ -112,6 +115,34 @@ include 'component/head.php';
     <div id="modal" class="modal">
         <div class="modal-lead" style="height: 30%; width: 40vw;">
             <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <label for="iten_id">Item ID</label>
+                            <input id="item_id" name="id" type="text" placeholder="Item ID" />
+                        </div>
+
+                        <div class="col">
+                            <label for="item_quantity">Item Quantity</label>
+                            <input id="item_quantity" name="quantity" type="number" placeholder="Item Quantity" />
+                        </div>
+
+                        <div class="col">
+                            <label for="item_name">Item Name</label>
+                            <input id="item_name" name="name" type="text" placeholder="Item Name"
+                                style="width: 10vw;" />
+                        </div>
+
+                    </div>
+
+                    <br><br><br>
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
+                    <button class="button is-success jb-modal-close" id="submitnursebtn" type="submit">Save</button>
+                    <button class="button jb-modal-close">Cancel</button>
+                </div>
+            </div>
 
 
         </div>
@@ -119,7 +150,7 @@ include 'component/head.php';
 
     <!-- Modal View Quantity -->
     <div id="modal1" class="modal">
-        <div class="modal-lead" style="height: 10%; width: 40vw;">
+        <div class="modal-lead" style=" width: 40vw;">
             <span class="close" onclick="closeModal1()">&times;</span>
 
             <div class="input-group"
@@ -135,14 +166,17 @@ include 'component/head.php';
                     <input type="number" name="price">
                 </div>
             </div>
-            <button class="button is-small is-secobdary" type="button">
-                SAVE</span>
-            </button>
+            <button class="button is-success " id="submitnursebtn" type="submit">Save</button>
+
         </div>
     </div>
     <?php require 'component/footer.php' ?>
 
     <style>
+    .modal-lead {
+        max-height: 100%;
+    }
+
     .modal-lead .input-group {
         display: flex;
         justify-content: center;
@@ -178,14 +212,14 @@ include 'component/head.php';
     @media (max-width: 768px) {
         .modal-lead {
             width: 80vw;
-           
+
         }
     }
 
     @media (max-width: 576px) {
         .modal-lead {
             width: 90vw;
-           
+
         }
 
         .modal-lead .input-group {

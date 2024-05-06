@@ -18,7 +18,7 @@ label{
     margin-bottom: 5px;
     font-weight: bold;
 }
-
+input[type="number"],
 input[type="text"],
 input[type="password"]{
     width: 100%;

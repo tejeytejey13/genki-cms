@@ -34,6 +34,7 @@ $(function () {
                 trNurse += "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
                 trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
                 trNurse += "<td data-label='parent_name'>" + paentGuardian + "</td>";
+                trNurse += "<td data-label='section'>aw</td>";
                 //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
                 trNurse += "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
                 formatDate(row.date_created) +
@@ -54,10 +55,9 @@ $(function () {
               trhistoryNurse += "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
               trhistoryNurse += "<td data-label='Grade'>" + row.grade + "</td>";
               trhistoryNurse += "<td data-label='parent_name'>" + paentGuardian + "</td>";
+              trhistoryNurse += "<td data-label='section'>"+ row.section +"</td>";
               //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
-              trhistoryNurse += "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-              formatDate(row.date_created) +
-              "</small></td>";
+              trhistoryNurse += "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" + formatDate(row.date_created) + "</small></td>";
               trhistoryNurse += "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" + formatDate(row.date_med) + "</small></td>";
               trhistoryNurse += "<td data-label='status'>" + row.status + "</td>";
               trhistoryNurse += "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='"+ row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>"

@@ -58,13 +58,20 @@ $(function () {
             },
             success: function (response) {
               var object = response[0];
+              var nurse_name = object.nurse_name;
+              if(nurse_name == null || nurse_name == " "){
+                $('#attending-nurse').html('Attending Nurse: Not Approved Yet');
+              }else{
+                $('#attending-nurse').html('Attending Nurse: ' + object.nurse_name);
+              }
               // console.log(specificObject.first_name);
                 $('#heading-name').html('Name of Patient: ' + object.first_name + " " + object.last_name);
                 $('#heading-date').html('Date Created: ' +formatDate(object.date_created));
                 $('#heading-date1').html('Date of Clinic: ' + formatDate(object.date_med));
                 $('#heading-status').html('Status: ' + object.status);
                 // if(object.)
-                $('#attending-nurse').html('Attending Nurse: ' + object.nurse_name);
+                
+                // $('#attending-nurse').html('Attending Nurse: ' + object.nurse_name);
             },
             error: function (xhr, status, error) {
               console.log(xhr.responseText);

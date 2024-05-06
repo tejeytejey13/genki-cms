@@ -110,10 +110,11 @@ include 'component/head.php';
                                         <th>Name</th>
                                         <th>Grade Level</th>
                                         <th>Parent's Name</th>
+                                        <th>Section</th>
                                         <th>Date Created</th>
                                         <th>Date of Clinic</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="nurseHistoryTable">

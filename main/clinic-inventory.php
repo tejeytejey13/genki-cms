@@ -49,14 +49,12 @@ include 'component/head.php';
                         <div class="field-body">
                             <div class="field">
                                 <div class="control" style="display: flex; margin: 5px; gap: 10px;">
-                                    <input class="input" type="text" id="searchInput" placeholder="Enter search ">
+                                    <input class="input" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Enter search ">
 
                                     <button class="btn btn-info" onclick="openModal()"
                                         style="display: flex; margin: 0 auto; text-align: center; align-items: center; font-size: 20px;">Add
                                         <i class="mdi mdi-plus"></i></button>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

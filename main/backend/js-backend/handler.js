@@ -8,16 +8,9 @@ $(function () {
       data: formData,
       success: function (response) {
         var data = JSON.parse(response);
+        console.log(response);
         if(data.status === "success"){
-            if (data.user_type === 'client') {
-                window.location.href = 'main/index.php';
-            } else if(data.user_type === 'nurse') {
-                window.location.href = 'main/index.php';
-            } else if(data.user_type === 'admin') {
-                window.location.href = 'main/index.php';
-            } else {
-                alert(data.message);
-            }
+            window.location.href = 'main/index.php';
         }else{
             alert(data.message);
         }

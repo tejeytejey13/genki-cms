@@ -24,12 +24,12 @@ function inventoryTable(page, limit) {
         tr +=
           '<td data-label="Created">' +
           '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
-          item.date_created +
+          formatDate(item.date_created) +
           "</small></td>";
         tr +=
           '<td data-label="Created">' +
           '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
-          item.date_updated +
+          formatDate(item.date_updated) +
           "</small></td>";
         tr +=
           '<td class="is-actions-cell">' +
@@ -48,6 +48,21 @@ function inventoryTable(page, limit) {
   });
 }
 
+function searchTable(){
+  var search = $("#searchInput").val().toLowerCase(); 
+    
+    $("#dataTable-inventory tr").each(function() {
+        var id = $(this).find("td:eq(2)").text().toLowerCase(); 
+        var name = $(this).find("td:eq(3)").text().toLowerCase(); 
+        
+        if (id.indexOf(search) > -1 || name.indexOf(search) > -1) {
+            $(this).show(); 
+        } else {
+            $(this).hide();
+        }
+    });
+  
+}
 function deleteData(){
   Swal.fire({
     title: "Are you sure?",
@@ -66,4 +81,13 @@ function deleteData(){
       });
     }
   });
+}
+
+function formatDate(date) {
+  var timestamp = new Date(date);
+  var month = timestamp.toLocaleString("default", { month: "short" }); // Get 3-letter month name
+  var day = timestamp.getDate(); // Get the day
+  var year = timestamp.getFullYear(); // Get the year
+  var formattedDate = month + " " + day + ", " + year;
+  return formattedDate;
 }

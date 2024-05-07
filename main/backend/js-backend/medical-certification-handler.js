@@ -1,26 +1,27 @@
-$('#stud_search').on('input', async function() {
-    var value = $(this).val().toLowerCase();
-
-    try {
-        var response = await $.ajax({
-            url: "backend/search_student.php",
-            type: "POST",
-            data: {
-                search: value
+$(document).ready(function() {
+    $('#stud_search').on('keyup focus', function() {
+        var searchTerm = $(this).val();
+        $.ajax({
+            url: 'backend/search_student.php',
+            type: 'GET',
+            dataType: 'json',
+            data: {search_stud: searchTerm},
+            success: function(data) {
+                // Clear previous suggestions
+                $('#suggestions').empty();
+                $.each(data, function(index, value) {
+                    $('#suggestions').append('<div class="suggestions-list-item">' + value + '</div>');
+                });
+                $('#suggestions').css('display', 'block');
+                $('.suggestions-list-item').on('click', function() {
+                    $('#stud_search').val($(this).text());
+                    $('#suggestions').empty();
+                    $('#suggestions').css('display', 'none');
+                });
             },
-            success: function(response) {
-                console.log(response);
-                var data = JSON.parse(response);
-                $.each(data, function(index, item) {
-                    $('#student_fullname').val(item.first_name + " " + item.last_name);
-                    $('#grade_level').val(item.grade);
-                    $('#adviser').val(item.adviser);
-                })
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
             }
         });
-
-    } catch (error) {
-        // Handle error here
-        console.error("Error:", error);
-    }
+    });
 });

@@ -89,16 +89,16 @@ include 'component/head.php';
                             <div class="level">
                                 <div class="level-left">
                                     <div class="level-item">
-                                        <div class="buttons has-addons">
-                                            <button class="button " onclick="inventoryTable(1, 10)">1</button>
+                                        <div class="buttons has-addons" id="paginationButtons">
+                                            <!-- <button class="button " onclick="inventoryTable(1, 10)">1</button>
                                             <button class="button " onclick="inventoryTable(2, 10)">2</button>
-                                            <button class="button" onclick="inventoryTable(3, 10)">3</button>
+                                            <button class="button" onclick="inventoryTable(3, 10)">3</button> -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="level-right">
-                                    <div class="level-item">
-                                        <small>Page 1 of 3</small>
+                                    <div class="level-item" id="paginationStatus">
+                                        <!-- <small>Page 1 of 3</small> -->
                                     </div>
                                 </div>
                             </div>

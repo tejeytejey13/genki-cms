@@ -9,7 +9,7 @@ function inventoryTable(page, limit) {
     success: function (response) {
       $("#dataTable-inventory").empty();
       
-      $.each(response, function (index, item) {
+      $.each(response.data, function (index, item) {
         var tr = "<tr>";
         tr +=
           '<td class="is-checkbox-cell"><label class="b-checkbox checkbox">' +
@@ -56,7 +56,9 @@ function inventoryTable(page, limit) {
           
         });
       });
-
+      const totalPages = response.totalPages;
+      renderPagination(totalPages);
+      updatePaginationStatus(page, totalPages);
     },
   });
 }
@@ -135,4 +137,23 @@ function openModal1() {
 function closeModal1() {
   const modal = document.getElementById('modal1');
   modal.style.display = 'none';
+}
+
+function renderPagination(totalPages) {
+  const paginationButtons = document.getElementById("paginationButtons");
+  paginationButtons.innerHTML = "";
+  for (let i = 1; i <= totalPages; i++) {
+      const button = document.createElement("button");
+      button.classList.add("button");
+      button.textContent = i;
+      button.onclick = function() {
+          inventoryTable(i, 10); 
+      };
+      paginationButtons.appendChild(button);
+  }
+}
+
+function updatePaginationStatus(currentPage, totalPages) {
+  const paginationStatus = document.getElementById("paginationStatus");
+  paginationStatus.innerHTML = `<small>Page ${currentPage} of ${totalPages}</small>`;
 }

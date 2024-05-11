@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <link rel="stylesheet" href="css/admin-nurse.css">
+<link rel="stylesheet" href="css/suggestion.css">
+
 <?php
 include 'component/head.php';
 ?>
+
+
 
 <body>
     <div id="app">
@@ -58,15 +62,19 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <div class="control">
-                                        <p class="control is-expanded has-icons-left">
-                                            <input class="input" id="stud_search" name="search_stud" type="text" placeholder="Search Student by ID">
+                                        <p class="control is-expanded has-icons-left suggestions-container">
+                                            <input class="input" id="stud_search" name="search_stud" type="text"
+                                                placeholder="Search Student by ID">
                                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                        <div id="suggestions" class="suggestions-list" >
+                                        </div>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
-                                        <input class="input" name="student_name" id="student_fullname" type="text" placeholder="Student Name" readonly>
+                                        <input class="input" name="student_name" id="student_fullname" type="text"
+                                            placeholder="Student Name" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -81,14 +89,16 @@ include 'component/head.php';
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <p class="control is-expanded has-icons-left">
-                                            <input class="input" id="grade_level" name="grade_lvl" type="text" placeholder="Grade Level">
+                                            <input class="input" id="grade_level" name="grade_lvl" type="text"
+                                                placeholder="Grade Level">
                                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
-                                        <input class="input" id="adviser" name="adviser" type="text" placeholder="Adviser" readonly>
+                                        <input class="input" id="adviser" name="adviser" type="text"
+                                            placeholder="Adviser" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -102,7 +112,8 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="birthdate" type="date" placeholder="Date of Birth" readonly>
+                                        <input class="input" name="birthdate" type="date" placeholder="Date of Birth"
+                                            readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                     <p class="help">
@@ -111,7 +122,8 @@ include 'component/head.php';
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
-                                        <input class="input" name="birthplace" type="text" placeholder="Place of Birth" readonly>
+                                        <input class="input" name="birthplace" type="text" placeholder="Place of Birth"
+                                            readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -204,7 +216,8 @@ include 'component/head.php';
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" name="treatment" type="text" placeholder="Specify treatment for the findings">
+                                        <input class="input" name="treatment" type="text"
+                                            placeholder="Specify treatment for the findings">
                                     </div>
                                 </div>
                             </div>
@@ -253,4 +266,6 @@ include 'component/head.php';
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <?php require 'component/footer.php' ?>

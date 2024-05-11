@@ -5,7 +5,6 @@
     $sql = "SELECT * FROM clearance_slots";
     $query = mysqli_query($conn, $sql);
 
-    // Check if there are rows returned by the query
     if (mysqli_num_rows($query) > 0) {
         $response = array();
 

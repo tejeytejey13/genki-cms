@@ -1,0 +1,32 @@
+#suggestions {
+    position: relative;
+    width: 200px;
+    background-color: #212121;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    display: none;
+    cursor: pointer;
+}
+
+#suggestions::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    /* Adjust this value to change the distance of the arrow from the container */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-bottom-color: #212121;
+    /* Color of the arrow */
+}
+
+/* Optional: Styling for the arrow */
+#suggestions::before {
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #212121;
+    /* Color of the arrow */
+}

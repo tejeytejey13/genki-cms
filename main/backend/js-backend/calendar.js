@@ -95,24 +95,24 @@ document.addEventListener("DOMContentLoaded", function() {
             renderCalendar(currentMonth, currentYear);
         });
 
-        var eventDates = JSON.parse(localStorage.getItem('eventDates')) || [];
-        var dayCells = document.querySelectorAll('.day-number');
-        eventDates.forEach(function(date) {
-            const eventDate = new Date(date.date);
-            const eventMonth = eventDate.getMonth();
-            const eventYear = eventDate.getFullYear();
-            const dayOfMonth = eventDate.getDate();
-            // console.log(date);
+        // var eventDates = JSON.parse(localStorage.getItem('eventDates')) || [];
+        // var dayCells = document.querySelectorAll('.day-number');
+        // eventDates.forEach(function(date) {
+        //     const eventDate = new Date(date.date);
+        //     const eventMonth = eventDate.getMonth();
+        //     const eventYear = eventDate.getFullYear();
+        //     const dayOfMonth = eventDate.getDate();
+        //     // console.log(date);
 
-            if (eventMonth === month && eventYear === year) {
-                dayCells.forEach(function(dayCell) {
-                    if (parseInt(dayCell.textContent) === dayOfMonth) {
-                        dayCell.classList.add('event');
-                    }
-                });
-            };
+        //     if (eventMonth === month && eventYear === year) {
+        //         dayCells.forEach(function(dayCell) {
+        //             if (parseInt(dayCell.textContent) === dayOfMonth) {
+        //                 dayCell.classList.add('event');
+        //             }
+        //         });
+        //     };
             
-        });
+        // });
         
 
         btnContainer.appendChild(prevBtn);
@@ -174,45 +174,45 @@ function setSchedule(targetValue, targetDay) {
             targetDay: targetDay
         },
         success: function(response) {
-            console.log(response.status);
-            modal.style.display = "none";
-            var data = JSON.parse(response);
-            var date = data.day;
-            var dayCells = $('.day-number');
+            console.log(response);
+            // modal.style.display = "none";
+            // var data = JSON.parse(response);
+            // var date = data.day;
+            // var dayCells = $('.day-number');
 
-            const eventDate = new Date(date);
-            const eventMonth = eventDate.getMonth();
-            const eventYear = eventDate.getFullYear();
-            const dayOfMonth = eventDate.getDate();
+            // const eventDate = new Date(date);
+            // const eventMonth = eventDate.getMonth();
+            // const eventYear = eventDate.getFullYear();
+            // const dayOfMonth = eventDate.getDate();
 
-            const month = eventDate.getMonth();
-            const year = eventDate.getFullYear();
+            // const month = eventDate.getMonth();
+            // const year = eventDate.getFullYear();
 
-            if(eventMonth === month && eventYear === year) {
-                dayCells.each(function() {
-                    if(parseInt(this.textContent) === dayOfMonth) {
-                        this.classList.add('event');
-                    }
-                });
-            };
+            // if(eventMonth === month && eventYear === year) {
+            //     dayCells.each(function() {
+            //         if(parseInt(this.textContent) === dayOfMonth) {
+            //             this.classList.add('event');
+            //         }
+            //     });
+            // };
 
-            let htmlContent = 
-            '<div class="container-selectedDate" >' +
-            '<div class="dropdown">' +
-            '<button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">' +
-            '<span class="icon"><i class="mdi mdi-view-list"></i></span>' +
-            '<span class="menu-item-label">' +
-            formatDate(date) +
-            "</span>" +
-            '<span class="dropdown-icon"><i class="mdi mdi-plus"></i></span>' +
-            "</button>" +
-            '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+            // let htmlContent = 
+            // '<div class="container-selectedDate" >' +
+            // '<div class="dropdown">' +
+            // '<button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">' +
+            // '<span class="icon"><i class="mdi mdi-view-list"></i></span>' +
+            // '<span class="menu-item-label">' +
+            // formatDate(date) +
+            // "</span>" +
+            // '<span class="dropdown-icon"><i class="mdi mdi-plus"></i></span>' +
+            // "</button>" +
+            // '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
 
     
-            htmlContent += "</ul>";
-            htmlContent += "</div>";
-            htmlContent += "</div>";
-            $("#show-slots").append(htmlContent);   
+            // htmlContent += "</ul>";
+            // htmlContent += "</div>";
+            // htmlContent += "</div>";
+            // $("#show-slots").append(htmlContent);   
 
         } 
         

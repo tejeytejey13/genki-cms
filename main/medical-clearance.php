@@ -44,27 +44,32 @@ include 'component/head.php';
 
                 <div id="calendar"></div>
 
+
                 <div id="show-slots">
-                    <!-- <div class="container-selectedDate" >
+                <?php 
+                    $getSlots = "SELECT * FROM clearance_slots";
+                    $query = mysqli_query($conn, $getSlots);
+                    while($row = mysqli_fetch_array($query)){
+
+                    $date = date('F d, Y', strtotime($row['date']));
+                ?>
+                    <div class="container-selectedDate" >
                         <div class="dropdown">
                             <button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true"
                                 aria-expanded="false">
                                 <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                                <span class="menu-item-label">April 12, 2024</span>
+                                <span class="menu-item-label"><?=$date?></span>
                                 <span class="dropdown-icon"><i class="mdi mdi-plus"></i></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>John Doe</li>
                                 <li>John Cena</li>
-                            </ul>
+                            </ul> -->
                         </div>
-                    </div> -->
+                    </div>
+                    <?php } ?>
                 </div>
-
             </div>
-
-
-
         </section>
 
     </div>

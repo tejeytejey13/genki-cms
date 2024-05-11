@@ -157,3 +157,17 @@ function updatePaginationStatus(currentPage, totalPages) {
   const paginationStatus = document.getElementById("paginationStatus");
   paginationStatus.innerHTML = `<small>Page ${currentPage} of ${totalPages}</small>`;
 }
+
+
+$('#add_inventory').submit(function() {
+  const forms = $(this).serialize();
+
+  $.ajax({
+    url: "backend/add-inventory.php",
+    type: "POST",
+    data: forms,
+    success: function (response) {
+      console.log(response);
+    }
+  });
+});

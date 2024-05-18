@@ -8,6 +8,12 @@
   <?php 
     include('component/nav.php'); 
     include('component/side.php');
+    // $pfpShow = "https://avatars.dicebear.com/v2/initials/john-doe.svg";
+    // if($profile == " "){
+    //   $pfpShow = "https://avatars.dicebear.com/v2/initials/john-doe.svg";
+    // }else{
+    //   $pfpShow = $profile;
+    // }
   ?>
   <section class="section is-title-bar">
     <div class="level">
@@ -56,7 +62,7 @@
             </p>
           </header>
           <div class="card-content">
-            <form>
+            <form id="pfp-form-edit" method="POST" enctype="multipart/form-data">
               <div class="field is-horizontal">
                 <div class="field-label is-normal"><label class="label">Avatar</label></div>
                 <div class="field-body">
@@ -67,7 +73,7 @@
                           <span class="icon"><i class="mdi mdi-upload default"></i></span>
                           <span>Pick a file</span>
                         </a>
-                        <input type="file" id="profile_img">
+                        <input type="file" name="pfp_image" id="profile_img">
                       </label>
                     </div>
                   </div>
@@ -81,7 +87,7 @@
                 <div class="field-body">
                   <div class="field">
                     <div class="control">
-                      <input type="text" autocomplete="on" name="name" value="<?=ucwords($user_fname), ' ', ucwords($user_lname);?>" class="input" required>
+                      <input type="text" autocomplete="on" name="name" value="<?=ucwords($user_fname), ' ', ucwords($user_lname);?>" class="input" readonly>
                     </div>
                     <p class="help">Required. Your name</p>
                   </div>
@@ -94,7 +100,7 @@
                 <div class="field-body">
                   <div class="field">
                     <div class="control">
-                      <input type="email" autocomplete="on" name="email" value="<?=$user_email?>" class="input" required>
+                      <input type="email" autocomplete="on" name="email" value="<?=$user_email?>" id="emailUser" class="input" required>
                     </div>
                     <p class="help">Required. Your e-mail</p>
                   </div>
@@ -106,7 +112,7 @@
                 <div class="field-body">
                   <div class="field">
                     <div class="control">
-                      <button type="submit" class="button is-primary">
+                      <button type="submit" id="submit-form-profile" class="button is-primary">
                         Submit
                       </button>
                     </div>
@@ -127,7 +133,13 @@
           </header>
           <div class="card-content">
             <div class="is-user-avatar image has-max-width is-aligned-center">
-              <img id="pfp_img_onload" src="#" alt="John Doe">
+              <img id="pfp_img_onload" src="<?php 
+                if(!empty($profile)){
+                  echo $pfpImg = './img/profile/'.$profile;
+                }else{
+                  echo $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+                }
+              ?>" alt="<?=$profile?>">
             </div>
             <hr>
             <div class="field">
@@ -155,7 +167,7 @@
         </p>
       </header>
       <div class="card-content">
-        <form>
+        <!-- <form id="profile-password-form" method="POST"> -->
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Current password</label>
@@ -163,7 +175,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input type="password" name="password_current" autocomplete="current-password" class="input" required>
+                  <input type="password" name="password_current" id="old_pass" autocomplete="current-password" class="input" >
                 </div>
                 <p class="help">Required. Your current password</p></div>
             </div>
@@ -176,7 +188,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input type="password" autocomplete="new-password" name="password" class="input" required>
+                  <input type="password" autocomplete="new-password" id="new_pass" name="password" class="input" >
                 </div>
                 <p class="help">Required. New password</p>
               </div>
@@ -189,7 +201,7 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
+                  <input type="password" autocomplete="renew-password" id="renew_pass" name="password_confirmation" class="input" >
                 </div>
                 <p class="help">Required. New password one more time</p>
               </div>
@@ -201,14 +213,14 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <button type="submit" class="button is-primary">
+                  <button type="button" id="profile-password-change"  class="button is-primary">
                     Submit
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        </form>
+        <!-- </form> -->
       </div>
     </div>
   </section>

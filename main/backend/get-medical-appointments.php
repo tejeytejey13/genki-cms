@@ -7,6 +7,12 @@ $query = mysqli_query($conn, $sql);
 $response = [];
 
 while ($row = mysqli_fetch_assoc($query)) {
+    $medid = $row['form_id'];
+    $const = "SELECT * FROM consultation_form WHERE medical_form = '$medid'";
+    $const_query = mysqli_query($conn, $const);
+    $coQry = mysqli_fetch_assoc($const_query);
+
+    $row['consultation_status'] = $coQry['status'];
     $row['sess_nurse_id'] = $uid;
     $response[] = $row;
 

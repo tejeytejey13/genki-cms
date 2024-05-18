@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         $last_id = mysqli_insert_id($conn);
-        $clientinsert = "INSERT Into client (user_id, first_name, middle_initial, last_name, email, password) values('$last_id', '$firstname', '$middlename', '$lastname', '$email', '$password')";
+        $clientinsert = "INSERT Into client (user_id, first_name, middle_initial, last_name, email) values('$last_id', '$firstname', '$middlename', '$lastname', '$email')";
         mysqli_query($conn, $clientinsert);
         
         $response = array(

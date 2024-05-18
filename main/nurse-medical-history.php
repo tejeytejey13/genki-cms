@@ -16,7 +16,7 @@ include 'component/head.php';
                     <div class="level-item">
                         <ul>
                             <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Medical History</li>
+                            <li>Appointment History</li>
                         </ul>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Medical History
+                                Appointment History
                             </h1>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
-        
+
         <section class="section is-main-section">
 
             <!-- <div class="notification is-info">
@@ -81,11 +81,11 @@ include 'component/head.php';
                         <div class="select">
                             <select id="gradeFilter">
                                 <option value="" hidden selected>All Grades</option>
-                                <?php 
-                                    $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
-                                    while ($row = mysqli_fetch_assoc($getlvl)) {
-                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
-                                    }
+                                <?php
+                                $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
+                                while ($row = mysqli_fetch_assoc($getlvl)) {
+                                    echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -108,51 +108,27 @@ include 'component/head.php';
                                         </th>
                                         <th></th>
                                         <th>Name</th>
-                                        <th>Grade Level</th>
-                                        <th>Parent's Name</th>
-                                        <th>Section</th>
                                         <th>Date Created</th>
                                         <th>Date of Clinic</th>
                                         <th>Status</th>
+                                        <!-- <th></th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="nurseHistoryTable">
-                                    <!-- <tr>
-                                        <td class="is-checkbox-cell">
-                                            <label class="b-checkbox checkbox">
-                                                <input type="checkbox" value="false">
-                                                <span class="check"></span>
-                                            </label>
-                                        </td>
-                                        <td class="is-image-cell">
-                                            <div class="image">
-                                                <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"
-                                                    class="is-rounded">
-                                            </div>
-                                        </td>
-                                        <td data-label="Name">Lonzo Steuber</td>
-                                        <td data-label="Company">Skiles Ltd</td>
-                                        <td data-label="City">Marilouville</td>
-                                        <td data-label="Progress" class="is-progress-cell">
-                                            <progress max="100" class="progress is-small is-primary"
-                                                value="17">17</progress>
-                                        </td>
-                                        <td data-label="Created">
-                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                                2020</small>
-                                        </td>
-                                        <td class="is-actions-cell">
-                                            <div class="buttons is-right">
-                                                <button class="button is-small is-primary" type="button">
-                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                                </button>
-                                                <button class="button is-small is-danger" type="button">
-                                                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr> -->
+                                    <!-- <?php
+                                    $getHistory = mysqli_query($conn, "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id");
+                                    while ($row = mysqli_fetch_assoc($getHistory)) {
+                                        $medid = $row['form_id'];
+                                        $const = "SELECT * FROM consultation_form WHERE medical_form = '$medid'";
+                                        $const_query = mysqli_query($conn, $const);
+                                        $coQry = mysqli_fetch_assoc($const_query);
+
+                                        if($coQry['status'] == 'approved'){
+                                            echo $row['first_name'];
+                                        }
+                                    }
+                                    ?> -->
                                 </tbody>
                             </table>
                         </div>
@@ -178,41 +154,41 @@ include 'component/head.php';
                 </div>
             </div>
             <div id="view-med-form" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Medical Form <button class="delete1 jb-modal-close"
-                            aria-label="close">&times</button>
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="patient-details">
-                                    <h2 id="heading-name">Client Name</h2>
-                                    <p id="heading-date" class="heading-date"></p>
-                                    <p id="heading-date1" class="heading-date1"></p>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" style="font-weight: 500">Appointment Form
+                            <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                        </h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="patient-details">
+                                        <h2 id="heading-name">Client Name</h2>
+                                        <p id="heading-date" class="heading-date"></p>
+                                        <p id="heading-date1" class="heading-date1"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="status-details">
-                                    <p id="heading-status" class="heading-status"></p>
-                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
+                                <div class="col-md-6">
+                                    <div class="status-details">
+                                        <p id="heading-status" class="heading-status"></p>
+                                        <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
-                    <!-- <button class="button jb-modal-close">Cancel</button>
+                    <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
+                        <!-- <button class="button jb-modal-close">Cancel</button>
             <button class="button is-success jb-modal-close">Delete</button> -->
+                    </div>
                 </div>
             </div>
-        </div>
         </section>
 
 
 
     </div>
-   
+
     <?php require 'component/footer.php' ?>

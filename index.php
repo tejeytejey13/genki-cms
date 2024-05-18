@@ -24,8 +24,7 @@
                 <div class="fxt-intro">
                     <div class="sub-title">Welcome To</div>
                     <h1>Our Clinic</h1>
-                    <p>Grursus mal suada faci lisis Lorem ipsum dolarorit ametion consectetur elit. Vesti ulum nec the
-                        dumm.</p>
+                    <p>Welcome to Your Clinic Management SystemEffortlessly manage your clinic with our streamlined solution. Our system simplifies clinic and clearance appointment scheduling, and manages your medical dispensary needs. Focus on providing exceptional care while we handle the administrative tasks. Experience the future of clinic management today!</p>
                 </div>
             </div>
             <div class="fxt-bg-color">

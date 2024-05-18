@@ -71,41 +71,7 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="nurseAccounts">
-                                    <!-- <tr>
-                                        <td class="is-checkbox-cell">
-                                            <label class="b-checkbox checkbox">
-                                                <input type="checkbox" value="false">
-                                                <span class="check"></span>
-                                            </label>
-                                        </td>
-                                        <td class="is-image-cell">
-                                            <div class="image">
-                                                <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"
-                                                    class="is-rounded">
-                                            </div>
-                                        </td>
-                                        <td data-label="Name">Lonzo Steuber</td>
-                                        <td data-label="Company">Skiles Ltd</td>
-                                        <td data-label="City">Marilouville</td>
-                                        <td data-label="Progress" class="is-progress-cell">
-                                            <progress max="100" class="progress is-small is-primary"
-                                                value="17">17</progress>
-                                        </td>
-                                        <td data-label="Created">
-                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                                2020</small>
-                                        </td>
-                                        <td class="is-actions-cell">
-                                            <div class="buttons is-right">
-                                                <button class="button is-small is-primary" type="button">
-                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                                </button>
-                                                <button class="button is-small is-danger" type="button">
-                                                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr> -->
+
                                 </tbody>
                             </table>
                         </div>
@@ -190,16 +156,16 @@ include 'component/head.php';
                     <h2 class="modal-title" style="font-weight: 900">Nurse Status</h2>
                     <button class="delete1 jb-modal-close" aria-label="close">&times</button>
                 </div>
-                <form method="POST">
+                <form id="nurseStatus" method="POST">
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="patient-details">
-                                        <h2 id="heading-nurse-name-edit">Nurse Name</h2>
+                                        <h2 id="heading-nurse-name-edit">Nurse Name: <a id="status_nurse_name"></a></h2>
                                         <p class="heading-date">Select Status:</p>
                                         <div class="select is-narrow">
-                                            <select id="heading-status-edit" name="status">
+                                            <select id="status_nurse_edit" name="status_nurse_change">
                                                 <option selected hidden>Select Status</option>
                                                 <option value="active">Active</option>
                                                 <option value="disabled">Disabled</option>
@@ -211,7 +177,7 @@ include 'component/head.php';
                         </div>
                     </div>
                     <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
-                        <button id="update-form-btn" type="submit" class="button is-success">Update</button>
+                        <button id="aptupdate" type="submit" class="button is-success">Update</button>
                 </form>
                 <button class="button jb-modal-close">Cancel</button>
             </div>

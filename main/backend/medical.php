@@ -1,4 +1,10 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../vendor/autoload.php';
 include('config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,6 +31,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     for ($i = 0; $i < 4; $i++) {
         $randomNumber = rand(1, 100);
         $appointmentid = $randomNumber;
+    }
+
+    $get = "select * from users where id = '$uid'";
+    $result = mysqli_query($conn, $get);
+    $getter = mysqli_fetch_array($result);
+    $email = $getter['email'];
+    $fullname = $user_fname . " " . $user_mname . " " . $user_lname;
+
+    $mail = new PHPMailer(true);
+    try {
+        // $mail->SMTPDebug = 2;                                      
+        $mail->isSMTP();
+        $mail->Host       = 'smtp-relay.sendinblue.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'ryonuzuke@gmail.com';
+        $mail->Password   = 'H7qjcmAVzkyhF3RJ';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
+
+        $mail->setFrom("genkipnjkis@gmail.com", 'Genki Clinic - Medical');
+        $mail->addAddress($email, $fullname);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Genki - Clinic Management System';
+        $mail->AddEmbeddedImage('../img/assets/1.png', 'med_submit');
+        $mail->Body    = '<img alt="PHPMailer" src="cid:med_submit">';
+
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
     $sql = "INSERT INTO medical_form 
@@ -72,14 +108,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '$time_med'
     )";
     $query = mysqli_query($conn, $sql);
-    if($query) {
+
+    if ($query) {
         $last_id = mysqli_insert_id($conn);
+
         $insertStatus = "INSERT INTO med_form_status (form_id, status) VALUES ('$last_id', 'pending')";
         mysqli_query($conn, $insertStatus);
 
+        $insertConstStatus = "INSERT INTO consultation_form (medical_form, status) VALUES ('$last_id', 'pending')";
+        mysqli_query($conn, $insertConstStatus);
+
         $response = array(
             'status' => 'success',
-            'message' => 'Submitted successfully'
+            'message' => 'Submitted successfully',
         );
     } else {
         $response = array(
@@ -88,5 +129,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
     }
     echo json_encode($response);
-    
 }

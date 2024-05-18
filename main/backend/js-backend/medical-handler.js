@@ -30,8 +30,9 @@ $(function() {
             url: "backend/medical.php",
             data: formData,
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 var data = JSON.parse(response);
+                console.log(data);
                 if(data.status === "success") {
                     // alert(data.message);
                     $('#status').text(data.message);

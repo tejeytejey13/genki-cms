@@ -18,7 +18,12 @@
             <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
                 <a class="navbar-link is-arrowless">
                     <div class="is-user-avatar">
-                        <img id="navbar-pfp" src="" alt="John Doe">
+                        <img id="navbar-pfp" src="<?php 
+                        if(!empty($profile)){
+                        echo $pfpImg = './img/profile/'.$profile;
+                        }else{
+                        echo $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+                        }?>" alt="<?=$pfpImg?>">
                     </div>
                     <div class="is-user-name"><span><?=ucfirst($user_fname), ' ', ucfirst($user_lname)?></span></div>
                     <span class="icon"><i class="mdi mdi-chevron-down"></i></span>

@@ -48,7 +48,7 @@
         <section class="section is-main-section">
             <div class="tile is-ancestor">
                 <div class="tile is-parent">
-                    <div class="card tile is-child">
+                    <div class="card tile is-child" onclick="alert('Coming Soon')">
                         <div class="card-content">
                             <div class="level is-mobile">
                                 <div class="level-item">
@@ -70,13 +70,13 @@
                     </div>
                 </div>
                 <div class="tile is-parent">
-                    <div class="card tile is-child">
+                    <div class="card tile is-child" onclick="window.location.href = 'nurse-table.php?status=pending'">
                         <div class="card-content">
                             <div class="level is-mobile">
                                 <div class="level-item">
                                     <div class="is-widget-label">
                                         <h3 class="subtitle is-spaced">
-                                            Clinic Appointment
+                                            Clinic App
                                         </h3>
                                         <h1 class="title">
                                             <?=$form_count?>
@@ -84,7 +84,12 @@
                                     </div>
                                 </div>
                                 <div class="level-item has-widget-icon">
-                                    <div class="is-widget-icon"><span class="icon has-text-info is-large"><i class="mdi mdi-calendar-multiple-check mdi-48px"></i></span>
+                                    <div class="is-widget-icon">
+                                        <span class="icon has-text-info is-large">
+                                            <i class="mdi mdi-calendar-multiple-check mdi-48px">
+
+                                            </i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +97,7 @@
                     </div>
                 </div>
                 <div class="tile is-parent">
-                    <div class="card tile is-child">
+                    <div class="card tile is-child" onclick="window.location.href = 'clinic-inventory.php'">
                         <div class="card-content">
                             <div class="level is-mobile">
                                 <div class="level-item">
@@ -113,8 +118,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="tile is-parent">
+                    <div class="card tile is-child" onclick="alert('Coming Soon')">
+                        <div class="card-content">
+                            <div class="level is-mobile">
+                                <div class="level-item">
+                                    <div class="is-widget-label">
+                                        <h3 class="subtitle is-spaced">
+                                            Accounts
+                                        </h3>
+                                        <h1 class="title">
+                                            <?= $account_count ?>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="level-item has-widget-icon">
+                                    <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
                         <span class="icon"><i class="mdi mdi-finance"></i></span>
@@ -139,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
         <?php }else{ 
                 include('component/404.php');

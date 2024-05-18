@@ -28,7 +28,34 @@ $(function() {
             $('.view-edit-nurse-status').click(function() {
               $('#vd-nurse-status').addClass('is-active');
                 const uid = $(this).data('target-uid');
-                console.log(uid);
+                // console.log(uid);
+
+                $.ajax({
+                  url: 'backend/get-nurse-status.php',
+                  type: 'GET',
+                  data: { uid: uid },
+                  success: function(response) {
+                    var data = JSON.parse(response);
+                    // console.log(data.nurse_name);
+                    $('#status_nurse_name').html(data.nurse_name);
+
+                    $('#aptupdate').click(function (){
+                      var status = $('#status_nurse_edit').val();
+                      
+                      $.ajax({
+                        url: 'backend/edit-nurse-status.php',
+                        type: 'POST',
+                        data: { uid: uid, status: status },
+                        success: function(response) {
+                          console.log(response);
+                        }
+                      });
+                    });
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                  }
+                })
              });
         },
         error: function(xhr, status, error) {
@@ -58,21 +85,21 @@ $(function() {
 });
 
 function deleteData(){
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
-    });
+    // Swal.fire({
+    //   title: "Are you sure?",
+    //   text: "You won't be able to revert this!",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes, archive it!"
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     Swal.fire({
+    //       title: "Deleted!",
+    //       text: "Your file has been archive.",
+    //       icon: "success"
+    //     });
+    //   }
+    // });
   }

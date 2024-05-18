@@ -7,7 +7,16 @@ $start = ($page - 1) * $limit;
 
 $sql = "SELECT * FROM med_despensary LIMIT $start, $limit";
 $query = mysqli_query($conn, $sql);
+
+$all = "SELECT * FROM med_despensary";
+$getter = mysqli_query($conn, $all);
+
 $response = [];
+$res = [];
+
+while($r = mysqli_fetch_assoc($getter)) {
+    $res[] = $r;
+}
 
 while ($row = mysqli_fetch_assoc($query)) {
     $response[] = $row;
@@ -16,13 +25,12 @@ while ($row = mysqli_fetch_assoc($query)) {
 
 $totalRecordsQuery = mysqli_query($conn, "SELECT COUNT(*) AS total FROM med_despensary");
 $totalRecords = mysqli_fetch_assoc($totalRecordsQuery)['total'];
-
-
 $totalPages = ceil($totalRecords / $limit);
 
 
 $responseData = [
     'data' => $response,
+    'allData' => $res,
     'totalPages' => $totalPages
 ];
 

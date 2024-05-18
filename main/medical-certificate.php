@@ -21,7 +21,7 @@ include 'component/head.php';
                     <div class="level-item">
                         <ul>
                             <li>Nurse</li>
-                            <li>Medical Certificate</li>
+                            <li>Consultation Form</li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Medical Certificate
+                                Consultation Form
                             </h1>
                         </div>
                     </div>
@@ -50,9 +50,17 @@ include 'component/head.php';
                 <header class="card-header">
                     <p class="card-header-title">
                         <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                        Medical Certificate
+                        Consultation Form
                     </p>
                 </header>
+                <?php 
+                    $formuid = $_GET['form_id'];
+                    $studid = $_GET['student_id'];
+                    $sql = "SELECT * FROM medical_form INNER JOIN users ON medical_form.user_id = users.id WHERE medical_form.user_id = '$studid'";
+                    $query = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($query);
+                    $datemed = date('F d, Y h:i A', strtotime($row['date_med']));
+                ?>
                 <div class="card-content">
                     <form id="medical-certificate-form" method="POST">
                         <div class="field is-horizontal">
@@ -63,18 +71,17 @@ include 'component/head.php';
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <p class="control is-expanded has-icons-left suggestions-container">
-                                            <input class="input" id="stud_search" name="search_stud" type="text"
-                                                placeholder="Search Student by ID">
+                                            <input name="stud_user_id" type="text" value="<?=$studid?>" hidden>
+                                            <input name="stud_form_id" type="text" value="<?=$formuid?>" hidden>
+                                            <input class="input" id="stud_id" name="student_id" type="text" value="<?=$row['school_id']?>" placeholder="Student ID" readonly>
                                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
-                                        <div id="suggestions" class="suggestions-list" >
-                                        </div>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
                                         <input class="input" name="student_name" id="student_fullname" type="text"
-                                            placeholder="Student Name" readonly>
+                                            placeholder="Student Name" value="<?=ucfirst($row['first_name']) . ' ' . ucfirst($row['middle_initial']) . ', '. ucfirst($row['last_name'])?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -85,12 +92,13 @@ include 'component/head.php';
                             <div class="field-label is-normal">
                                 <!-- <label class="label">Student Address</label> -->
                             </div>
+                            
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <p class="control is-expanded has-icons-left">
                                             <input class="input" id="grade_level" name="grade_lvl" type="text"
-                                                placeholder="Grade Level">
+                                                placeholder="Grade Level" value="<?=$row['grade']?>" readonly>
                                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                         </p>
                                     </div>
@@ -98,7 +106,7 @@ include 'component/head.php';
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
                                         <input class="input" id="adviser" name="adviser" type="text"
-                                            placeholder="Adviser" readonly>
+                                            placeholder="Adviser" value="<?=ucfirst($row['adviser'])?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -113,7 +121,7 @@ include 'component/head.php';
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
                                         <input class="input" name="birthdate" type="date" placeholder="Date of Birth"
-                                            readonly>
+                                            readonly value="<?=$row['birthdate']?>">
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                     <p class="help">
@@ -123,7 +131,7 @@ include 'component/head.php';
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
                                         <input class="input" name="birthplace" type="text" placeholder="Place of Birth"
-                                            readonly>
+                                        value="<?=$row['place_of_birth']?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -137,7 +145,8 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
-                                        <input class="input" name="address" type="text" placeholder="Address" readonly>
+                                        <input class="input" name="address" type="text" placeholder="Address" 
+                                        value="<?=$row['address']?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -147,22 +156,21 @@ include 'component/head.php';
                         <hr>
                         <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label">Doctors Details</label>
+                                <label class="label">Parent/Guardian Details</label>
                             </div>
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="parent_name" type="text" placeholder="Doctors Name">
+                                        <input class="input" name="parent_name" type="text" placeholder="Parent/Guardian's Name"
+                                        value="<?=ucfirst($row['parent_guardian'])?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="birthdate" type="date" placeholder="Date of Birth">
+                                        <input class="input" name="parent_name" type="text" placeholder="Relationship to Student"
+                                        value="<?=ucfirst($row['rel_to_stud'])?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
-                                    </p>
-                                    <p class="help">
-                                        Date of Clinic
                                     </p>
                                 </div>
 
@@ -177,12 +185,12 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <p class="control">
-                                        <input class="input" name="reason" type="text" placeholder="Type">
+                                        <input class="input" name="type_findings" type="text" placeholder="Type">
                                     </p>
                                 </div>
                                 <div class="field">
                                     <p class="control">
-                                        <input class="input" name="reason" type="text" placeholder="Reason/s">
+                                        <input class="input" name="reason_findings" type="text" placeholder="Reason/s">
                                     </p>
                                 </div>
                             </div>
@@ -196,7 +204,7 @@ include 'component/head.php';
                                 <div class="field is-narrow">
                                     <div class="control">
                                         <div class="select is-fullwidth">
-                                            <select name="alergy">
+                                            <select name="medications_cert">
                                                 <option selected hidden>Medications</option>
                                                 <?php
                                                 $sql = "SELECT * FROM med_despensary";
@@ -211,12 +219,12 @@ include 'component/head.php';
                                 </div>
                                 <div class="field is-narrow">
                                     <p class="control">
-                                        <input class="input" name="reason" type="text" placeholder="Quantity">
+                                        <input class="input" name="quantity_med" type="text" placeholder="Quantity">
                                     </p>
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" name="treatment" type="text"
+                                        <input class="input" name="special_trtmnt" type="text"
                                             placeholder="Specify treatment for the findings">
                                     </div>
                                 </div>
@@ -230,7 +238,7 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="date_med" type="date" placeholder="#">
+                                        <input class="input" name="date_med" type="text" placeholder="#" value="<?=$datemed?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                 </div>
@@ -246,13 +254,13 @@ include 'component/head.php';
                                 <div class="field">
                                     <div class="field is-grouped">
                                         <div class="control">
-                                            <button type="submit" class="button is-primary">
+                                            <button id="submit-med-form" class="button is-primary">
                                                 <span>Submit</span>
                                             </button>
                                         </div>
                                         <div class="control">
-                                            <button type="button" class="button is-primary is-outlined">
-                                                <span>Reset</span>
+                                            <button type="button" onclick="window.history.back()" class="button is-primary is-outlined">
+                                                <span>Cancel</span>
                                             </button>
                                         </div>
                                     </div>
@@ -261,6 +269,7 @@ include 'component/head.php';
                         </div>
                     </form>
                 </div>
+                <?php  ?>
             </div>
         </section>
 

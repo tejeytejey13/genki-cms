@@ -4,7 +4,7 @@ $(function () {
     url: "backend/get-slots-clearance.php",
     success: function (result) {
       var data = JSON.parse(result);
-      console.log(data);
+      // console.log(data);
       var dayCells = document.querySelectorAll('.day-number');
       
       // if(data.status === 'error') {

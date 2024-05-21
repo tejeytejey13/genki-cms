@@ -67,7 +67,8 @@ $(function() {
 
    $('#addnursebtn').click(function() {
     $('#addnursemodal').addClass('is-active');
-    $('#submitnursebtn').click(function() {
+    $('#add_nurse').submit(function(e) {
+      e.preventDefault();
       const forms = $('#add_nurse').serialize();
       $.ajax({
         url: 'backend/add-nurse.php',

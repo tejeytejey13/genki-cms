@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 
 </head>
+<div id="loading-show" class=""></div>
 <?php
 include('backend/config.php');
 // session_start();

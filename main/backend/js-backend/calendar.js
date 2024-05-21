@@ -4,12 +4,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const modalContent = document.querySelector(".modal-content-main");
     const modalBtn = document.querySelector(".modal-btn");
     const closeBtn = document.querySelector(".close");
-
     // Initialize current date
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    
+    let eventDates = [];
 
     // Render initial calendar
     renderCalendar(currentMonth, currentYear);
@@ -50,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gridContainer.appendChild(emptyCell);
         }
 
+
         // Add days of the month
         for (let i = 1; i <= daysInMonth; i++) {
             const day = document.createElement("div");
@@ -58,7 +58,27 @@ document.addEventListener("DOMContentLoaded", function() {
             day.textContent = i;
 
             day.addEventListener("click", function() {
-                showModal(monthName, i, year);
+                var AM = $(day).hasClass("AM");
+                var PM = $(day).hasClass("PM");
+                var firstLiText = $('.level-item ul li:first').text();
+                if(firstLiText == "Nurse" || firstLiText == "Admin"){
+                    if($(day).hasClass('event')){
+                        check = true;
+                        showModal(monthName, i, year, check, AM, PM);
+                    }else{
+                        check = false;
+                        showModal(monthName, i, year, check, AM, PM);
+                    }
+                }else{
+                    if($(day).hasClass('event')){
+                        showModalClient(monthName, i, year, AM, PM);
+                    }else{
+                        alert("You are not authorized to view this page");
+                    }
+                    // showModalClient(monthName, i, year);
+                    // alert("You are not authorized to view this page");
+                }
+                
             });
 
             gridContainer.appendChild(day);
@@ -94,6 +114,35 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             renderCalendar(currentMonth, currentYear);
         });
+        
+        var dayCells = document.querySelectorAll('.day-number');
+        $.ajax({
+            url: "backend/get-slots-clearance.php",
+            method: "GET",
+            dataType: "json",
+            success: function(data) {
+                // var response = JSON.parse(data);
+                data.forEach(function(date) {
+                    // eventDates.push({ thisdata: date });
+                    const eventDate = new Date(date.date);
+                    const eventMonth = eventDate.getMonth();
+                    const eventYear = eventDate.getFullYear();
+                    const dayOfMonth = eventDate.getDate();
+                    // console.log(dayOfMonth);
+                    if(eventMonth === month && eventYear === year){
+                        dayCells.forEach(function(cell) {
+                            if(parseInt(cell.textContent) === dayOfMonth){
+                                cell.classList.add('event');
+                                cell.classList.add(date.time);
+                            }
+                        });
+                    }
+                });              
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
 
         // var eventDates = JSON.parse(localStorage.getItem('eventDates')) || [];
         // var dayCells = document.querySelectorAll('.day-number');
@@ -120,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
         calendar.appendChild(btnContainer);
     }
 
-    function showModal(month, day, year) {
+    function showModal(month, day, year, check, AM, PM) {
         modal.style.display = "block";
         modalContent.innerHTML = `<p>Slots on ${month} ${day}, ${year}</p>`;
 
@@ -131,11 +180,36 @@ document.addEventListener("DOMContentLoaded", function() {
         modalBtn2.textContent = "Set PM slot";
 
         modalBtn1.classList.add("modal-btn", "sched-btn");
+        modalBtn2.classList.add("modal-btn", "sched-btn");
+
+        if(check == true){
+            if(AM == true){
+                modalBtn1.textContent = "Remove AM slot";
+                modalBtn1.classList.add("modal-btn", "sched-btn", "del-btn");
+            }
+            if(PM == true){
+                modalBtn2.textContent = "Remove PM slot";
+                modalBtn2.classList.add("modal-btn", "sched-btn", "del-btn");
+            }
+            // if(time == 'AM'){
+            //     modalBtn1.textContent = "Remove AM slot";
+            //     modalBtn1.classList.add("modal-btn", "sched-btn", "del-btn");
+            // }else{
+            //     modalBtn2.textContent = "Remove PM slot";
+            //     modalBtn2.classList.add("modal-btn", "sched-btn", "del-btn");
+            // }
+            // modalBtn1.classList.add("modal-btn", "sched-btn", "del-btn");
+            // modalBtn2.classList.add("modal-btn", "sched-btn", "del-btn");
+        }else{
+            modalBtn1.textContent = "Set AM slot";
+            modalBtn2.textContent = "Set PM slot";
+            modalBtn1.classList.add("modal-btn", "sched-btn");
+            modalBtn2.classList.add("modal-btn", "sched-btn");
+        }
         modalBtn1.setAttribute("id", "sched-btn");
         modalBtn1.setAttribute("data-target-sched-btn", "AM");
         modalBtn1.setAttribute("data-target-day", month + " " + day + " " + year);
 
-        modalBtn2.classList.add("modal-btn", "sched-btn");
         modalBtn2.setAttribute("id", "sched-btn");
         modalBtn2.setAttribute("data-target-sched-btn", "PM");
         modalBtn2.setAttribute("data-target-day", month + " " + day + " " + year);
@@ -148,8 +222,53 @@ document.addEventListener("DOMContentLoaded", function() {
             button.addEventListener('click', function() {
                 const targetValue = button.getAttribute('data-target-sched-btn');
                 const targetDay = button.getAttribute('data-target-day');
+                var target;
+                if($(button).hasClass('del-btn')){
+                    target = true;
+                    setSchedule(targetValue, targetDay, target);
+                }else{
+                    target = false;
+                    setSchedule(targetValue, targetDay, target);
+                }
+            });
+        });
+    }
 
-                setSchedule(targetValue, targetDay);
+    function showModalClient(month, day, year, AM, PM) {
+        modal.style.display = "block";
+        modalContent.innerHTML = `<p>Slots on ${month} ${day}, ${year}</p>`;
+
+        const modalBtn1 = document.createElement("button");
+        const modalBtn2 = document.createElement("button");
+
+        modalBtn1.textContent = "Set AM";
+        modalBtn2.textContent = "Set PM";
+
+        modalBtn1.classList.add("modal-btn", "sched-btn");
+        modalBtn2.classList.add("modal-btn", "sched-btn");
+
+        modalBtn1.setAttribute("id", "sched-btn");
+        modalBtn1.setAttribute("data-target-sched-btn", "AM");
+        modalBtn1.setAttribute("data-target-day", month + " " + day + " " + year);
+
+        modalBtn2.setAttribute("id", "sched-btn");
+        modalBtn2.setAttribute("data-target-sched-btn", "PM");
+        modalBtn2.setAttribute("data-target-day", month + " " + day + " " + year);
+
+        if(AM == true){
+            modalContent.appendChild(modalBtn1); 
+        }
+        if(PM == true){
+            modalContent.appendChild(modalBtn2);
+        }
+        
+
+        const modalButtons = document.querySelectorAll('.sched-btn');
+        modalButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const targetValue = button.getAttribute('data-target-sched-btn');
+                const targetDay = button.getAttribute('data-target-day');
+                setScheduleClient(targetValue, targetDay);
             });
         });
     }
@@ -165,62 +284,40 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function setSchedule(targetValue, targetDay) {
+function setSchedule(targetValue, targetDay, check) {
     $.ajax({
         type: "POST",
-        url: "backend/set-schedule.php",
+        url: "backend/set-schedule.php?user=nurse",
         data: {
             targetValue: targetValue,
-            targetDay: targetDay
+            targetDay: targetDay,
+            targetConfig: check
         },
         success: function(response) {
-            console.log(response);
-            // modal.style.display = "none";
-            // var data = JSON.parse(response);
-            // var date = data.day;
-            // var dayCells = $('.day-number');
-
-            // const eventDate = new Date(date);
-            // const eventMonth = eventDate.getMonth();
-            // const eventYear = eventDate.getFullYear();
-            // const dayOfMonth = eventDate.getDate();
-
-            // const month = eventDate.getMonth();
-            // const year = eventDate.getFullYear();
-
-            // if(eventMonth === month && eventYear === year) {
-            //     dayCells.each(function() {
-            //         if(parseInt(this.textContent) === dayOfMonth) {
-            //             this.classList.add('event');
-            //         }
-            //     });
-            // };
-
-            // let htmlContent = 
-            // '<div class="container-selectedDate" >' +
-            // '<div class="dropdown">' +
-            // '<button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">' +
-            // '<span class="icon"><i class="mdi mdi-view-list"></i></span>' +
-            // '<span class="menu-item-label">' +
-            // formatDate(date) +
-            // "</span>" +
-            // '<span class="dropdown-icon"><i class="mdi mdi-plus"></i></span>' +
-            // "</button>" +
-            // '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
-
-    
-            // htmlContent += "</ul>";
-            // htmlContent += "</div>";
-            // htmlContent += "</div>";
-            // $("#show-slots").append(htmlContent);   
+            console.log(response); 
 
         } 
         
     });
-    
-  function formatDate(date) {
+}
+
+function setScheduleClient(targetValue, targetDay) {
+    $.ajax({
+        type: "POST",
+        url: "backend/set-schedule.php?user=client",
+        data: {
+            targetValue: targetValue,
+            targetDay: targetDay,
+        },
+        success: function(response) {
+            console.log(response); 
+        } 
+        
+    });
+}
+
+function formatDate(date) {
     const dateObj = new Date(date);
     const options = { month: "long", day: "numeric", year: "numeric" };
     return dateObj.toLocaleDateString("en-US", options);
   }
-}

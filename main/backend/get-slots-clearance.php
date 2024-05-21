@@ -12,12 +12,11 @@
             $response[] = $row;
         }
         
-        echo json_encode($response);
     } else {
         $response = array(
             'status' => 'error',
             'message' => 'No data found'
         );
-        
-        echo json_encode($response);
+
     }
+    echo json_encode($response);

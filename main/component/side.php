@@ -3,8 +3,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
 <aside class="aside is-placed-left is-expanded">
-    <div class="menu is-menu-main" style="margin-top: 30px">
-        <img src="./img/assets/GENKI LOGO ORIGINAL.png" alt="" srcset="" style="width: 20vw; margin-top: -90px">
+    <div class="menu is-menu-main">
+        <!-- <img src="./img/assets/GENKI LOGO ORIGINAL.png" alt="" srcset="" style="width: 20vw; "> -->
         <p class="menu-label">Dashboard</p>
         <ul class="menu-list">
             <li>
@@ -44,6 +44,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="client-table.php" class="<?php echo ($current_page == 'client-table.php') ? 'is-active' : ''; ?> has-icon">
+                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                        <span class="menu-item-label">Appointment History</span>
+                    </a>
+                </li>
             <?php else : ?>
                 <li>
                     <a class="<?php echo ($current_page == 'nurse-table.php') ? 'is-active' : ''; ?> has-icon has-dropdown-icon">
@@ -73,7 +79,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </ul>
                 </li>
                 <li>
-                    <a class="<?php echo ($current_page == 'medical-clearance.php') ? 'is-active' : ''; ?> has-icon has-dropdown-icon">
+                    <a class="<?php echo ($current_page == 'medical-clearance.php' || $current_page == 'clearance-table.php') ? 'is-active' : ''; ?> has-icon has-dropdown-icon">
                         <span class="icon"><i class="mdi mdi-view-list"></i></span>
                         <span class="menu-item-label">Clearance</span>
                         <div class="dropdown-icon">
@@ -87,7 +93,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             </a>
                         </li>
                         <li>
-                            <a class="#">
+                            <a href="clearance-table.php" class="<?php echo ($current_page == 'clearance-table.php') ? 'is-active' : ''; ?>">
                                 <span><i class="mdi mdi-view-list"></i> See Appointments List</span>
                             </a>
                         </li>
@@ -184,6 +190,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <p class="menu-label">OTHERS</p>
         <ul class="menu-list">
+            <?php if ($user_type == 'admin') : ?>
+                <li>
+                    <a href="account-management.php" class="<?php echo ($current_page == 'account-management.php') ? 'is-active' : ''; ?> has-icon">
+                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                        <span class="menu-item-label">Account Management</span>
+                    </a>
+                </li>
+            <?php endif; ?>
             <li>
                 <a href="profile.php" class="<?php echo ($current_page == 'profile.php') ? 'is-active' : ''; ?> has-icon">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>

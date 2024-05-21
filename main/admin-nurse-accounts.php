@@ -16,7 +16,7 @@ include 'component/head.php';
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                            <li>Nurse</li>
+                            <li>Admin</li>
                             <li>Nurse Accounts</li>
                         </ul>
                     </div>
@@ -109,29 +109,29 @@ include 'component/head.php';
                             <div class="row">
                                 <div class="col">
                                     <label for="first_name">First Name</label>
-                                    <input id="first_name" name="fname" type="text" placeholder="First Name" />
+                                    <input id="first_name" name="fname" type="text" placeholder="First Name" required/>
                                 </div>
 
                                 <div class="col">
                                     <label for="middle_name">Middle Name</label>
-                                    <input id="middle_name" name="mname" type="text" placeholder="Middle Name" />
+                                    <input id="middle_name" name="mname" type="text" placeholder="Middle Name" required/>
                                 </div>
 
                                 <div class="col">
 
                                     <label for="last_name">Last Name</label>
-                                    <input id="last_name" name="lname" type="text" placeholder="Last Name" />
+                                    <input id="last_name" name="lname" type="text" placeholder="Last Name" required/>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <label for="phone_num">Phone Number</label>
-                                    <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" />
+                                    <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" required/>
                                 </div>
                                 <div class="col">
                                     <label for="email">Email</label>
-                                    <input id="email" name="email" type="text" placeholder="Email" />
+                                    <input id="email" name="email" type="text" placeholder="Email" required/>
                                 </div>
                                 <div class="col">
                                     <label for="password">password</label>

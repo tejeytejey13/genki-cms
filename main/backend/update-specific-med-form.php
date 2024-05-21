@@ -35,7 +35,7 @@
 
         $mail->isHTML(true);
         $mail->Subject = 'Genki - Clinic Management System';
-        $mail->AddEmbeddedImage('../img/assets/2.png', 'med_submit');
+        $mail->AddEmbeddedImage('../img/email-tmp/MEDICAL 2 (1).png', 'med_submit');
         $mail->Body    = '<img alt="PHPMailer" src="cid:med_submit">';
 
         $mail->send();

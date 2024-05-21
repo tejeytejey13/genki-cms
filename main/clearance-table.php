@@ -16,20 +16,11 @@ include 'component/head.php';
                     <div class="level-item">
                         <ul>
                             <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Medical Record</li>
+                            <li>Medical Clearance List</li>
                         </ul>
                     </div>
                 </div>
-                <div class="level-right">
-                    <div class="level-item">
-                        <div class="buttons is-right">
-                            <a href="#" class="button is-primary">
-                                <span class="icon"><span class="mdi mdi-file-chart"></span></span>
-                                <span>Download Reports</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </section>
         <section class="hero is-hero-bar">
@@ -38,7 +29,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Medical Record
+                                Medical Clearance List
                             </h1>
                         </div>
                     </div>
@@ -48,7 +39,6 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
-        
         <section class="section is-main-section">
 
             <!-- <div class="notification is-info">
@@ -66,41 +56,7 @@ include 'component/head.php';
                     </div>
                 </div>
             </div> -->
-            <div class="filter-container" style="display: flex; gap: 30px;">
-                <div class="field">
-                    <label class="label">Date:</label>
-                    <input type="date" id="dateFilter">
-                </div>
-                <div class="field">
-                    <label class="label">Section:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="sectionFilter">
-                                <option value="">All Sections</option>
-                                <option value="A">Section A</option>
-                                <option value="B">Section B</option>
-                                <option value="C">Section C</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Grade:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="gradeFilter">
-                                <option value="" hidden selected>All Grades</option>
-                                <?php 
-                                    $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
-                                    while ($row = mysqli_fetch_assoc($getlvl)) {
-                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
@@ -117,15 +73,69 @@ include 'component/head.php';
                                         </th>
                                         <th></th>
                                         <th>Name</th>
-                                        <th>Grade Level</th>
-                                        <th>Parent's Name</th>
+                                        <th>Grade</th>
                                         <th>Section</th>
-                                        <th>Date Created</th>
-                                        <th>Date of Clinic</th>
+                                        <th>Date of Clearance</th>
+                                        <th>Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="nurseMedicalRecord">
+                                <tbody id="clearanceTable">
+                                    <?php 
+                                        $getClearance = $conn->query("SELECT * FROM `user_slot_clearance`");
+                                        while ($row = $getClearance->fetch_assoc()) {
+                                            $client_uid = $row['user_id'];
+                                            $getUserInfo = $conn->query("SELECT * FROM `medical_form` WHERE `user_id` = '$client_uid'");
+                                            $user = $getUserInfo->fetch_assoc();
+                                            $fn = $user['first_name'].' '.$user['last_name'];
+                                            $getSlotInfo = $conn->query("SELECT * FROM `clearance_slots` WHERE `id` = '$row[slot_id]'");
+                                            $slot = $getSlotInfo->fetch_assoc();
+                                            $time = $slot['time'];
+
+                                            if($time == 'AM'){
+                                                $slots = '9:00 - 12:00 '.$time;
+                                            }else{
+                                                $slots = '12:00 - 5:00 '.$time;
+                                            }
+                                    ?>
+                                    <tr>
+                                        <td class="is-checkbox-cell">
+                                            <label class="b-checkbox checkbox">
+                                                <input type="checkbox" value="false">
+                                                <span class="check"></span>
+                                            </label>
+                                        </td>
+                                        <td class="is-image-cell">
+                                            <div class="image">
+                                                <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"
+                                                    class="is-rounded">
+                                            </div>
+                                        </td>
+                                        <td data-label="Name"><?=ucwords($fn);?></td>
+                                        <td data-label="Company"><?=$user['grade']?></td>
+                                        <td data-label="City"><?=$user['section']?></td>
+                                        <!-- <td data-label="Progress" class="is-progress-cell">
+                                            <progress max="100" class="progress is-small is-primary"
+                                                value="100">17</progress>
+                                        </td> -->
+                                        <td data-label="Created">
+                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020"><?=date('F d, Y', strtotime($slot['date']));?></small>
+                                        </td>
+                                        <td data-label="Created">
+                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020"><?=$slots?></small>
+                                        </td>
+                                        <td class="is-actions-cell">
+                                            <div class="buttons is-left">
+                                                <!-- <button class="button is-small is-primary" type="button">
+                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                                </button> -->
+                                                <button class="button is-small is-danger" type="button">
+                                                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -134,7 +144,7 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button is-active">1</button>
+                                            <button type="button" class="button">1</button>
                                             <button type="button" class="button">2</button>
                                             <button type="button" class="button">3</button>
                                         </div>
@@ -150,10 +160,11 @@ include 'component/head.php';
                     </div>
                 </div>
             </div>
-            <div id="view-med-record" class="modal">
+        </section>
+        <div id="user-view-med-form" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Medical Record <button class="delete1 jb-modal-close"
+                    <h1 class="modal-title" style="font-weight: 900">Medical Form <button class="delete1 jb-modal-close"
                             aria-label="close">&times</button>
                     </h1>
                 </div>
@@ -182,10 +193,7 @@ include 'component/head.php';
                 </div>
             </div>
         </div>
-        </section>
-
 
 
     </div>
-   
     <?php require 'component/footer.php' ?>

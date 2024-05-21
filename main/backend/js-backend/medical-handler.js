@@ -29,19 +29,31 @@ $(function() {
             type: "POST",
             url: "backend/medical.php",
             data: formData,
-            success: function (response) {
-                console.log(response);
+            beforeSend: function() {
+                $('#loading-show').addClass('loading');
+            },
+            success: function(response) {
+                // console.log(response);
                 var data = JSON.parse(response);
-                console.log(data);
-                if(data.status === "success") {
-                    // alert(data.message);
-                    $('#status').text(data.message);
-                    $('#success-modal').addClass('is-active');
-                    $('#medical-form')[0].reset();
+                // console.log(data);
+        
+                if (data.status === "success") {
+                    $('#loading-show').removeClass('loading'); 
+                    $('#status').text(data.message);  
+                    $('#success-modal').addClass('is-active');  
+                    $('#medical-form')[0].reset(); 
                     $('input').removeClass('is-success');
+                } else {
+                    $('#loading-show').removeClass('loading');
+                    $('#status').text(data.message);  
                 }
+            },
+            error: function() {
+                $('#loading-show').removeClass('loading');  
+                $('#status').text('An error occurred. Please try again.');
             }
-        })
+        });
+        
     })
 
     $('.jb-modal-close').click(function() {

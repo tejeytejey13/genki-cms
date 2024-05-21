@@ -22,6 +22,8 @@
 
             </div>
         </section>
+
+
         <section class="hero is-hero-bar">
             <div class="hero-body">
                 <div class="level">

@@ -31,7 +31,11 @@ $(document).ready(function() {
             url: "backend/submit-medical-cert.php",
             type: "POST",
             data: form_id,
+            beforeSend: function() {
+                $('#loading-show').addClass('loading');
+            },
             success: function(data) {
+                $('#loading-show').removeClass('loading'); 
                 window.location.href = './nurse-table.php';
             }
         });

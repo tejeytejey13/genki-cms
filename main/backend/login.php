@@ -30,6 +30,18 @@
                 }
             }
 
+            if($user_type == 'client'){
+                $checkClient = $conn->query("SELECT * FROM client WHERE user_id = '$userid'");
+                $rowClient = $checkClient->fetch_assoc();
+                // $response[] = $rowClient;
+                if($rowClient['status'] !== 'active'){
+                    $response['status'] = 'error';
+                    $response['message'] = 'Wait for admin to approve your account';
+                    $response['user_type'] = $user_type;
+                    echo json_encode($response);
+                }
+            }
+
             $response['status'] = 'success';
             $response['message'] = 'Login successful';
             $response['user_type'] = $user_type;

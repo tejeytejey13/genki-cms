@@ -23,10 +23,10 @@
     <script src="./backend/js-backend/nurse-medical-handler.js"></script>
     <script src="./backend/js-backend/profile-handler.js"></script>
     <script src="./backend/js-backend/get-slots.js"></script>
-    <script src="./backend/js-backend/get-inventory.js?ver=1.0"></script>
-    <script src="./backend/js-backend/set-clearance-slots.js"></script>
+    <script src="./backend/js-backend/get-inventory.js"></script>
+    <script src="./backend/js-backend/set-user-status.js"></script>
     <script src="./backend/js-backend/nurse-accounts-table.js"></script>
-    <script src="./backend/js-backend/medical-certification-handler.js?ver=1.2"></script>
+    <script src="./backend/js-backend/medical-certification-handler.js"></script>
     <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 

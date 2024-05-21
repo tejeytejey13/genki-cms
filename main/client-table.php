@@ -124,16 +124,16 @@ include 'component/head.php';
                             <div class="level">
                                 <div class="level-left">
                                     <div class="level-item">
-                                        <div class="buttons has-addons">
-                                            <button type="button" class="button">1</button>
+                                        <div class="buttons has-addons" id="paginationClient">
+                                            <!-- <button type="button" class="button">1</button>
                                             <button type="button" class="button">2</button>
-                                            <button type="button" class="button">3</button>
+                                            <button type="button" class="button">3</button> -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="level-right">
-                                    <div class="level-item">
-                                        <small>Page 1 of 3</small>
+                                    <div class="level-item" id="paginationStatusClient">
+                                        <!-- <small>Page 1 of 3</small> -->
                                     </div>
                                 </div>
                             </div>

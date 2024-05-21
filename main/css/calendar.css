@@ -105,6 +105,10 @@
     border-radius: 5px;
     
 }
+
+.del-btn {
+    background-color: red !important;
+}
 .container-selectedDate {
     border: 1px solid black;
     max-height: 20vh;

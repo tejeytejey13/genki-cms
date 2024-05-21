@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->isHTML(true);
         $mail->Subject = 'Genki - Clinic Management System';
-        $mail->AddEmbeddedImage('../img/assets/1.png', 'med_submit');
+        $mail->AddEmbeddedImage('../img/email-tmp/MEDICAL 1 (1).png', 'med_submit');
         $mail->Body    = '<img alt="PHPMailer" src="cid:med_submit">';
 
         $mail->send();

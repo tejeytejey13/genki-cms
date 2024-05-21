@@ -18,7 +18,7 @@
 <body>
 	<div id="wrapper" class="wrapper">
 		<div class="fxt-template-animation fxt-template-layout5">
-			<div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/bg5-l.jpg">
+			<div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/landing-bg.png">
 				<div class="fxt-intro">
 					<div class="sub-title">Welcome To</div>
 					<h1>Our Clinic</h1>

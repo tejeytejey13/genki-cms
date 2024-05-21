@@ -60,6 +60,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select name="grade-level">
+                                    <option selected hidden>Section</option>
+                                    <?php
+                                    $sql = "SELECT * FROM grade_levels";
+                                    $result = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
                             <input class="input" name="adviser" type="text" placeholder="Adviser">

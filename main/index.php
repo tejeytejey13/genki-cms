@@ -169,7 +169,7 @@
             </div> -->
         </section>
         <?php }else{ 
-                include('component/404.php');
+                include('user-index.php');
             }
         ?>     
     </div>

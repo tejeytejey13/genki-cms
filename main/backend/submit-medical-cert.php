@@ -19,6 +19,9 @@
     $query = mysqli_query($conn, $sql);
     $response = [];
 
+    $min = "UPDATE med_despensary SET quantity = quantity - '$med_quantity' WHERE name = '$medication'";
+    mysqli_query($conn, $min);
+
     $getuser = "SELECT * FROM medical_form WHERE user_id = " . $user_id;
     $qoruser = mysqli_query($conn, $getuser);
     $rowuser = mysqli_fetch_array($qoruser);

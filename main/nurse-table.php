@@ -20,7 +20,16 @@ include 'component/head.php';
                         </ul>
                     </div>
                 </div>
-
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="buttons is-right">
+                            <a href="#" id="archived-appointments" class="button is-primary">
+                                <span class="icon"><span class="mdi mdi-archive-arrow-down"></span></span>
+                                <span>Archived Appointments</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="hero is-hero-bar">
@@ -39,6 +48,7 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
+
         <section class="section is-main-section">
 
             <!-- <div class="notification is-info">
@@ -84,41 +94,10 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="nurseTable">
-                                    <!-- <tr>
-                                        <td class="is-checkbox-cell">
-                                            <label class="b-checkbox checkbox">
-                                                <input type="checkbox" value="false">
-                                                <span class="check"></span>
-                                            </label>
-                                        </td>
-                                        <td class="is-image-cell">
-                                            <div class="image">
-                                                <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"
-                                                    class="is-rounded">
-                                            </div>
-                                        </td>
-                                        <td data-label="Name">Lonzo Steuber</td>
-                                        <td data-label="Company">Skiles Ltd</td>
-                                        <td data-label="City">Marilouville</td>
-                                        <td data-label="Progress" class="is-progress-cell">
-                                            <progress max="100" class="progress is-small is-primary"
-                                                value="17">17</progress>
-                                        </td>
-                                        <td data-label="Created">
-                                            <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                                2020</small>
-                                        </td>
-                                        <td class="is-actions-cell">
-                                            <div class="buttons is-right">
-                                                <button class="button is-small is-primary" type="button">
-                                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                                </button>
-                                                <button class="button is-small is-danger" type="button">
-                                                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr> -->
+                                   
+                                </tbody>
+                                <tbody id="archivedTable" hidden>
+                                   
                                 </tbody>
                             </table>
                         </div>
@@ -129,8 +108,7 @@ include 'component/head.php';
         <div id="nurse-view-med-form" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Clinic Forms <button class="delete1 jb-modal-close"
-                            aria-label="close">&times</button>
+                    <h1 class="modal-title" style="font-weight: 900">Clinic Forms <button class="delete1 jb-modal-close" aria-label="close">&times</button>
                     </h1>
                 </div>
                 <div class="modal-body">
@@ -158,7 +136,7 @@ include 'component/head.php';
                 </div>
             </div>
         </div>
-        
+
         <div id="nurse-edit-med-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content modal-content-main-1">

@@ -20,7 +20,16 @@ include 'component/head.php';
                         </ul>
                     </div>
                 </div>
-
+                <div class="level-right">
+                    <div class="level-item">
+                        <div class="buttons is-right">
+                            <a href="#" class="button is-primary">
+                                <span class="icon"><span class="mdi mdi-file-chart"></span></span>
+                                <span>Download Reports</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="hero is-hero-bar">

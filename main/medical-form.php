@@ -5,7 +5,7 @@
             Clinic Form
         </p>
     </header>
-    <div class="card-content">
+    <div class="card-content" id="modal-container">
         <form id="medical-form" method="POST">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
@@ -15,19 +15,19 @@
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
                             <input class="input " name="lname" type="text" value="<?= ucfirst($user_lname) ?>" readonly>
-                            <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                            <span class="icon is-small is-left" id="icon"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
                             <input class="input" name="fname" type="text" value="<?= ucfirst($user_fname) ?>" readonly>
-                            <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                            <span class="icon is-small is-left" id="icon"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
                             <input class="input" name="mname" type="text" value="<?= ucfirst($user_mname) ?>" readonly>
-                            <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                            <span class="icon is-small is-left" id="icon"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <!-- <div class="field">
@@ -113,8 +113,8 @@
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
                             <input class="input" name="address" type="text" placeholder="Address">
-                            <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
-                            <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
+                            <span class="icon is-small is-left" id="icon"><i class="mdi mdi-mail"></i></span>
+                            <span class="icon is-small is-right" id="icon"><i class="mdi mdi-check"></i></span>
                         </p>
                     </div>
                 </div>
@@ -263,7 +263,8 @@
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
-                            <input class="input" name="treatment" type="text" placeholder="Specify treatment for these allergies">
+                            <input class="input" name="treatment" type="text"
+                                placeholder="Specify treatment for these allergies">
                         </div>
                     </div>
                     <!-- <div class="field">
@@ -282,7 +283,8 @@
                     <div class="field">
                         <div class="control">
                             <label class="b-checkbox checkbox">
-                                <input class="checkbox selectedOption" name="option" value="yes" id="yes" type="checkbox">
+                                <input class="checkbox selectedOption" name="option" value="yes" id="yes"
+                                    type="checkbox">
                                 <span class="check"></span>
                                 &nbsp;
                                 Yes
@@ -353,3 +355,21 @@
         </form>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const modal = document.getElementById('success-modal');
+    const accountIcon = document.querySelectorAll('.icon');
+    const dropdowns = document.querySelectorAll('.field');
+
+    function openModal() {
+        modal.classList.add('is-active'); 
+        accountIcon.forEach(icon => {
+            icon.style.display = 'none';
+        });
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+
+});
+</script>

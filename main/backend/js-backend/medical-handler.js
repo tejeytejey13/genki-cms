@@ -33,9 +33,7 @@ $(function() {
                 $('#loading-show').addClass('loading');
             },
             success: function(response) {
-                // console.log(response);
                 var data = JSON.parse(response);
-                // console.log(data);
         
                 if (data.status === "success") {
                     $('#loading-show').removeClass('loading'); 
@@ -43,6 +41,7 @@ $(function() {
                     $('#success-modal').addClass('is-active');  
                     $('#medical-form')[0].reset(); 
                     $('input').removeClass('is-success');
+                    $('#modal-container').hide();
                 } else {
                     $('#loading-show').removeClass('loading');
                     $('#status').text(data.message);  
@@ -54,10 +53,11 @@ $(function() {
             }
         });
         
-    })
+    });
 
     $('.jb-modal-close').click(function() {
         $('#success-modal').removeClass('is-active');
+        $('#modal-container').show(); 
     });
 
     $('#reset-form').click(function() {

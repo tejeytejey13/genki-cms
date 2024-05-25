@@ -18,7 +18,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script type="text/javascript" src="js/chart.sample.min.js"></script>
     <script src="./backend/js-backend/handler.js"></script>
-    <script src="./backend/js-backend/medical-handler.js"></script>
+    <script src="./backend/js-backend/medical-handler.js?ver=1.0"></script>
     <script src="./backend/js-backend/medical-history-handler.js"></script>
     <script src="./backend/js-backend/nurse-medical-handler.js"></script>
     <script src="./backend/js-backend/profile-handler.js"></script>

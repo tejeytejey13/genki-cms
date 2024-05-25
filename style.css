@@ -2233,14 +2233,14 @@ ul {
   justify-content: center;
 }
 .fxt-template-layout5 .fxt-intro {
-  max-width: 500px;
+  max-width: 800px;
   width: 100%;
   padding: 30px;
 }
 .fxt-template-layout5 .fxt-intro .sub-title {
   font-weight: 300;
   font-size: 40px;
-  color: #fff;
+  color:  #FFFFFF;
   line-height: 1.5;
 }
 @media only screen and (max-width: 1199px) {
@@ -2251,7 +2251,7 @@ ul {
 .fxt-template-layout5 .fxt-intro h1 {
   font-size: 88px;
   font-weight: 700;
-  color: #fff;
+  color:  #FFFFFF;
   margin-bottom: 25px;
 }
 @media only screen and (max-width: 1199px) {
@@ -2265,7 +2265,9 @@ ul {
   }
 }
 .fxt-template-layout5 .fxt-intro p {
-  color: #fff;
+  color:  #FFFFFF;
+  font-weight: 900;
+  text-align: justify;
 }
 .fxt-template-layout5 .fxt-content-between {
   display: -webkit-box;
@@ -2377,6 +2379,8 @@ ul {
   font-size: 17px;
   color: #a1a1a1;
 }
+
+
 .fxt-template-layout5 .fxt-form .form-control {
   min-height: 40px;
   -webkit-box-shadow: none;
@@ -2494,7 +2498,7 @@ ul {
   }
 }
 .fxt-template-layout5 .fxt-page-switcher .switcher-text {
-  color: #fff;
+  color: #FFFFFF;
   font-size: 18px;
   padding: 10px 30px 10px 20px;
   border-radius: 45px 0 0 45px;
@@ -2504,7 +2508,7 @@ ul {
   transition: all 0.3s ease-in-out;
 }
 .fxt-template-layout5 .fxt-page-switcher .switcher-text.active {
-  color: #000;
+  color:#5572B2;
   background-color: #fff;
 }
 @media only screen and (max-width: 767px) {
@@ -2796,6 +2800,10 @@ ul {
 .fxt-template-layout6 .fxt-header .fxt-logo {
   display: block;
   max-width: 40vw;
+}
+
+.fxt-logo .g{
+  color: #1C2751;
 }
 .fxt-template-layout6 .fxt-form {
   margin-bottom: 40px;

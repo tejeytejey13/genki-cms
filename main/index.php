@@ -2,7 +2,7 @@
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 
 <?php
-    include './component/head.php';
+include './component/head.php';
 ?>
 
 <body>
@@ -18,7 +18,7 @@
                 <div class="level-left">
                     <div class="level-item">
                         <ul>
-                        <?= ($user_type == 'client') ? '<li>Student</li>' : (($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'); ?>
+                            <?= ($user_type == 'client') ? '<li>Student</li>' : (($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'); ?>
                             <li>Dashboard</li>
                         </ul>
                     </div>
@@ -26,122 +26,130 @@
 
             </div>
         </section>
-        <?php 
-            if($user_type == 'nurse' || $user_type == 'admin') {
+        <?php
+        if ($user_type == 'nurse' || $user_type == 'admin') {
         ?>
-        <section class="hero is-hero-bar">
-            <div class="hero-body">
-                <div class="level">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <h1 class="title">
-                                Dashboard
-                            </h1>
+            <section class="hero is-hero-bar">
+                <div class="hero-body">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <h1 class="title">
+                                    Dashboard
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="level-right" style="display: none;">
+                            <div class="level-item"></div>
                         </div>
                     </div>
-                    <div class="level-right" style="display: none;">
-                        <div class="level-item"></div>
-                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="section is-main-section">
-            <div class="tile is-ancestor">
-                <div class="tile is-parent">
-                    <div class="card tile is-child" onclick="alert('Coming Soon')">
-                        <div class="card-content">
-                            <div class="level is-mobile">
-                                <div class="level-item">
-                                    <div class="is-widget-label">
-                                        <h3 class="subtitle is-spaced">
-                                            Students
-                                        </h3>
-                                        <h1 class="title">
-                                            <?=$user_count?>
-                                        </h1>
+            </section>
+            <section class="section is-main-section">
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <div class="card tile is-child" onclick="alert('Coming Soon')">
+                            <div class="overlay"></div>
+                            <div class="card-content">
+                                <div class="level is-mobile">
+                                    <div class="level-item">
+                                        <div class="is-widget-label">
+                                            <h3 class="subtitle is-spaced">
+                                                Students
+                                            </h3>
+                                            <h1 class="title">
+                                                <?= $user_count ?>
+                                            </h1>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="level-item has-widget-icon">
-                                    <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                    <div class="level-item has-widget-icon">
+                                        <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tile is-parent">
-                    <div class="card tile is-child" onclick="window.location.href = 'nurse-table.php?status=pending'">
-                        <div class="card-content">
-                            <div class="level is-mobile">
-                                <div class="level-item">
-                                    <div class="is-widget-label">
-                                        <h3 class="subtitle is-spaced">
-                                            Clinic App
-                                        </h3>
-                                        <h1 class="title">
-                                            <?=$form_count?>
-                                        </h1>
-                                    </div>
-                                </div>
-                                <div class="level-item has-widget-icon">
-                                    <div class="is-widget-icon">
-                                        <span class="icon has-text-info is-large">
-                                            <i class="mdi mdi-calendar-multiple-check mdi-48px">
+                    <div class="tile is-parent">
+                        <div class="card tile is-child" onclick="window.location.href = 'nurse-table.php?status=pending'">
+                            <div class="overlay"></div>
 
-                                            </i>
-                                        </span>
+                            <div class="card-content">
+
+                                <div class="level is-mobile">
+                                    <div class="level-item">
+                                        <div class="is-widget-label">
+                                            <h3 class="subtitle is-spaced">
+                                                Clinic App
+                                            </h3>
+                                            <h1 class="title">
+                                                <?= $form_count ?>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="level-item has-widget-icon">
+                                        <div class="is-widget-icon">
+                                            <span class="icon has-text-info is-large">
+                                                <i class="mdi mdi-calendar-multiple-check mdi-48px">
+
+                                                </i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tile is-parent">
-                    <div class="card tile is-child" onclick="window.location.href = 'clinic-inventory.php'">
+                    <div class="tile is-parent">
+                        <div class="card tile is-child" onclick="window.location.href = 'clinic-inventory.php'">
+                        <div class="overlay"></div>
+
                         <div class="card-content">
-                            <div class="level is-mobile">
-                                <div class="level-item">
-                                    <div class="is-widget-label">
-                                        <h3 class="subtitle is-spaced">
-                                            Inventory
-                                        </h3>
-                                        <h1 class="title">
-                                            <?= $inv_count ?>
-                                        </h1>
+                                <div class="level is-mobile">
+                                    <div class="level-item">
+                                        <div class="is-widget-label">
+                                            <h3 class="subtitle is-spaced">
+                                                Inventory
+                                            </h3>
+                                            <h1 class="title">
+                                                <?= $inv_count ?>
+                                            </h1>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="level-item has-widget-icon">
-                                    <div class="is-widget-icon"><span class="icon has-text-success is-large"><i class="mdi mdi-finance mdi-48px"></i></span>
+                                    <div class="level-item has-widget-icon">
+                                        <div class="is-widget-icon"><span class="icon has-text-success is-large"><i class="mdi mdi-finance mdi-48px"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tile is-parent">
-                    <div class="card tile is-child" onclick="alert('Coming Soon')">
+                    <div class="tile is-parent">
+                        <div class="card tile is-child" onclick="alert('Coming Soon')">
+                        <div class="overlay"></div>
+
                         <div class="card-content">
-                            <div class="level is-mobile">
-                                <div class="level-item">
-                                    <div class="is-widget-label">
-                                        <h3 class="subtitle is-spaced">
-                                            Accounts
-                                        </h3>
-                                        <h1 class="title">
-                                            <?= $account_count ?>
-                                        </h1>
+                                <div class="level is-mobile">
+                                    <div class="level-item">
+                                        <div class="is-widget-label">
+                                            <h3 class="subtitle is-spaced">
+                                                Accounts
+                                            </h3>
+                                            <h1 class="title">
+                                                <?= $account_count ?>
+                                            </h1>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="level-item has-widget-icon">
-                                    <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                    <div class="level-item has-widget-icon">
+                                        <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="card">
+                <!-- <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
                         <span class="icon"><i class="mdi mdi-finance"></i></span>
@@ -167,10 +175,10 @@
                     </div>
                 </div>
             </div> -->
-        </section>
-        <?php }else{ 
-                include('user-index.php');
-            }
-        ?>     
+            </section>
+        <?php } else {
+            include('user-index.php');
+        }
+        ?>
     </div>
-<?php include './component/footer.php'; ?>
+    <?php include './component/footer.php'; ?>

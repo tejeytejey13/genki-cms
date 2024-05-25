@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="./css/modal.css?ver=2.2">
     <link rel="stylesheet" href="./css/about.css?ver=1.1">
     <link rel="stylesheet" href="./css/calendar.css?ver=2">
+    <link rel="stylesheet" href="./css/cards.css?ver=1.0">
+    <link rel="stylesheet" href="./css/clearance.css?ver=1.0">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">

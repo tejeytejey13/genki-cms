@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Genki School Clinic Management System</title>
+    <link rel="shortcut icon" href="main/img/assets/PNJK PNG.png" />
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,10 +14,12 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="font/flaticon.css">
     <link href="../../../css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?ver=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
+<style>
+   
+</style>
 <body>
 
     <div id="wrapper" class="wrapper">
@@ -29,8 +33,8 @@
             </div>
             <div class="fxt-bg-color">
                 <div class="fxt-header">
-                    <a href="#" class="fxt-logo" style="font-size: 55px; color: rgb(27, 1, 61);"><span
-                            style="color: rgb(80, 172, 153);">G</span>enki</a>
+                    <a href="#" class="fxt-logo" style="font-size: 55px; ">
+                    <span><img src="main/img/assets/GENKI.png" alt="" ></span>
                     <div class="fxt-page-switcher">
                         <a href="#" class="switcher-text switcher-text1 active">LogIn</a>
                         <a href="register.php" class="switcher-text switcher-text2">Register</a>

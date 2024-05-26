@@ -34,7 +34,7 @@
             <div class="fxt-bg-color">
                 <div class="fxt-header">
                     <a href="#" class="fxt-logo" style="font-size: 55px; ">
-                    <span><img src="main/img/assets/GENKI.png" alt="" ></span>
+                    <span><img src="main/img/assets/GENKI.png" style="width: 20%;" alt="" ></span>
                     <div class="fxt-page-switcher">
                         <a href="#" class="switcher-text switcher-text1 active">LogIn</a>
                         <a href="register.php" class="switcher-text switcher-text2">Register</a>

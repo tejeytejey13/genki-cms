@@ -47,7 +47,7 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select name="grade-level">
+                                <select id="grade-level" name="grade-level">
                                     <option selected hidden>Grade Level</option>
                                     <?php
                                     $sql = "SELECT * FROM grade_levels";
@@ -63,15 +63,9 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select name="grade-level">
+                                <select id="section" name="section" disabled>
                                     <option selected hidden>Section</option>
-                                    <?php
-                                    $sql = "SELECT * FROM grade_levels";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
-                                    }
-                                    ?>
+
                                 </select>
                             </div>
                         </div>

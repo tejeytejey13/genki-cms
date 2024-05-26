@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_fname = lcfirst($_POST['fname']);
     $user_mname = lcfirst($_POST['mname']);
     $grade_level = $_POST['grade-level'];
+    $section = $_POST['section'];
     $adviser = $_POST['adviser'];
     $birthdate = $_POST['birthdate'];
     $birthplace = $_POST['birthplace'];
@@ -70,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         middle_initial, 
         last_name, 
         grade, 
+        section,
         adviser, 
         birthdate, 
         place_of_birth, 
@@ -91,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         '$user_mname',
         '$user_lname',
         '$grade_level',
+        '$section',
         '$adviser',
         '$birthdate',
         '$birthplace',

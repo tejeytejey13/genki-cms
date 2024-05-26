@@ -72,8 +72,14 @@
             </div>
         </div>
     </div>
-    <div class="container is-fullwidth" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+    <div class="container is-fullwidth" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
         <div class="card has-table has-table-container-upper-radius" style="width: 100%">
+            <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                    Clinic Appointment
+                </p>
+            </header>
             <div class="card-content">
                 <div class="b-table has-pagination">
                     <div class="table-wrapper has-mobile-cards">
@@ -85,22 +91,52 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody id="indexHistory">
-                                <tr>
-                                    <td data-label="Name">Lonzo Steuber</td>
-                                    <td data-label="Created">
-                                        <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                            2020</small>
-                                    </td>
-                                    <td data-label="Status" class="status open">Status</td>
-                                </tr>
+                            <tbody>
+                                <?php 
+                                    $getAppointments = $conn->query("SELECT * 
+                                    FROM medical_form 
+                                    INNER JOIN med_form_status 
+                                    ON medical_form.id = med_form_status.form_id 
+                                    WHERE medical_form.user_id = '$user_id' 
+                                    ORDER BY med_form_status.date_updated DESC 
+                                    LIMIT 5;");
+                                    if ($getAppointments->num_rows > 0) {
+                                        while($row = $getAppointments->fetch_assoc()){
+                                            if($row['status'] !== 'approved'){
+                                                $stats = 'in-progress';
+                                            }else{
+                                                $stats = 'open';
+                                            }
+                                            $date = date('F d, Y', strtotime($row['date_med']));
+                                            echo '
+                                            <tr>
+                                                <td data-label="Name">'.$row['form_id'].'</td>
+                                                <td data-label="Created">
+                                                    <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">'.
+                                                    $date.'</small>
+                                                </td>
+                                                <td data-label="Status" class="status '.$stats.'">'.$row['status'].'</td>
+                                            </tr>
+                                            ';
+                                        }
+                                    } else {
+                                        // If the table is empty, display a message
+                                        echo '<tr><td colspan="3">No appointments found.</td></tr>';
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card has-table has-table-container-upper-radius" style="width: 100%">
+        <div class="card has-table has-table-container-upper-radius" style="width: 100%;">
+        <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                    Clinic Form
+                </p>
+            </header>
             <div class="card-content">
                 <div class="b-table has-pagination">
                     <div class="table-wrapper has-mobile-cards">
@@ -112,15 +148,8 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody id="indexHistory">
-                                <tr>
-                                    <td data-label="Name">Lonzo Steuber</td>
-                                    <td data-label="Created">
-                                        <small class="has-text-grey is-abbr-like" title="Feb 12, 2020">Feb 12,
-                                            2020</small>
-                                    </td>
-                                    <td data-label="Status" class="status open">Status</td>
-                                </tr>
+                            <tbody>
+                                
                             </tbody>
                         </table>
                     </div>

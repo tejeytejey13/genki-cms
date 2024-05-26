@@ -8,7 +8,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 </style>
 <aside class="aside is-placed-left is-expanded" style="overflow-y: auto; height: 100vh;">
     <div class="menu is-menu-main">
-        <img class="menu-label" src="./img/assets/GENKI.png" alt="" srcset="">
+        <img class="menu-label" src="./img/assets/GENKI.png" alt="" srcset="" style="height: 90px; display: block; margin-left: auto; margin-right: auto;">
         <!-- <p class="menu-label">Dashboard</p> -->
         <ul class="menu-list">
             <li>

@@ -57,7 +57,7 @@ $(function () {
                 "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
                 formatDate(row.date_med) +
                 "</small></td>";
-              trNurse += "<td data-label='status'>" + row.status + "</td>";
+              trNurse += "<td data-label='status' class='status in-progress'>" + row.status + "</td>";
               trNurse +=
                 "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
                 row.form_id +
@@ -92,7 +92,7 @@ $(function () {
                 "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
                 formatDate(row.date_med) +
                 "</small></td>";
-              trNurse += "<td data-label='status'>" + row.status + "</td>";
+              trNurse += "<td data-label='status' class='status open'>" + row.status + "</td>";
               trNurse +=
                 "<td data-label='consultation'>" +
                 row.consultation_status +
@@ -127,7 +127,7 @@ $(function () {
               "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
               formatDate(row.date_med) +
               "</small></td>";
-            trhistoryNurse += "<td data-label='status'>" + row.status + "</td>";
+            trhistoryNurse += "<td data-label='status' class='status open'>" + row.status + "</td>";
             trhistoryNurse +=
               "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='" +
               row.form_id +
@@ -218,7 +218,7 @@ $(function () {
             },
             success: function (response) {
               var object = response[0];
-              console.log(object);
+              // console.log(object);
               $("#heading-name").html(
                 "Name of Patient: " + object.first_name + " " + object.last_name
               );
@@ -243,10 +243,7 @@ $(function () {
           const studentID = $(this).data("target-uid");
           const formID = $(this).data("target-uid2");
           window.location.href =
-            "./medical-certificate.php?student_id=" +
-            studentID +
-            "&form_id=" +
-            formID;
+            "./medical-certificate.php?student_id=" + studentID + "&form_id=" + formID;
         });
         // function consulationFormStudent(studentID) {
         //   $.ajax({
@@ -408,7 +405,8 @@ function restoreAppointment(formuid) {
         form_id: formuid,
       },
       success: function (response) {
-        window.location.href = "nurse-table.php?status=pending";
+        window.location.reload();
+        // window.location.href = "nurse-table.php?status=pending";
         // $('#nurseTable').attr('hidden', true);
         // $('#archivedTable').removeAttr("hidden");
         // $(".level-item ul li:eq(1)").text("Clinic Archived Appointments");

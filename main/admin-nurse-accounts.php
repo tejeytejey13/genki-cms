@@ -143,10 +143,10 @@ include 'component/head.php';
                         </div>
                         <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
                             <button class="button is-success jb-modal-close" id="submitnursebtn" type="submit">Save</button>
+                            </form>
                             <button class="button jb-modal-close">Cancel</button>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
         <div id="vd-nurse-status" class="modal">

@@ -42,13 +42,13 @@ function renderTable(data) {
     tr +=
       '<td data-label="Created">' +
       '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
-      formatDate(item.date_updated) +
+      (item.date_updated == '0000-00-00 00:00:00' ? 'Not Updated Yet!' : formatDate(item.date_updated)) +
       "</small></td>";
     tr +=
       '<td class="is-actions-cell">' +
       '<div class="buttons is-right">' +
       '<button class="button is-small is-primary edit-inventory" id="edit-med-item" data-target-item-id="' +
-      item.item_id +
+      item.id +
       '" data-target-item-quantity="' +
       item.quantity +
       '" type="button">' +
@@ -72,7 +72,7 @@ function renderTable(data) {
   });
 }
 
-$(".save-med-item").click(function () {
+$("#updateItem").submit(function () {
   var updateItem = $("#updateItem").serialize();
   $.ajax({
     url: "backend/edit-med-item.php",

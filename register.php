@@ -18,23 +18,23 @@
 <body>
     <div id="wrapper" class="wrapper">
         <div class="fxt-template-animation fxt-template-layout5">
-            <div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/landing-bg.png">
+            <div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/bg-first.png">
                 <div class="fxt-intro">
                     <div class="sub-title">Welcome To</div>
                     <h1>Our Clinic</h1>
-                    <p>Grursus mal suada faci lisis Lorem ipsum dolarorit ametion consectetur elit. Vesti ulum nec the
-                        dumm.</p>
+                    <p style="font-size: 15px; font-weight: 500;">Welcome to Your Clinic Management System Effortlessly manage your clinic with our streamlined solution. Our system simplifies clinic and clearance appointment scheduling, and manages your medical dispensary needs. Focus on providing exceptional care while we handle the administrative tasks. Experience the future of clinic management today!</p>
                 </div>
             </div>
             <div class="fxt-bg-color">
                 <div class="fxt-header">
-                    <a href="#" class="fxt-logo" style="font-size: 55px; color: rgb(27, 1, 61);">
-                        <span><img src="main/img/assets/GENKI.png" alt=""></span>
+                    <!-- < href="#" class="fxt-logo" style="font-size: 55px; color: rgb(27, 1, 61);"> -->
+                        <span><img src="main/img/assets/GENKI.png" style="width: 25%;" alt="" ></span>
 
                         <div class="fxt-page-switcher">
                             <a href="index.php" class="switcher-text switcher-text1">LogIn</a>
                             <a href="register.php" class="switcher-text switcher-text2 active">Register</a>
                         </div>
+                    
                 </div>
                 <div class="fxt-form">
                     <form id="register-form" method="POST">

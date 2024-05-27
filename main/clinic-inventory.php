@@ -159,11 +159,11 @@ include 'component/head.php';
             <form method="POST" id="updateItem">
                 <div class="input-group"
                     style="display: flex; justify-content: center; align-items: center; margin: 10px auto;">
-                    <input id="item_id" type="text" name="quantity" hidden>
+                    <!-- <input id="item_id" type="text" name="quantity" hidden> -->
                     <div class="group">
                         <label for="">Quantiy</label>
-                        <input type="number" id="id_item" name="itemID" hidden>
-                        <input type="text" id="quantity_item" name="quantity">
+                        <input type="text" id="id_item" name="inventoryID" hidden>
+                        <input type="text" id="quantity_item" name="inventoryQuantity">
                     </div>
 
                     <!-- <div class="group">

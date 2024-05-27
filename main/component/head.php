@@ -44,7 +44,7 @@ $number_of_students = "SELECT * FROM users WHERE user_type = 'client'";
 $runquery = mysqli_query($conn, $number_of_students);
 $user_count = mysqli_num_rows($runquery);
 
-$number_of_accounts = "SELECT * FROM users";
+$number_of_accounts = "SELECT * FROM users WHERE user_type = 'nurse' OR user_type = 'client'";
 $rq = mysqli_query($conn, $number_of_accounts);
 $account_count = mysqli_num_rows($rq);
 
@@ -65,6 +65,8 @@ if ($user_type == 'client') {
     $user_mname = $row['middle_initial'];
     $user_lname = $row['last_name'];
     $profile = $row['profile'];
+    $grade = $row['grade_level'];
+    $section = $row['section'];
     if (!empty($profile)) {
         $pfpImg = $profile;
     } else {

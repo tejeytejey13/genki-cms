@@ -22,3 +22,7 @@ $('#user-status-update').submit(function(){
         }
     })
 });
+
+function deleteAccountUser(userAccount_ID){
+    alert('still in development ' + userAccount_ID);
+}

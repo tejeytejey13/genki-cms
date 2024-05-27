@@ -36,7 +36,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $('#loading-show').removeClass('loading'); 
-                window.location.href = './nurse-table.php';
+                window.location.href = '../main/nurse-table.php?status=approved';
             }
         });
     });

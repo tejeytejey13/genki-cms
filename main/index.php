@@ -71,7 +71,7 @@ include './component/head.php';
                         </div>
                     </div>
                     <div class="tile is-parent">
-                        <div class="card tile is-child" onclick="window.location.href = 'nurse-table.php?status=pending'">
+                        <div class="card tile is-child" onclick="window.location.href = 'nurse-medical-history.php'">
                             <div class="overlay"></div>
 
                             <div class="card-content">
@@ -125,7 +125,7 @@ include './component/head.php';
                         </div>
                     </div>
                     <div class="tile is-parent">
-                        <div class="card tile is-child" onclick="alert('Coming Soon')">
+                        <div class="card tile is-child" onclick="window.location.href='account-management.php'">
                         <div class="overlay"></div>
 
                         <div class="card-content">

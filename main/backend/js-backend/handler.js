@@ -12,7 +12,7 @@ $(function () {
         if(data.status === "success"){
             window.location.href = 'main/index.php';
         }else{
-            alert(data.message);
+          showToast(data.message);
         }
       },
       error: function (xhr, status, error) {
@@ -20,6 +20,29 @@ $(function () {
       },
     });
   });
+
+  function showToast(message) {
+    // Create a new toast element
+    var toastId = 'toast-' + new Date().getTime();
+    var toastHtml = `
+        <div id="${toastId}" class="toast show" data-autohide="true">
+            <div class="toast-header">
+                <strong class="mr-auto text-primary">Toast Header</strong>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        </div>
+    `;
+    
+    // Append the new toast to the toast container
+    $('#toast-container').append(toastHtml);
+    
+    // Automatically remove the toast after 5 seconds
+    setTimeout(function() {
+        $('#' + toastId).remove();
+    }, 3000);
+}
 
   $("#register-form").submit(function (event) {
     event.preventDefault();

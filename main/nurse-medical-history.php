@@ -125,19 +125,7 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="nurseHistoryTable">
-                                    <!-- <?php
-                                    $getHistory = mysqli_query($conn, "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id");
-                                    while ($row = mysqli_fetch_assoc($getHistory)) {
-                                        $medid = $row['form_id'];
-                                        $const = "SELECT * FROM consultation_form WHERE medical_form = '$medid'";
-                                        $const_query = mysqli_query($conn, $const);
-                                        $coQry = mysqli_fetch_assoc($const_query);
-
-                                        if($coQry['status'] == 'approved'){
-                                            echo $row['first_name'];
-                                        }
-                                    }
-                                    ?> -->
+                                    
                                 </tbody>
                             </table>
                         </div>

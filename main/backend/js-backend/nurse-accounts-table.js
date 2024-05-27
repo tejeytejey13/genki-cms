@@ -16,11 +16,11 @@ $(function() {
                 tr += '<td data-label="UserID">' + item.user_id + '</td>';
                 tr += '<td data-label="Name">' + item.first_name + ' ' + item.last_name + '</td>';
                 tr += '<td data-label="Email">' + item.email + '</td>';
-                tr += '<td data-label="Date"><small class="has-text-grey is-abbr-like"">' + item.date_created + '</small></td>';
+                tr += '<td data-label="Date"><small class="has-text-grey is-abbr-like"">' + formatDate(item.date_created) + '</small></td>';
                 tr += '<td data-label="status">' + item.status + '</td>';
                 tr += '<td class="is-actions-cell"><div class="buttons is-left">'
                 + '<button class="button is-small is-primary view-edit-nurse-status" data-target-uid="' + item.user_id +'" type="button"><span class="icon"><i class="mdi mdi-pen"></i></span></button>'
-                + '<button class="button is-small is-danger" type="button" onclick="deleteData()"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
+                + '<button class="button is-small is-danger" type="button" onclick="deleteNurseAcc('+item.user_id+')"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
                 tr += "</tr>";
                 $("#nurseAccounts").append(tr);
             });
@@ -85,7 +85,8 @@ $(function() {
   });
 });
 
-function deleteData(){
+function deleteNurseAcc(nurseID){
+  alert("still in development " + nurseID);
     // Swal.fire({
     //   title: "Are you sure?",
     //   text: "You won't be able to revert this!",
@@ -103,4 +104,12 @@ function deleteData(){
     //     });
     //   }
     // });
+  }
+  function formatDate(date) {
+    var timestamp = new Date(date);
+    var month = timestamp.toLocaleString("default", { month: "short" }); // Get 3-letter month name
+    var day = timestamp.getDate(); // Get the day
+    var year = timestamp.getFullYear(); // Get the year
+    var formattedDate = month + " " + day + ", " + year;
+    return formattedDate;
   }

@@ -46,7 +46,7 @@
                             <!-- About Us Section -->
                             <div class="about-us">
                                 <h2>About School Clinic</h2>
-                                <p>Welcome to our School Clinic! We are dedicated to providing comprehensive healthcare
+                                <p style="padding: 20px;">Welcome to our School Clinic! We are dedicated to providing comprehensive healthcare
                                     services to our students and staff members. Our clinic is staffed with experienced
                                     healthcare professionals who are committed to promoting wellness and ensuring the
                                     well-being of our school community. From routine check-ups to addressing minor
@@ -56,11 +56,11 @@
                                     provider.</p>
                                 <div class="team-members">
                                     <div class="team-member">
-                                        <img src="./img/assets/avatar.jpg" alt="Team Member 1" class="avatar">
+                                        <img src="./img/assets/avatar1.jpg" alt="Team Member 1" class="avatar">
                                         <p class="member-name">Bench Paul Alegado</p>
                                     </div>
                                     <div class="team-member">
-                                        <img src="./img/assets/avatar.jpg" alt="Team Member 2" class="avatar">
+                                        <img src="./img/assets/avatar2.png" alt="Team Member 2" class="avatar">
                                         <p class="member-name">Irish Go</p>
                                     </div>
                                     <div class="team-member">

@@ -16276,3 +16276,22 @@ ul {
 .fxt-template-layout34 ul.fxt-socials li.fxt-facebook a {
   color: #3b5998;
 }
+.top-right {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1050; /* Higher than other elements on the page */
+    }
+    .toast .toast-header .btn-close {
+      position: absolute;
+      top: 5px;
+      right: 20px;
+      /* margin-left: ; */
+    }
+    .toast {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .toast.fade-out {
+      opacity: 0;
+    }

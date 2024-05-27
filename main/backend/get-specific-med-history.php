@@ -8,7 +8,7 @@ $response = [];
 
 while ($row = mysqli_fetch_assoc($query)) {
     if($row['nurse_id'] > 0){
-        if($row['nurse_id'] == 3){
+        if($row['nurse_id'] == 1){
             $row['nurse_name'] = "Admin Admin";
         }else{
             $qry = mysqli_query($conn, "SELECT first_name, last_name FROM nurse WHERE user_id = '" . $row['nurse_id'] . "'");

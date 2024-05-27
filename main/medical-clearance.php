@@ -48,10 +48,10 @@ include 'component/head.php';
                 if (mysqli_num_rows($func) < 1) :
 
             ?>
-            <!-- <div class="notification is-success">You have no clearance slots yet.</div> -->
-            <div class="calendar-container">
-                <div id="calendar"></div>
-                <!-- <div id="show-slots">
+                    <!-- <div class="notification is-success">You have no clearance slots yet.</div> -->
+                    <div class="calendar-container">
+                        <div id="calendar"></div>
+                        <!-- <div id="show-slots">
                             <?php
                             $getSlots = "SELECT * FROM clearance_slots";
                             $query = mysqli_query($conn, $getSlots);
@@ -71,76 +71,86 @@ include 'component/head.php';
                                 </div>
                             <?php } ?>
                         </div> -->
-            </div>
-            <?php else : ?>
-            <div class="notification is-success">You successfully selected clearance appointment.</div>
-            <section class="section is-main-section">
-                <!-- 404 Container -->
-                <!-- <div class="container-404">
-                            <img src="./img/assets/medical_logo.svg" alt="Medical Logo" class="logo-404">
-                            <h1>Not Found</h1>
-                            <p>Sorry, the page you are looking for is not available.</p>
-
-                        </div> -->
-                <div class="container-clearance">
-                    <div class="card-clearance-1">
-                        <h2>clearance appointment</h2>
                     </div>
-                    <div class="barcode" id="barcode"></div>
-
-                    <div class="content">
-                        <div class="photo">
-                            <img src="img/assets/john.jpg" alt="Student Photo">
-                        </div>
-                        <div class="info">
-                            <div class="logo">
-                                <img src="img/assets/GENKI.png" alt="Genki Logo">
+                <?php else :
+                    
+                    $getuserinfo = $conn->query("SELECT * FROM user_slot_clearance WHERE user_id = $user_id");
+                    $getrow = $getuserinfo->fetch_assoc();
+                    $slotid = $getrow['slot_id'];
+                    $getSlotinfo = $conn->query("SELECT * FROM clearance_slots WHERE id = '$slotid'");
+                    $slotinfo = $getSlotinfo->fetch_assoc();
+                ?>
+                    <div class="notification is-success">You successfully selected clearance appointment.</div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <div class="buttons is-right">
+                                <a href="#" class="button is-primary">
+                                    <span class="icon"><span class="mdi mdi-file-chart"></span></span>
+                                    <span>Download Slip</span>
+                                </a>
                             </div>
-                            <p>This is proof that I have an appointment for clearance.</p>
-                        </div>
-                        <div class="details">
-                            <div class="barcode1" id="barcode1"></div>
-
-                            <p>Student Name:<br>FIRST NAME, LAST NAME </p>
-                            <p>Day: AM</p>
-                            <p>Date: 5/20/2024</p>
-                            <p>Grade: 12</p>
-                            <p>Section: Keiken</p>
                         </div>
                     </div>
-                </div>
-            </section>
-            <?php endif; ?>
+                    <section class="section is-main-section">
+
+                        <div class="container-clearance">
+                            <div class="card-clearance-1">
+                                <h2>clearance appointment</h2>
+                            </div>
+                            <div class="barcode" id="barcode"></div>
+
+                            <div class="content">
+                                <div class="photo">
+                                    <img src="img/assets/john.jpg" alt="Student Photo">
+                                </div>
+                                <div class="info">
+                                    <div class="logo">
+                                        <img src="img/assets/GENKI.png" alt="Genki Logo">
+                                    </div>
+                                    <p>Appointment Clearance Slip.</p>
+                                </div>
+                                <div class="details">
+                                    <div class="barcode1" id="barcode1"></div>
+
+                                    <p>Student Name:<br><?=ucfirst($user_fname)?>, <?=ucfirst($user_lname)?> </p>
+                                    <p>Time: <?=$slotinfo['time']?></p>
+                                    <p>Date: <?=date('F d, Y', strtotime($slotinfo['date']));?></p>
+                                    <p>Grade: <?=ucfirst($grade)?></p>
+                                    <p>Section: <?=ucfirst($section)?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <?php endif; ?>
             <?php else : ?>
-            <div class="calendar-container">
-                <div id="calendar"></div>
-                <div id="show-slots">
-                    <?php
+                <div class="calendar-container">
+                    <div id="calendar"></div>
+                    <div id="show-slots">
+                        <?php
                         $getSlots = "SELECT * FROM clearance_slots";
                         $query = mysqli_query($conn, $getSlots);
                         while ($row = mysqli_fetch_array($query)) {
 
                             $date = date('F d, Y', strtotime($row['date']));
                         ?>
-                    <div class="container-selectedDate">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                                <span class="menu-item-label"><?= $date ?></span>
-                                <!-- <span class="dropdown-icon"></span> -->
-                                <span class="dropdown-icon">Slots: <?= $row['slots'] ?></span>
-                                <span class="dropdown-icon">Time: <?= $row['time'] ?></span>
-                            </button>
-                            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="container-selectedDate">
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                                        <span class="menu-item-label"><?= $date ?></span>
+                                        <!-- <span class="dropdown-icon"></span> -->
+                                        <span class="dropdown-icon">Slots: <?= $row['slots'] ?></span>
+                                        <span class="dropdown-icon">Time: <?= $row['time'] ?></span>
+                                    </button>
+                                    <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <li>John Doe</li>
                                             <li>John Cena</li>
                                         </ul> -->
-                        </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php } ?>
                 </div>
-            </div>
             <?php endif; ?>
         </section>
 
@@ -158,54 +168,54 @@ include 'component/head.php';
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const dropdownToggle = document.querySelector('.container-selectedDate .dropdown-toggle');
-        const dropdownMenu = document.querySelector('.container-selectedDate .dropdown-menu');
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownToggle = document.querySelector('.container-selectedDate .dropdown-toggle');
+            const dropdownMenu = document.querySelector('.container-selectedDate .dropdown-menu');
 
-        dropdownToggle.addEventListener('click', function() {
-            dropdownMenu.classList.toggle('show');
-        });
+            dropdownToggle.addEventListener('click', function() {
+                dropdownMenu.classList.toggle('show');
+            });
 
-        document.addEventListener('click', function(event) {
-            const isClickInside = dropdownToggle.contains(event.target) || dropdownMenu.contains(event
-                .target);
-            if (!isClickInside) {
-                dropdownMenu.classList.remove('show');
-            }
+            document.addEventListener('click', function(event) {
+                const isClickInside = dropdownToggle.contains(event.target) || dropdownMenu.contains(event
+                    .target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
         });
-    });
     </script>
 
     <script>
-    const barcodeContainer = document.getElementById('barcode');
-    const numberOfBars = 50; // Number of bars and spaces
+        const barcodeContainer = document.getElementById('barcode');
+        const numberOfBars = 50; // Number of bars and spaces
 
-    for (let i = 0; i < numberOfBars; i++) {
-        // Create a bar
-        const bar = document.createElement('div');
-        bar.className = 'bar';
-        barcodeContainer.appendChild(bar);
+        for (let i = 0; i < numberOfBars; i++) {
+            // Create a bar
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            barcodeContainer.appendChild(bar);
 
-        // Create a space
-        const space = document.createElement('div');
-        space.className = 'space';
-        barcodeContainer.appendChild(space);
-    }
+            // Create a space
+            const space = document.createElement('div');
+            space.className = 'space';
+            barcodeContainer.appendChild(space);
+        }
 
-    const barcodeContainer1 = document.getElementById('barcode1');
-    const numberOfBars1 = 30; // Number of bars and spaces
+        const barcodeContainer1 = document.getElementById('barcode1');
+        const numberOfBars1 = 30; // Number of bars and spaces
 
-    for (let i = 0; i < numberOfBars; i++) {
-        // Create a bar
-        const bar1 = document.createElement('div');
-        bar1.className = 'bar1';
-        barcodeContainer1.appendChild(bar1);
+        for (let i = 0; i < numberOfBars; i++) {
+            // Create a bar
+            const bar1 = document.createElement('div');
+            bar1.className = 'bar1';
+            barcodeContainer1.appendChild(bar1);
 
-        // Create a space
-        const space1 = document.createElement('div');
-        space1.className = 'space1';
-        barcodeContainer1.appendChild(space1);
-    }
+            // Create a space
+            const space1 = document.createElement('div');
+            space1.className = 'space1';
+            barcodeContainer1.appendChild(space1);
+        }
     </script>
     <?php require 'component/footer.php' ?>
     <script src="backend/js-backend/calendar.js?ver=1"></script>

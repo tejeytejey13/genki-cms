@@ -1,3 +1,7 @@
+<?php 
+    $userforminfo = $conn->query("SELECT * FROM client WHERE user_id = $user_id");
+    $userrow = $userforminfo->fetch_assoc();
+?>
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
@@ -53,7 +57,12 @@
                                     $sql = "SELECT * FROM grade_levels";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                        if($userrow['grade_level'] == $row['level']){
+                                            echo "<option value='" . $row['level'] . "' selected>" . $row['level'] . "</option>";
+                                        }else{
+                                            echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                        }
+                                        
                                     }
                                     ?>
                                 </select>
@@ -63,16 +72,27 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select id="section" name="section" disabled>
+                                <select id="section" name="section">
                                     <option selected hidden>Section</option>
-
+                                    <?php
+                                    $sql = "SELECT * FROM section";
+                                    $result = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        if($userrow['section'] == $row['section_name']){
+                                            echo "<option value='" . $row['section_num'] . "' selected>" . $row['section_name'] . "</option>";
+                                        }else{
+                                            echo "<option value='" . $row['section_num'] . "'>" . $row['section_name'] . "</option>";
+                                        }
+                                        
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="adviser" type="text" placeholder="Adviser">
+                            <input class="input" name="adviser" type="text" value="<?=$userrow['adviser']?>" placeholder="Adviser">
                             <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                         </p>
@@ -86,13 +106,13 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="birthdate" type="date" placeholder="Date of Birth">
+                            <input class="input" name="birthdate" type="date" value="<?=$userrow['birthdate']?>" placeholder="Date of Birth">
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="birthplace" type="text" placeholder="Place of Birth">
+                            <input class="input" name="birthplace" type="text" value="<?=$userrow['place_of_birth']?>"  placeholder="Place of Birth">
                             <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                         </p>
@@ -106,7 +126,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="address" type="text" placeholder="Address">
+                            <input class="input" name="address" type="text" value="<?=$userrow['address']?>" placeholder="Address">
                             <span class="icon is-small is-left" id="icon"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right" id="icon"><i class="mdi mdi-check"></i></span>
                         </p>

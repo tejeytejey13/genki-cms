@@ -83,14 +83,14 @@ include 'component/head.php';
                                                 $fullname = $client['first_name'] . " " . $client['last_name'];
                                                 $profile = $client['profile'];
                                                 $status = $client['status'];
-                                            }else if($row['user_type'] == 'nurse'){
-                                                $getNurse = $conn->query('SELECT * FROM `nurse` WHERE `user_id` = "'.$id.'"');
-                                                $nurse = $getNurse->fetch_assoc();
 
-                                                $fullname = $nurse['first_name'] . " " . $nurse['last_name'];
-                                                $profile = $nurse['profile'];
-                                                $status = $nurse['status'];
+                                                if($status !== 'active'){
+                                                    $stats = 'dead';
+                                                }else{
+                                                    $stats = 'open';
+                                                }
                                             }
+
                                             if(empty($profile)){
                                                 $pfp = "https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg";
                                             }else{
@@ -115,14 +115,14 @@ include 'component/head.php';
                                             <!-- <td data-label="Progress" class="is-progress-cell">
                                                 <progress max="100" class="progress is-small is-primary" value="17">17</progress>
                                             </td> -->
-                                            <td data-label="Status" class="status open"><?=$status?></td>
+                                            <td data-label="Status" class="status <?=$stats?>"><?=$status?></td>
                                             <td class="is-actions-cell">
                                                 <div class="buttons is-left">
                                                     <button class="button is-small is-primary edit-user-status" data-target-uid="<?=$id?>" 
                                                     data-target-name="<?=ucwords($fullname)?>" type="button">
                                                         <span class="icon"><span class='icon'><i class='mdi mdi-pen'></i></span></span>
                                                     </button>
-                                                    <button class="button is-small is-danger" type="button">
+                                                    <button class="button is-small is-danger" onclick="deleteAccountUser('<?=$id?>')" type="button">
                                                         <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                                                     </button>
                                                 </div>
@@ -186,7 +186,7 @@ include 'component/head.php';
                     <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
                         <button type="submit" class="button is-success">Update</button>
                 </form>
-                <button class="button jb-modal-close">Cancel</button>
+                <!-- <button class="button jb-modal-close">Cancel</button> -->
             </div>
         </div>
 

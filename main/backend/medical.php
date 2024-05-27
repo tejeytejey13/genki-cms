@@ -121,6 +121,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insertConstStatus = "INSERT INTO consultation_form (medical_form, status) VALUES ('$last_id', 'pending')";
         mysqli_query($conn, $insertConstStatus);
 
+        $conn->query("UPDATE client SET 
+        grade_level = '$grade_level',
+        section = '$section',
+        adviser = '$adviser',
+        birthdate = '$birthdate',
+        place_of_birth = '$birthplace',
+        address = '$address'
+        WHERE user_id = '$uid'");
+
         $response = array(
             'status' => 'success',
             'message' => 'Submitted successfully',

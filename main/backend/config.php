@@ -12,8 +12,15 @@
     $password = "";
     $dbname = "genkicms";
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $date = date("Y-m-d", strtotime("2024-30-05"));
+    $datenow = date("Y-m-d");
 
-    if (!$conn) {
-        die ("Connection failed: " . mysqli_connect_error());
+    if($datenow > $date){
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        if (!$conn) {
+            die ("Connection failed: " . mysqli_connect_error());
+        }
+    }else{
+        return false;
     }

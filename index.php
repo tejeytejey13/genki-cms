@@ -11,45 +11,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="font/flaticon.css">
     <link href="../../../css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?ver=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
 </head>
 <style>
-   
-</style>
-<body>
 
+</style>
+
+<body>
+    <div id="toast-container" class="toast-container top-right"></div>
+    <!-- <div class="toast top-right" data-autohide="true">
+        <div class="toast-header">
+            <strong class="mr-auto text-primary">Toast Header</strong>
+        </div>
+        <div id="message-toast" class="toast-body">
+        </div>
+    </div> -->
     <div id="wrapper" class="wrapper">
         <div class="fxt-template-animation fxt-template-layout5">
-            <div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/landing-bg.png">
+            <div class="fxt-bg-img fxt-none-767" data-bg-image="img/figure/bg-first.png">
                 <div class="fxt-intro">
                     <div class="sub-title">Welcome To</div>
                     <h1>Our Clinic</h1>
-                    <p>Welcome to Your Clinic Management SystemEffortlessly manage your clinic with our streamlined solution. Our system simplifies clinic and clearance appointment scheduling, and manages your medical dispensary needs. Focus on providing exceptional care while we handle the administrative tasks. Experience the future of clinic management today!</p>
+                    <p style="font-size: 15px; font-weight: 500;">Welcome to Your Clinic Management System Effortlessly manage your clinic with our streamlined solution. Our system simplifies clinic and clearance appointment scheduling, and manages your medical dispensary needs. Focus on providing exceptional care while we handle the administrative tasks. Experience the future of clinic management today!</p>
                 </div>
             </div>
+
             <div class="fxt-bg-color">
                 <div class="fxt-header">
-                    <a href="#" class="fxt-logo" style="font-size: 55px; ">
-                    <span><img src="main/img/assets/GENKI.png" style="width: 20%;" alt="" ></span>
+                    <!-- <a href="#" class="fxt-logo" style="font-size: 50px; ">GENKI</a> -->
+                    <span><img src="main/img/assets/GENKI.png" style="width: 25%;" alt=""></span>
                     <div class="fxt-page-switcher">
                         <a href="#" class="switcher-text switcher-text1 active">LogIn</a>
                         <a href="register.php" class="switcher-text switcher-text2">Register</a>
                     </div>
                 </div>
                 <div class="fxt-form">
+
                     <form id="login-form" method="POST">
                         <div class="form-group fxt-transformY-50 fxt-transition-delay-1">
-                            <input type="text" class="form-control" name="email" placeholder="Email Address"
-                                required="required">
+                            <input type="text" class="form-control" name="email" placeholder="Email Address" required="required">
                             <i class="flaticon-envelope"></i>
                         </div>
                         <div class="form-group fxt-transformY-50 fxt-transition-delay-2">
-                            <input type="password" class="form-control" name="password" placeholder="Password"
-                                required="required">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                             <i class="flaticon-padlock"></i>
                             <a href="forgot-password.html" class="switcher-text3">Forgot Password</a>
                         </div>

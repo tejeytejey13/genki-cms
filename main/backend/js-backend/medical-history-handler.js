@@ -27,43 +27,44 @@ $(function () {
     $("#dataTable").empty();
 
     $.each(data, function (index, row) {
-      // console.log(row.id);
+      // console.log(row);
+      if (row.status !== "archived") {
+        var firstName =
+          row.first_name.charAt(0).toUpperCase() +
+          row.first_name.slice(1).toLowerCase();
+        var lastName =
+          row.last_name.charAt(0).toUpperCase() +
+          row.last_name.slice(1).toLowerCase();
+        var paentGuardian =
+          row.parent_guardian.charAt(0).toUpperCase() +
+          row.parent_guardian.slice(1).toLowerCase();
 
-      var firstName =
-        row.first_name.charAt(0).toUpperCase() +
-        row.first_name.slice(1).toLowerCase();
-      var lastName =
-        row.last_name.charAt(0).toUpperCase() +
-        row.last_name.slice(1).toLowerCase();
-      var paentGuardian =
-        row.parent_guardian.charAt(0).toUpperCase() +
-        row.parent_guardian.slice(1).toLowerCase();
+        var tr = "<tr>";
+        tr +=
+          '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+        tr +=
+          "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
+        tr += "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
+        tr += "<td data-label='Grade'>" + row.grade + "</td>";
+        tr += "<td data-label='parent_name'>" + paentGuardian + "</td>";
+        //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
+        tr +=
+          "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
+          formatDate(row.date_created) +
+          "</small></td>";
+        tr +=
+          "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
+          formatDate(row.date_med) +
+          "</small></td>";
+        tr += "<td data-label='status'>" + row.status + "</td>";
+        tr +=
+          "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary view-btn' data-target-uid='" +
+          row.form_id +
+          "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></div></td>";
+        tr += "</tr>";
 
-      var tr = "<tr>";
-      tr +=
-        '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-      tr +=
-        "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-      tr += "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
-      tr += "<td data-label='Grade'>" + row.grade + "</td>";
-      tr += "<td data-label='parent_name'>" + paentGuardian + "</td>";
-      //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
-      tr +=
-        "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        formatDate(row.date_created) +
-        "</small></td>";
-      tr +=
-        "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        formatDate(row.date_med) +
-        "</small></td>";
-      tr += "<td data-label='status'>" + row.status + "</td>";
-      tr +=
-        "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary view-btn' data-target-uid='" +
-        row.form_id +
-        "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></div></td>";
-      tr += "</tr>";
-
-      $("#dataTable").append(tr);
+        $("#dataTable").append(tr);
+      }
     });
 
     $(".view-btn").click(function () {

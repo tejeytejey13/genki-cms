@@ -38,10 +38,10 @@ $(function () {
         if (data.status === "success") {
           $("#loading-show").removeClass("loading");
           $("#status").text(data.message);
-          $("#success-modal").addClass("is-active");
-          $("#medical-form")[0].reset();
-          $("input").removeClass("is-success");
-          $("#modal-container").hide();
+            $("#success-modal").addClass("is-active");
+            $("#medical-form")[0].reset();
+            $("input").removeClass("is-success");
+            $("#modal-container").hide();
         } else {
           $("#loading-show").removeClass("loading");
           $("#status").text(data.message);
@@ -55,8 +55,9 @@ $(function () {
   });
 
   $(".jb-modal-close").click(function () {
-    $("#success-modal").removeClass("is-active");
-    $("#modal-container").show();
+    // $("#success-modal").removeClass("is-active");
+    // $("#modal-container").show();
+    window.location.reload();
   });
 
   $("#reset-form").click(function () {
@@ -65,6 +66,16 @@ $(function () {
   });
 
   $("#grade-level").change(function () {
+    var grade_lvl = $(this).val();
+    let number = grade_lvl.match(/\d+/)[0];
+
+    // $('#section option').each(function() {
+    //     if ($(this).val().indexOf(number) > -1) {
+    //         $(this).show();
+    //     } else {
+    //         $(this).hide();
+    //     }
+    // });
     // $('#section').attr("disabled", false);
     $.ajax({
       url: "backend/get-section.php",

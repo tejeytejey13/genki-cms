@@ -28,7 +28,7 @@
             <div class="fxt-bg-color">
                 <div class="fxt-header">
                     <!-- < href="#" class="fxt-logo" style="font-size: 55px; color: rgb(27, 1, 61);"> -->
-                        <span><img src="main/img/assets/GENKI.png" style="width: 25%;" alt="" ></span>
+                        <span><img src="main/img/assets/GENKI.png" style="width: 40%;" alt="" ></span>
 
                         <div class="fxt-page-switcher">
                             <a href="index.php" class="switcher-text switcher-text1">LogIn</a>

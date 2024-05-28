@@ -69,17 +69,27 @@ include 'component/head.php';
             <div class="filter-container" style="display: flex; gap: 30px;">
                 <div class="field">
                     <label class="label">Date:</label>
-                    <input type="date" id="dateFilter">
+                    <div class="control">
+                        <div class="input">
+                            <input type="date"/>
+                        </div>
+                    </div> 
                 </div>
                 <div class="field">
                     <label class="label">Section:</label>
                     <div class="control">
                         <div class="select">
                             <select id="sectionFilter">
-                                <option value="">All Sections</option>
-                                <option value="A">Section A</option>
+                                <option value="" hidden selected>All Sections</option>
+                                <?php
+                                    $getsect = mysqli_query($conn, "SELECT section_name FROM section");
+                                    while ($col = mysqli_fetch_assoc($getsect)) {
+                                        echo "<option value='" . $col['section_name'] . "'>" . $col['section_name'] . "</option>";
+                                    }
+                                ?>
+                                <!-- <option value="A">Section A</option>
                                 <option value="B">Section B</option>
-                                <option value="C">Section C</option>
+                                <option value="C">Section C</option> -->
                             </select>
                         </div>
                     </div>

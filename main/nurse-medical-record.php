@@ -48,7 +48,7 @@ include 'component/head.php';
                 </div>
             </div>
         </section>
-        
+
         <section class="section is-main-section">
 
             <!-- <div class="notification is-info">
@@ -69,17 +69,27 @@ include 'component/head.php';
             <div class="filter-container" style="display: flex; gap: 30px;">
                 <div class="field">
                     <label class="label">Date:</label>
-                    <input type="date" id="dateFilter">
+                    <div class="control">
+                        <div class="input">
+                            <input type="date" />
+                        </div>
+                    </div>
                 </div>
                 <div class="field">
                     <label class="label">Section:</label>
                     <div class="control">
                         <div class="select">
                             <select id="sectionFilter">
-                                <option value="">All Sections</option>
-                                <option value="A">Section A</option>
+                                <option value="" hidden selected>All Sections</option>
+                                <?php
+                                $getsect = mysqli_query($conn, "SELECT section_name FROM section");
+                                while ($col = mysqli_fetch_assoc($getsect)) {
+                                    echo "<option value='" . $col['section_name'] . "'>" . $col['section_name'] . "</option>";
+                                }
+                                ?>
+                                <!-- <option value="A">Section A</option>
                                 <option value="B">Section B</option>
-                                <option value="C">Section C</option>
+                                <option value="C">Section C</option> -->
                             </select>
                         </div>
                     </div>
@@ -90,11 +100,11 @@ include 'component/head.php';
                         <div class="select">
                             <select id="gradeFilter">
                                 <option value="" hidden selected>All Grades</option>
-                                <?php 
-                                    $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
-                                    while ($row = mysqli_fetch_assoc($getlvl)) {
-                                        echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
-                                    }
+                                <?php
+                                $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
+                                while ($row = mysqli_fetch_assoc($getlvl)) {
+                                    echo "<option value='" . $row['level'] . "'>" . $row['level'] . "</option>";
+                                }
                                 ?>
                             </select>
                         </div>
@@ -151,41 +161,36 @@ include 'component/head.php';
                 </div>
             </div>
             <div id="view-med-record" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Medical Record <button class="delete1 jb-modal-close"
-                            aria-label="close">&times</button>
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="patient-details">
-                                    <h2 id="heading-name">Client Name</h2>
-                                    <p id="heading-date" class="heading-date"></p>
-                                    <p id="heading-date1" class="heading-date1"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="status-details">
-                                    <p id="heading-status" class="heading-status"></p>
-                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
+                <div class="modal-background"></div>
+                <div class="modal-content modal-content-main-1">
+                    <div class="modal-header" style="display: flex;">
+                        <h2 class="modal-title" style="font-weight: 900">Medical Record</h2>
+                        <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="patient-details">
+                                        <h2 id="heading-student-name">Student Name: <a id="student-name"></a></h2>
+                                    </div>
+                                    <p>Date of Med: <a id="student-date-med"></a></p>
+                                    <p>findings: <a id="student-findings"></a></p>
+                                    <p>resons: <a id="student-reasons"></a></p>
+                                    <p>medication: <a id="student-medication"></a></p>
+                                    <p>quantity: <a id="student-quantity"></a></p>
+                                    <p>special treatment: <a id="student-special-treatment"></a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
+                        <!-- <button  class="button is-success">Download Certificate</button> -->
+                        <button class="button jb-modal-close">Cancel</button>
+                    </div>
                 </div>
-                <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
-                    <!-- <button class="button jb-modal-close">Cancel</button>
-            <button class="button is-success jb-modal-close">Delete</button> -->
-                </div>
+
+
             </div>
-        </div>
-        </section>
 
-
-
-    </div>
-   
-    <?php require 'component/footer.php' ?>
+            <?php require 'component/footer.php' ?>

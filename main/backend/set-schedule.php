@@ -10,7 +10,16 @@
         $newdate = date('Y-m-d', strtotime($day));
 
         if ($config == 'true') {
+            $getUserSlots = $conn->query("SELECT * FROM user_slot_clearance");
+            while ($row = $getUserSlots->fetch_assoc()) {
+                $getid = $row['slot_id'];
+                $getitem = $conn->query("SELECT * FROM clearance_slots WHERE id = '$getid'");
+                $getrow = $getitem->fetch_assoc();
+                $getrowSlotid = $getrow['id'];
+                $conn->query("DELETE FROM user_slot_clearance WHERE slot_id = '$getrowSlotid'");
+            }
             $sql = "DELETE FROM clearance_slots WHERE date = '$newdate' AND time = '$sched'";
+
         } else {
             $sql = "INSERT INTO clearance_slots (date, time, slots) VALUES ('$newdate', '$sched', 15)";
         }

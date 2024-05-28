@@ -19,8 +19,8 @@ $(function() {
                 tr += '<td data-label="Date"><small class="has-text-grey is-abbr-like"">' + formatDate(item.date_created) + '</small></td>';
                 tr += '<td data-label="status">' + item.status + '</td>';
                 tr += '<td class="is-actions-cell"><div class="buttons is-left">'
-                + '<button class="button is-small is-primary view-edit-nurse-status" data-target-uid="' + item.user_id +'" type="button"><span class="icon"><i class="mdi mdi-pen"></i></span></button>'
-                + '<button class="button is-small is-danger" type="button" onclick="deleteNurseAcc('+item.user_id+')"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
+                + '<button class="button is-small is-primary view-edit-nurse-status" data-target-uid="' + item.user_id +'" type="button"><span class="icon"><i class="mdi mdi-pen"></i></span></button>';
+                // + '<button class="button is-small is-danger" type="button" onclick="deleteNurseAcc('+item.user_id+')"><span class="icon"><i class="mdi mdi-trash-can"></i></span></button></div></td>';
                 tr += "</tr>";
                 $("#nurseAccounts").append(tr);
             });

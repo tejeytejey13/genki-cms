@@ -1,5 +1,6 @@
 <?php
     include('config.php');
+    session_start();
 
     $user_id = $_SESSION['user_id'];
     $user_type = $_SESSION['user_type'];
@@ -12,11 +13,10 @@
         $email = $_POST['email'];
 
         if($user_type == 'client'){
-            $sql = "UPDATE client SET profile = '$profileset' WHERE id = '$user_id'";
-        }else if($user_type == 'nurse'){
-            $sql = "UPDATE nurse SET profile = '$profileset' WHERE id = '$user_id'";
-        }else if($user_type == 'admin'){
-            $sql = "UPDATE admin SET profile = '$profileset' WHERE id = '$user_id'";
+            $sql = "UPDATE client SET profile = '$profileset' WHERE user_id = '$user_id'";
+        }
+        if($user_type == 'nurse'){
+            $sql = "UPDATE nurse SET profile = '$profileset' WHERE user_id = '$user_id'";
         }
         $push = mysqli_query($conn, $sql);
         if($push){

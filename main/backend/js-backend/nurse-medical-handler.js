@@ -47,7 +47,7 @@ $(function () {
               trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
               trNurse +=
                 "<td data-label='parent_name'>" + paentGuardian + "</td>";
-              trNurse += "<td data-label='section'>aw</td>";
+              trNurse += "<td data-label='section'>"+row.section+"</td>";
               //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
               trNurse +=
                 "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
@@ -82,7 +82,7 @@ $(function () {
               trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
               trNurse +=
                 "<td data-label='parent_name'>" + paentGuardian + "</td>";
-              trNurse += "<td data-label='section'>aw</td>";
+              trNurse += "<td data-label='section'>"+row.section+"</td>";
               //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
               trNurse +=
                 "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
@@ -111,7 +111,7 @@ $(function () {
           }
 
           // row.sess_nurse_id == row.nurse_id || row.consultation_status !== 'pending' && row.sess_nurse_id == 3
-          if ((row.consultation_status !== "pending" && row.sess_nurse_id == row.nurse_id) || (row.sess_nurse_id == 3 && row.consultation_status !== "pending")) {
+          if ((row.consultation_status !== "pending" && row.sess_nurse_id == row.nurse_id) || (row.sess_nurse_id == 1 && row.consultation_status !== "pending")) {
             var trhistoryNurse = "<tr>";
             trhistoryNurse +=
               '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
@@ -158,7 +158,7 @@ $(function () {
               "</small></td>";
             // trMedicalRecord += "<td data-label='status'>" + row.status + "</td>";
             trMedicalRecord +=
-              "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary ' data-target-uid='" +
+              "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary view-user-medical-record' data-target-meduid='" +
               row.form_id +
               "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
               "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
@@ -168,6 +168,36 @@ $(function () {
           $("#nurseTable").append(trNurse);
           $("#nurseHistoryTable").append(trhistoryNurse);
           $("#nurseMedicalRecord").append(trMedicalRecord);
+        });
+
+        $('.view-user-medical-record').click(function(){
+          var uid = $(this).data("target-meduid");
+          $('#view-med-record').addClass('is-active');
+          $.ajax({
+            url: "backend/get-specific-medical-record.php",
+            type: "GET",
+            dataType: "json",
+            data: {
+              uid: uid,
+            },
+
+            success: function (response) {
+              // console.log(response.data);
+              var medcert = response.data.medical_cert;
+              $('#student-name').html(capitalizeFirstLetter(response.data.first_name) + ' ' 
+              + capitalizeFirstLetter(response.data.last_name));
+              $('#student-findings').html(medcert.findings);
+              $('#student-reasons').html(medcert.reasons);
+              $('#student-medication').html(medcert.medications);
+              $('#student-quantity').html(medcert.quantity);
+              $('#student-special-treatment').html(medcert.special_treatment);
+            },
+            error: function (xhr, status, error) {
+              console.log(error);
+              // console.log(status);
+              // console.log(xhr.responseText);
+            }
+          });
         });
 
         // View button nurse-table
@@ -186,7 +216,7 @@ $(function () {
               var object = response[0];
               // console.log(object);
               $("#heading-name").html(
-                "Name of Patient: " + object.first_name + " " + object.last_name
+                "Name of Patient: " + capitalizeFirstLetter(object.first_name) + " " + (object.last_name)
               );
               $("#heading-date").html(
                 "Date Created: " + formatDate(object.date_created)
@@ -220,7 +250,7 @@ $(function () {
               var object = response[0];
               // console.log(object);
               $("#heading-name").html(
-                "Name of Patient: " + object.first_name + " " + object.last_name
+                "Name of Patient: " + capitalizeFirstLetter(object.first_name) + " " + capitalizeFirstLetter(object.last_name)
               );
               $("#heading-date").html(
                 "Date Created: " + formatDate(object.date_created)
@@ -277,7 +307,7 @@ $(function () {
               var object = response[0];
               //   console.log(object);
               $("#heading-name-edit").html(
-                "Name of Patient: " + object.first_name + " " + object.last_name
+                "Name of Patient: " + capitalizeFirstLetter(object.first_name) + " " + (object.last_name)
               );
               //   $('#heading-status-edit').val(object.status);
               $("#update-form-btn").attr("data-target-form-id", object.form_id);
@@ -293,6 +323,7 @@ $(function () {
       },
     });
   }
+
   function formatDate(date) {
     var timestamp = new Date(date);
     var month = timestamp.toLocaleString("default", { month: "short" }); // Get 3-letter month name
@@ -453,4 +484,7 @@ function deleteAppointment(formuid) {
       });
     }
   });
+}
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }

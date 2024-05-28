@@ -3,8 +3,21 @@
 <link rel="stylesheet" href="css/admin-nurse.css">
 <?php
 include 'component/head.php';
-?>
+// Pagination settings
+$results_per_page = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start_from = ($page - 1) * $results_per_page;
 
+// Get total number of users
+$total_query = $conn->query("SELECT COUNT(*) FROM `users` WHERE user_type = 'client'");
+$total_row = $total_query->fetch_row();
+$total_records = $total_row[0];
+$total_pages = ceil($total_records / $results_per_page);
+
+// Fetch users for current page
+$getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT $start_from, $results_per_page");
+
+?>
 <body>
     <div id="app">
         <?php
@@ -49,6 +62,16 @@ include 'component/head.php';
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
+                <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control" style="display: flex; margin: 5px; gap: 10px;">
+                                    <input class="input" type="text" id="searchAccountInput" 
+                                        placeholder="Enter search ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="b-table has-pagination">
                         <div class="table-wrapper has-mobile-cards">
                             <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
@@ -70,65 +93,54 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="">
-                                    <?php
-                                        $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client'");
-                                        while ($row = $getusers->fetch_assoc()) {
-                                            $id = $row['id'];
-                                            $school_id = $row['school_id'];
-                                            $email = $row['email'];
-                                            if($row['user_type'] == 'client'){
-                                                $getClient = $conn->query('SELECT * FROM `client` WHERE `user_id` = "'.$id.'"');
-                                                $client = $getClient->fetch_assoc();
+                                <?php
+                                    while ($row = $getusers->fetch_assoc()) {
+                                        $id = $row['id'];
+                                        $school_id = $row['school_id'];
+                                        $email = $row['email'];
+                                        if ($row['user_type'] == 'client') {
+                                            $getClient = $conn->query('SELECT * FROM `client` WHERE `user_id` = "' . $id . '"');
+                                            $client = $getClient->fetch_assoc();
 
-                                                $fullname = $client['first_name'] . " " . $client['last_name'];
-                                                $profile = $client['profile'];
-                                                $status = $client['status'];
+                                            $fullname = $client['first_name'] . " " . $client['last_name'];
+                                            $profile = $client['profile'];
+                                            $status = $client['status'];
 
-                                                if($status !== 'active'){
-                                                    $stats = 'dead';
-                                                }else{
-                                                    $stats = 'open';
-                                                }
-                                            }
+                                            $stats = ($status !== 'active') ? 'dead' : 'open';
 
-                                            if(empty($profile)){
-                                                $pfp = "https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg";
-                                            }else{
-                                                $pfp = 'img/profile/'.$profile;
-                                            }
+                                            $pfp = empty($profile) ? "https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg" : 'img/profile/' . $profile;
                                     ?>
-                                        <tr>
-                                            <td class="is-checkbox-cell">
-                                                <label class="b-checkbox checkbox">
-                                                    <input type="checkbox" value="false">
-                                                    <span class="check"></span>
-                                                </label>
-                                            </td>
-                                            <td class="is-image-cell">
-                                                <div class="image">
-                                                    <img src="<?=$pfp?>" class="is-rounded">
-                                                </div>
-                                            </td>
-                                            <td data-label="Name"><?=$school_id?></td>
-                                            <td data-label="Company"><?=ucwords($fullname)?></td>
-                                            <td data-label="City"><?=$email?></td>
-                                            <!-- <td data-label="Progress" class="is-progress-cell">
-                                                <progress max="100" class="progress is-small is-primary" value="17">17</progress>
-                                            </td> -->
-                                            <td data-label="Status" class="status <?=$stats?>"><?=$status?></td>
-                                            <td class="is-actions-cell">
-                                                <div class="buttons is-left">
-                                                    <button class="button is-small is-primary edit-user-status" data-target-uid="<?=$id?>" 
-                                                    data-target-name="<?=ucwords($fullname)?>" type="button">
-                                                        <span class="icon"><span class='icon'><i class='mdi mdi-pen'></i></span></span>
-                                                    </button>
-                                                    <button class="button is-small is-danger" onclick="deleteAccountUser('<?=$id?>')" type="button">
-                                                        <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                            <tr>
+                                                <td class="is-checkbox-cell">
+                                                    <label class="b-checkbox checkbox">
+                                                        <input type="checkbox" value="false">
+                                                        <span class="check"></span>
+                                                    </label>
+                                                </td>
+                                                <td class="is-image-cell">
+                                                    <div class="image">
+                                                        <img src="<?= $pfp ?>" class="is-rounded">
+                                                    </div>
+                                                </td>
+                                                <td data-label="Name"><?= $school_id ?></td>
+                                                <td data-label="Company"><?= ucwords($fullname) ?></td>
+                                                <td data-label="City"><?= $email ?></td>
+                                                <td data-label="Status" class="status <?= $stats ?>"><?= $status ?></td>
+                                                <td class="is-actions-cell">
+                                                    <div class="buttons is-left">
+                                                        <button class="button is-small is-primary edit-user-status" data-target-uid="<?= $id ?>" data-target-name="<?= ucwords($fullname) ?>" type="button">
+                                                            <span class="icon"><i class='mdi mdi-pen'></i></span>
+                                                        </button>
+                                                        <!-- <button class="button is-small is-danger" onclick="deleteAccountUser('<?= $id ?>')" type="button">
+                                                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                                                        </button> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -137,15 +149,15 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button">1</button>
-                                            <button type="button" class="button">2</button>
-                                            <button type="button" class="button">3</button>
+                                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                                <a href="account-management.php?page=<?= $i ?>" class="button"><?= $i ?></a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="level-right">
                                     <div class="level-item">
-                                        <small>Page 1 of 3</small>
+                                        <small>Page <?= $page ?> of <?= $total_pages ?></small>
                                     </div>
                                 </div>
                             </div>

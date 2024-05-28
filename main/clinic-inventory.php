@@ -161,7 +161,7 @@ include 'component/head.php';
                     style="display: flex; justify-content: center; align-items: center; margin: 10px auto;">
                     <!-- <input id="item_id" type="text" name="quantity" hidden> -->
                     <div class="group">
-                        <label for="">Quantiy</label>
+                        <label for="">Quantity</label>
                         <input type="text" id="id_item" name="inventoryID" hidden>
                         <input type="text" id="quantity_item" name="inventoryQuantity">
                     </div>

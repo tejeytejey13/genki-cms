@@ -71,9 +71,9 @@ include 'component/head.php';
                     <label class="label">Date:</label>
                     <div class="control">
                         <div class="input">
-                            <input type="date"/>
+                            <input type="date" />
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="field">
                     <label class="label">Section:</label>
@@ -135,7 +135,7 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="nurseHistoryTable">
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -144,7 +144,7 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button is-active">1</button>
+                                            <button type="button" class="button">1</button>
                                             <button type="button" class="button">2</button>
                                             <button type="button" class="button">3</button>
                                         </div>
@@ -160,41 +160,41 @@ include 'component/head.php';
                     </div>
                 </div>
             </div>
-            <div id="view-med-form" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title" style="font-weight: 500">Appointment Form
-                            <button class="delete1 jb-modal-close" aria-label="close">&times</button>
-                        </h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="patient-details">
-                                        <h2 id="heading-name">Client Name</h2>
-                                        <p id="heading-date" class="heading-date"></p>
-                                        <p id="heading-date1" class="heading-date1"></p>
-                                    </div>
+
+        </section>
+
+        <div id="view-med-form" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" style="font-weight: 500">Appointment Form
+                        <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="patient-details">
+                                    <h2 id="heading-name">Client Name</h2>
+                                    <p id="heading-date" class="heading-date"></p>
+                                    <p id="heading-date1" class="heading-date1"></p>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="status-details">
-                                        <p id="heading-status" class="heading-status"></p>
-                                        <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="status-details">
+                                    <p id="heading-status" class="heading-status"></p>
+                                    <p id="attending-nurse" class="attending-nurse">Attending Nurse: John Doe</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
-                        <!-- <button class="button jb-modal-close">Cancel</button>
+                </div>
+                <div class="modal-footer" status="display: flex; justify-content: center; gap: 30px;">
+                    <!-- <button class="button jb-modal-close">Cancel</button>
             <button class="button is-success jb-modal-close">Delete</button> -->
-                    </div>
                 </div>
             </div>
-        </section>
-
-
+        </div>
 
     </div>
 

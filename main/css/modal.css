@@ -1,3 +1,4 @@
+/* Overlay */
 .modal {
     display: none;
     position: fixed;
@@ -5,23 +6,27 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
     z-index: 9999;
     overflow: auto;
 }
 
-.modal-content{
-    background-color: #f9f9f9;
-    margin: 10% auto;
+/* Modal content */
+.modal-content {
+    background-color: #fff; /* White background */
+    margin: 10% auto; /* Center the modal vertically */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    max-width: 600px; /* Limit the maximum width of the modal */
+    width: 80%; /* Set width to a percentage for responsiveness */
 }
 
+/* Modal header and footer */
 .modal-header,
 .modal-footer {
     padding: 10px 20px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc; /* Bottom border */
 }
 
 .modal-header .modal-title {
@@ -30,14 +35,15 @@
     color: #333;
 }
 
+/* Modal body */
 .modal-body {
     padding: 20px;
 }
 
+/* Patient details */
 .patient-details h2 {
     font-size: 24px;
-    color: #007bff;
-    /* Medical blue color */
+    color: #007bff; /* Medical blue color */
     margin-bottom: 10px;
 }
 
@@ -54,24 +60,23 @@
     margin-bottom: 10px;
 }
 
-
-.delete1 {
+/* Close button */
+.close-modal {
     background-color: transparent;
     border: none;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     float: right;
-    margin-left: 380px;
     transition: transform .3s;
 }
 
-.delete1:hover{
+.close-modal:hover {
     color: red;
-    transform: scale(1.0);
+    transform: scale(1.1);
 }
 
-p{
-   
+/* Strong text */
+p strong {
     font-weight: 700;
 }

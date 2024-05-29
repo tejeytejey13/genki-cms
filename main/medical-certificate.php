@@ -56,7 +56,7 @@ include 'component/head.php';
                 <?php 
                     $formuid = $_GET['form_id'];
                     $studid = $_GET['student_id'];
-                    $sql = "SELECT * FROM medical_form INNER JOIN users ON medical_form.user_id = users.id WHERE medical_form.user_id = '$studid'";
+                    $sql = "SELECT * FROM medical_form INNER JOIN users ON medical_form.user_id = users.id WHERE medical_form.id = '$formuid'";
                     $query = mysqli_query($conn, $sql);
                     $row = mysqli_fetch_array($query);
                     $datemed = date('F d, Y h:i A', strtotime($row['date_med']));

@@ -111,7 +111,7 @@ $(function () {
           }
 
           // row.sess_nurse_id == row.nurse_id || row.consultation_status !== 'pending' && row.sess_nurse_id == 3
-          if ((row.consultation_status !== "pending" && row.sess_nurse_id == row.nurse_id) || (row.sess_nurse_id == 3 && row.consultation_status !== "pending")) {
+          if ((row.consultation_status !== "pending" && row.sess_nurse_id == row.nurse_id) || (row.sess_nurse_id == 1 && row.consultation_status !== "pending")) {
             var trhistoryNurse = "<tr>";
             trhistoryNurse +=
               '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
@@ -158,7 +158,7 @@ $(function () {
               "</small></td>";
             // trMedicalRecord += "<td data-label='status'>" + row.status + "</td>";
             trMedicalRecord +=
-              "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary ' data-target-uid='" +
+              "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary view-medical-certificate' data-target-muid='" +
               row.form_id +
               "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
               "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
@@ -168,6 +168,35 @@ $(function () {
           $("#nurseTable").append(trNurse);
           $("#nurseHistoryTable").append(trhistoryNurse);
           $("#nurseMedicalRecord").append(trMedicalRecord);
+        });
+
+        $('.view-medical-certificate').click(function() {
+          var uid = $(this).data("target-muid");
+          $('#view-med-record').addClass('is-active');
+
+          $.ajax({
+            url: "backend/get-specific-medical-record.php",
+            type: "GET",
+            dataType: "json",
+            data: {
+              uid: uid,
+            },
+            success: function (response) {
+              var data = response.data.medical_cert;
+              console.log(data);
+              $('#student-name').html(response.data.first_name + ' ' + response.data.last_name);
+              $('#student-date-med').html(formatDate(response.data.date_med));
+              $('#student-findings').html(data.findings);
+              $('#student-reasons').html(data.reasons);
+              $('#student-medication').html(data.medication);
+              $('#student-quantity').html(data.quantity);
+              $('#student-special-treatment').html(data.special_treatment);
+              $('.download-cert').attr('data-target-uid', data.id);
+            },
+            error: function (xhr, status, error) {
+              console.log(xhr.responseText);
+            },
+          });
         });
 
         // View button nurse-table

@@ -186,7 +186,7 @@ include 'component/head.php';
                     </div>
                 </div>
                 <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
-                    <!-- <button  class="button is-success">Download Certificate</button> -->
+                    <button class="button is-success download-cert">Download Certificate</button>
                     <button class="button jb-modal-close">Cancel</button>
                 </div>
             </div>

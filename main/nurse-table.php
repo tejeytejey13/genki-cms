@@ -94,10 +94,10 @@ include 'component/head.php';
                                     </tr>
                                 </thead>
                                 <tbody id="nurseTable">
-                                   
+
                                 </tbody>
                                 <tbody id="archivedTable" hidden>
-                                   
+
                                 </tbody>
                             </table>
                         </div>
@@ -125,7 +125,8 @@ include 'component/head.php';
         <div id="nurse-view-med-form" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Clinic Forms <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                    <h1 class="modal-title" style="font-weight: 900">Clinic Forms <button class="delete1 jb-modal-close"
+                            aria-label="close">&times</button>
                     </h1>
                 </div>
                 <div class="modal-body">
@@ -157,9 +158,10 @@ include 'component/head.php';
         <div id="nurse-edit-med-form" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content modal-content-main-1">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title" style="font-weight: 900">Clinic Form</h2>
-                    <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                <div class="modal-header">
+                    <h1 class="modal-title" style="font-weight: 900">Clinic Forms <button class="delete1 jb-modal-close"
+                            aria-label="close">&times</button>
+                    </h1>
                 </div>
                 <form method="POST">
                     <div class="modal-body">
@@ -185,7 +187,7 @@ include 'component/head.php';
                     <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
                         <button id="update-form-btn" type="submit" class="button is-success">Update</button>
                 </form>
-                <button class="button jb-modal-close">Cancel</button>
+                <button class="button is-danger">Cancel</button>
             </div>
         </div>
     </div>

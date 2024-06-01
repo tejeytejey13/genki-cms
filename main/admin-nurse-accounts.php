@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
-    <link rel="stylesheet" href="css/admin-nurse.css">
+<link rel="stylesheet" href="css/admin-nurse.css">
 <?php
 include 'component/head.php';
 ?>
@@ -109,29 +109,30 @@ include 'component/head.php';
                             <div class="row">
                                 <div class="col">
                                     <label for="first_name">First Name</label>
-                                    <input id="first_name" name="fname" type="text" placeholder="First Name" required/>
+                                    <input id="first_name" name="fname" type="text" placeholder="First Name" required />
                                 </div>
 
                                 <div class="col">
                                     <label for="middle_name">Middle Name</label>
-                                    <input id="middle_name" name="mname" type="text" placeholder="Middle Name" required/>
+                                    <input id="middle_name" name="mname" type="text" placeholder="Middle Name"
+                                        required />
                                 </div>
 
                                 <div class="col">
 
                                     <label for="last_name">Last Name</label>
-                                    <input id="last_name" name="lname" type="text" placeholder="Last Name" required/>
+                                    <input id="last_name" name="lname" type="text" placeholder="Last Name" required />
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <label for="phone_num">Phone Number</label>
-                                    <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" required/>
+                                    <input id="phone_num" name="pnum" type="text" placeholder="Phone Number" required />
                                 </div>
                                 <div class="col">
                                     <label for="email">Email</label>
-                                    <input id="email" name="email" type="text" placeholder="Email" required/>
+                                    <input id="email" name="email" type="text" placeholder="Email" required />
                                 </div>
                                 <div class="col">
                                     <label for="password">password</label>
@@ -139,49 +140,51 @@ include 'component/head.php';
                                 </div>
                             </div>
 
-                            
+
                         </div>
                         <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
-                            <button class="button is-success jb-modal-close" id="submitnursebtn" type="submit">Save</button>
-                            </form>
-                            <button class="button jb-modal-close">Cancel</button>
-                        </div>
-                    </div>
+                            <button class="button is-success jb-modal-close" id="submitnursebtn"
+                                type="submit">Save</button>
+                </form>
+                <button class="button jb-modal-close">Cancel</button>
             </div>
         </div>
-        <div id="vd-nurse-status" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content modal-content-main-1">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title" style="font-weight: 900">Nurse Status</h2>
-                    <button class="delete1 jb-modal-close" aria-label="close">&times</button>
-                </div>
-                <form id="nurseStatus" method="POST">
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="patient-details">
-                                        <h2 id="heading-nurse-name-edit">Nurse Name: <a id="status_nurse_name"></a></h2>
-                                        <p class="heading-date">Select Status:</p>
-                                        <div class="select is-narrow">
-                                            <select id="status_nurse_edit" name="status_nurse_change">
-                                                <option selected hidden>Select Status</option>
-                                                <option value="active">Active</option>
-                                                <option value="disabled">Disabled</option>
-                                            </select>
-                                        </div>
+    </div>
+    </div>
+    <div id="vd-nurse-status" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content modal-content-main-1">
+            <div class="modal-header">
+                <h1 class="modal-title" style="font-weight: 900">Nurse status<button class="delete1 jb-modal-close"
+                        aria-label="close">&times</button>
+                </h1>
+            </div>
+            <form id="nurseStatus" method="POST">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="patient-details">
+                                    <h2 id="heading-nurse-name-edit">Nurse Name: <a id="status_nurse_name"></a></h2>
+                                    <p class="heading-date">Select Status:</p>
+                                    <div class="select is-narrow">
+                                        <select id="status_nurse_edit" name="status_nurse_change">
+                                            <option selected hidden>Select Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="disabled">Disabled</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
-                        <button id="aptupdate" type="submit" class="button is-success">Update</button>
-                </form>
-                <button class="button jb-modal-close">Cancel</button>
-            </div>
+                </div>
+                <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
+                    <button id="aptupdate" type="submit" class="button is-success">Update</button>
+            </form>
+            <button class="button is-danger">Cancel</button>
         </div>
-        
+    </div>
+
     </div>
     <?php require 'component/footer.php' ?>

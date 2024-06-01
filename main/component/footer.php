@@ -20,7 +20,7 @@
     <script src="./backend/js-backend/handler.js"></script>
     <script src="./backend/js-backend/medical-handler.js?ver=1.0"></script>
     <script src="./backend/js-backend/medical-history-handler.js"></script>
-    <script src="./backend/js-backend/nurse-medical-handler.js"></script>
+    <script src="./backend/js-backend/nurse-medical-handler.js?ver=1.0"></script>
     <script src="./backend/js-backend/profile-handler.js"></script>
     <script src="./backend/js-backend/get-slots.js"></script>
     <script src="./backend/js-backend/get-inventory.js"></script>

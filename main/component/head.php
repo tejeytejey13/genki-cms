@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/main.min.css?ver=1.0">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/404.css?ver=1.1">
-    <link rel="stylesheet" href="./css/modal.css?ver=2.3">
+    <link rel="stylesheet" href="./css/modal.css?ver=2.4">
     <link rel="stylesheet" href="./css/about.css?ver=1.1">
     <link rel="stylesheet" href="./css/calendar.css?ver=2">
     <link rel="stylesheet" href="./css/cards.css?ver=1.0">

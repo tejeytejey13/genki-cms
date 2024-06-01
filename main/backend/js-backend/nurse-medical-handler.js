@@ -392,7 +392,7 @@ $(function () {
     $(".view-medical-certificate").click(function () {
       var uid = $(this).data("target-muid");
       $("#view-med-record").addClass("is-active");
-
+      $("section").hide();
       $.ajax({
         url: "backend/get-specific-medical-record.php",
         type: "GET",

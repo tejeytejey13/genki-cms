@@ -18,6 +18,7 @@ $total_pages = ceil($total_records / $results_per_page);
 $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT $start_from, $results_per_page");
 
 ?>
+
 <body>
     <div id="app">
         <?php
@@ -62,11 +63,11 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
 
             <div class="card has-table has-table-container-upper-radius">
                 <div class="card-content">
-                <div class="field is-horizontal">
+                    <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
                                 <div class="control" style="display: flex; margin: 5px; gap: 10px;">
-                                    <input class="input" type="text" id="searchAccountInput" 
+                                    <input class="input" type="text" id="searchAccountInput"
                                         placeholder="Enter search ">
                                 </div>
                             </div>
@@ -93,7 +94,7 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
                                     </tr>
                                 </thead>
                                 <tbody id="">
-                                <?php
+                                    <?php
                                     while ($row = $getusers->fetch_assoc()) {
                                         $id = $row['id'];
                                         $school_id = $row['school_id'];
@@ -110,33 +111,35 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
 
                                             $pfp = empty($profile) ? "https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg" : 'img/profile/' . $profile;
                                     ?>
-                                            <tr>
-                                                <td class="is-checkbox-cell">
-                                                    <label class="b-checkbox checkbox">
-                                                        <input type="checkbox" value="false">
-                                                        <span class="check"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="is-image-cell">
-                                                    <div class="image">
-                                                        <img src="<?= $pfp ?>" class="is-rounded">
-                                                    </div>
-                                                </td>
-                                                <td data-label="Name"><?= $school_id ?></td>
-                                                <td data-label="Company"><?= ucwords($fullname) ?></td>
-                                                <td data-label="City"><?= $email ?></td>
-                                                <td data-label="Status" class="status <?= $stats ?>"><?= $status ?></td>
-                                                <td class="is-actions-cell">
-                                                    <div class="buttons is-left">
-                                                        <button class="button is-small is-primary edit-user-status" data-target-uid="<?= $id ?>" data-target-name="<?= ucwords($fullname) ?>" type="button">
-                                                            <span class="icon"><i class='mdi mdi-pen'></i></span>
-                                                        </button>
-                                                        <!-- <button class="button is-small is-danger" onclick="deleteAccountUser('<?= $id ?>')" type="button">
+                                    <tr>
+                                        <td class="is-checkbox-cell">
+                                            <label class="b-checkbox checkbox">
+                                                <input type="checkbox" value="false">
+                                                <span class="check"></span>
+                                            </label>
+                                        </td>
+                                        <td class="is-image-cell">
+                                            <div class="image">
+                                                <img src="<?= $pfp ?>" class="is-rounded">
+                                            </div>
+                                        </td>
+                                        <td data-label="Name"><?= $school_id ?></td>
+                                        <td data-label="Company"><?= ucwords($fullname) ?></td>
+                                        <td data-label="City"><?= $email ?></td>
+                                        <td data-label="Status" class="status <?= $stats ?>"><?= $status ?></td>
+                                        <td class="is-actions-cell">
+                                            <div class="buttons is-left">
+                                                <button class="button is-small is-primary edit-user-status"
+                                                    data-target-uid="<?= $id ?>"
+                                                    data-target-name="<?= ucwords($fullname) ?>" type="button">
+                                                    <span class="icon"><i class='mdi mdi-pen'></i></span>
+                                                </button>
+                                                <!-- <button class="button is-small is-danger" onclick="deleteAccountUser('<?= $id ?>')" type="button">
                                                             <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                                                         </button> -->
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <?php
                                         }
                                     }
@@ -149,8 +152,8 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-                                                <a href="account-management.php?page=<?= $i ?>" class="button"><?= $i ?></a>
+                                            <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                            <a href="account-management.php?page=<?= $i ?>" class="button"><?= $i ?></a>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -170,9 +173,10 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
         <div id="user-edit-modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content modal-content-main-1">
-                <div class="modal-header" style="display: flex;">
-                    <h2 class="modal-title" style="font-weight: 900">User Status</h2>
-                    <button class="delete1 jb-modal-close" aria-label="close">&times</button>
+                <div class="modal-header">
+                    <h1 class="modal-title" style="font-weight: 900">User status<button class="delete1 jb-modal-close"
+                            aria-label="close">&times</button>
+                    </h1>
                 </div>
                 <form id="user-status-update" method="POST">
                     <div class="modal-body">
@@ -181,7 +185,7 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
                                 <div class="col-md-6">
                                     <div class="patient-details">
                                         <h2 id="heading-nurse-name-edit">User Name: <a id="user-edit-stts"></a></h2>
-                                        <input type="text" id="user-edit-id" name="user-id" value="" hidden/>
+                                        <input type="text" id="user-edit-id" name="user-id" value="" hidden />
                                         <p class="heading-date">Select Status:</p>
                                         <div class="select is-narrow">
                                             <select id="status-edit" name="status_nurse_change">

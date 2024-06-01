@@ -142,8 +142,8 @@ include 'component/head.php';
                         </div>
                     </div>
                     <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
-                        <button class="button is-success jb-modal-close" type="submit">Save</button>
-                        <button class="button jb-modal-close">Cancel</button>
+                        <button class="button is-success " type="submit">Save</button>
+                        <button class="button is-danger ">Cancel</button>
                     </div>
                 </div>
             </form>

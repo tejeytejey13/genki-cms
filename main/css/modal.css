@@ -61,17 +61,19 @@
 }
 
 /* Close button */
-.close-modal {
+.jb-modal-close{
     background-color: transparent;
+  
     border: none;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     float: right;
     transition: transform .3s;
+
 }
 
-.close-modal:hover {
+.jb-modal-close:hover {
     color: red;
     transform: scale(1.1);
 }

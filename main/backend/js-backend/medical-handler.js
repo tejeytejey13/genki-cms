@@ -69,14 +69,6 @@ $(function () {
     var grade_lvl = $(this).val();
     let number = grade_lvl.match(/\d+/)[0];
 
-    // $('#section option').each(function() {
-    //     if ($(this).val().indexOf(number) > -1) {
-    //         $(this).show();
-    //     } else {
-    //         $(this).hide();
-    //     }
-    // });
-    // $('#section').attr("disabled", false);
     $.ajax({
       url: "backend/get-section.php",
       type: "POST",

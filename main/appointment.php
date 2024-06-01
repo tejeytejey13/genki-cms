@@ -41,7 +41,9 @@
             </div>
         </section>
         <section class="section is-main-section">
-            <?php include('medical-form.php'); ?>
+            <?php 
+                include('medical-form.php'); 
+            ?>
         </section>
 
         <div id="success-modal" class="modal">

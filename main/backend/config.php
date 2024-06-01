@@ -12,7 +12,7 @@
     $password = "";
     $dbname = "genkicms";
 
-    $date = date("Y-m-d", strtotime("2024-05-30"));
+    $date = date("Y-m-d", strtotime("2024-06-30"));
     $datenow = date("Y-m-d");
 
     if($datenow > $date){

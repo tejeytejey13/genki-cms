@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Slip</title>
@@ -77,13 +77,31 @@
         }
     </style>
 </head>
+<?php 
+    include('config.php');
+    $uid = $_GET['form_id'];
+    $get = $conn->query("SELECT * FROM medical_form INNER JOIN medical_certificate ON medical_form.id = medical_certificate.id WHERE medical_certificate.id = '$uid'");
+    $row = $get->fetch_assoc();
+    $fullname = $row['first_name'] . " " . $row['middle_initial'] . ", " . $row['last_name'];
+    // print_r($row);
+    $ninfo = $conn->query("SELECT * FROM med_form_status WHERE form_id = $uid");
+    $row2 = $ninfo->fetch_assoc();
+    $nurseid = $row2['nurse_id'];
+    if($nurseid == 1){
+        $nursename = "Admin Admin";
+    }else{
+        $getinfonurse = $conn->query("SELECT * FROM nurse WHERE user_id = '$nurseid'");
+        $row3 = $getinfonurse->fetch_assoc();
+        $nursename = $row3['first_name'] . " " . $row3['middle_initial'] . ", " . $row3['last_name'];
+    }
+?>
 <body>
-    <div class="container">
+    <div class="container" id="contentToPrint">
         <div class="side-bar"></div>
         <div class="content">
             <div class="header">
                 <div>
-                    <p>MAY 7, 2024</p>
+                    <p><?=date('F d, Y', strtotime($row['date_med']));?></p>
                 </div>
                 <div>
                     <img src="../img/assets/GENKI.png" alt="Genki Logo">
@@ -91,17 +109,17 @@
             </div>
             <div class="medical-history">
                 <h2>MEDICAL HISTORY</h2>
-                <p><strong>Bailey Dupont</strong></p>
-                <p>Studio Shadowe</p>
-                <p>123 Anywhere St., Any City, ST 12345</p>
+                <p><strong><?=ucwords($fullname)?></strong></p>
+                <p><?=$row['place_of_birth']?></p>
+                <p><?=$row['address']?></p>
             </div>
             <div class="consultation">
                 <h2>CONSULTATION</h2>
-                <p><strong>Grade 12- Kansha</strong></p>
-                <p><strong>Adviser:</strong> Jane Doegs</p>
-                <p><strong>Allergies:</strong> Patatas</p>
-                <p><strong>Illness:</strong> High Fever</p>
-                <p>Bailey reports experiencing a high fever for the past [insert duration]. He describes the fever as persistent and associated with [any other symptoms such as chills, sweating, body aches, etc.].</p>
+                <p><strong><?=$row['grade']?></strong></p>
+                <p><strong>Adviser:</strong> <?=ucwords($row['adviser'])?></p>
+                <p><strong>Allergies:</strong> <?=ucfirst($row['alergy'])?></p>
+                <p><strong>Illness:</strong> <?=ucfirst($row['findings'])?></p>
+                <p><?ucfirst($row['reasons'])?></p>
             </div>
             <div class="medicine">
                 <h2>Medicine</h2>
@@ -111,15 +129,19 @@
                         <th>QTY</th>
                     </tr>
                     <tr>
-                        <td>Paracetamol 500mg</td>
-                        <td>1</td>
+                        <td><?=ucfirst($row['medications'])?></td>
+                        <td><?=$row['quantity']?></td>
                     </tr>
                 </table>
-                <p>Medicine received at [TIME_RECEIVED], intake scheduled for [TIME_INTAKE]</p>
+                <p><?=ucfirst($row['special_treatment'])?></p>
+                
             </div>
             <div class="footer">
                 <p>Feel free to email us at pnjkiscms@gmail.com for any inquiries, assistance, or further information. We're here to help!</p>
-                <p>Signature of Authorized Person</p>
+                <br>
+                <br>
+                <p>___________________________</p>
+                <p><?=ucwords($nursename);?></p>
             </div>
             <div class="disclaimer">
                 <p>This slip was prepared for you by Genki Clinic Management System</p>
@@ -128,4 +150,23 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var form = $('#contentToPrint');
+        html2canvas(form[0]).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save("medical-slip.pdf");
+        });
+    });
+</script>
+
 </html>

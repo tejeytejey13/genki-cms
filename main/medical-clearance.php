@@ -84,15 +84,14 @@ include 'component/head.php';
                     <div class="level-right">
                         <div class="level-item">
                             <div class="buttons is-right">
-                                <a href="#" class="button is-primary">
+                                <a href="#" class="button is-primary" id="downloadMedicalSlip">
                                     <span class="icon"><span class="mdi mdi-file-chart"></span></span>
                                     <span>Download Slip</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <section class="section is-main-section">
-
+                    <section id="slipToDownload" class="section is-main-section">
                         <div class="container-clearance">
                             <div class="card-clearance-1">
                                 <h2>clearance appointment</h2>
@@ -216,6 +215,17 @@ include 'component/head.php';
             space1.className = 'space1';
             barcodeContainer1.appendChild(space1);
         }
+    </script>
+     <script>
+        document.getElementById('downloadMedicalSlip').addEventListener('click', function() {
+            html2canvas(document.getElementById('slipToDownload')).then(function(canvas) {
+                // Create an anchor element
+                let link = document.createElement('a');
+                link.download = 'Medical_Clearance_Slip.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
     </script>
     <?php require 'component/footer.php' ?>
     <script src="backend/js-backend/calendar.js?ver=1"></script>

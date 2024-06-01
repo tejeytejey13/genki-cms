@@ -2,6 +2,19 @@
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <?php
 include 'component/head.php';
+$results_per_page = 10;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start_from = ($page - 1) * $results_per_page;
+
+// Get total number of users
+$total_query = $conn->query("SELECT COUNT(*) FROM `user_slot_clearance`");
+$total_row = $total_query->fetch_row();
+$total_records = $total_row[0];
+$total_pages = ceil($total_records / $results_per_page);
+
+// Fetch users for current page
+$getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_from, $results_per_page")
+
 ?>
 
 <body>
@@ -82,7 +95,7 @@ include 'component/head.php';
                                 </thead>
                                 <tbody id="clearanceTable">
                                     <?php 
-                                        $getClearance = $conn->query("SELECT * FROM `user_slot_clearance`");
+                                        // $getClearance = $conn->query("SELECT * FROM `user_slot_clearance`");
                                         while ($row = $getClearance->fetch_assoc()) {
                                             $client_uid = $row['user_id'];
                                             $getUserInfo = $conn->query("SELECT * FROM `medical_form` WHERE `user_id` = '$client_uid'");
@@ -144,15 +157,15 @@ include 'component/head.php';
                                 <div class="level-left">
                                     <div class="level-item">
                                         <div class="buttons has-addons">
-                                            <button type="button" class="button">1</button>
-                                            <button type="button" class="button">2</button>
-                                            <button type="button" class="button">3</button>
+                                        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+                                                <a href="clearance-table.php?page=<?= $i ?>" class="button"><?= $i ?></a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="level-right">
                                     <div class="level-item">
-                                        <small>Page 1 of 3</small>
+                                        <small>Page <?= $page ?> of <?= $total_pages ?></small>
                                     </div>
                                 </div>
                             </div>

@@ -23,7 +23,7 @@ include 'component/head.php';
                 <div class="level-right">
                     <div class="level-item">
                         <div class="buttons is-right">
-                            <a href="#" class="button is-primary">
+                            <a href="#" class="button is-primary" id="downloadPdfHistory">
                                 <span class="icon"><span class="mdi mdi-file-chart"></span></span>
                                 <span>Download Reports</span>
                             </a>
@@ -71,7 +71,7 @@ include 'component/head.php';
                     <label class="label">Date:</label>
                     <div class="control">
                         <div class="input">
-                            <input type="date" />
+                            <input type="date" id="dateFilterHistory"/>
                         </div>
                     </div>
                 </div>
@@ -79,13 +79,13 @@ include 'component/head.php';
                     <label class="label">Section:</label>
                     <div class="control">
                         <div class="select">
-                            <select id="sectionFilter">
+                            <select id="sectionFilterHistory">
                                 <option value="" hidden selected>All Sections</option>
                                 <?php
-                                    $getsect = mysqli_query($conn, "SELECT section_name FROM section");
-                                    while ($col = mysqli_fetch_assoc($getsect)) {
-                                        echo "<option value='" . $col['section_name'] . "'>" . $col['section_name'] . "</option>";
-                                    }
+                                $getsect = mysqli_query($conn, "SELECT section_name FROM section");
+                                while ($col = mysqli_fetch_assoc($getsect)) {
+                                    echo "<option value='" . $col['section_name'] . "'>" . $col['section_name'] . "</option>";
+                                }
                                 ?>
                                 <!-- <option value="A">Section A</option>
                                 <option value="B">Section B</option>
@@ -98,7 +98,7 @@ include 'component/head.php';
                     <label class="label">Grade:</label>
                     <div class="control">
                         <div class="select">
-                            <select id="gradeFilter">
+                            <select id="gradeFilterHistory">
                                 <option value="" hidden selected>All Grades</option>
                                 <?php
                                 $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
@@ -116,7 +116,7 @@ include 'component/head.php';
                 <div class="card-content">
                     <div class="b-table has-pagination">
                         <div class="table-wrapper has-mobile-cards">
-                            <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                            <table id="historyToDownload" class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead>
                                     <tr>
                                         <th class="is-checkbox-cell">

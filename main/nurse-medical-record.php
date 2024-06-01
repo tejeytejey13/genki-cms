@@ -23,7 +23,7 @@ include 'component/head.php';
                 <div class="level-right">
                     <div class="level-item">
                         <div class="buttons is-right">
-                            <a href="#" class="button is-primary">
+                            <a href="#" class="button is-primary" id="downloadPdfRecord">
                                 <span class="icon"><span class="mdi mdi-file-chart"></span></span>
                                 <span>Download Reports</span>
                             </a>
@@ -79,7 +79,7 @@ include 'component/head.php';
                     <label class="label">Section:</label>
                     <div class="control">
                         <div class="select">
-                            <select id="sectionFilter">
+                            <select id="sectionFilterRecord">
                                 <option value="" hidden selected>All Sections</option>
                                 <?php
                                 $getsect = mysqli_query($conn, "SELECT section_name FROM section");
@@ -98,7 +98,7 @@ include 'component/head.php';
                     <label class="label">Grade:</label>
                     <div class="control">
                         <div class="select">
-                            <select id="gradeFilter">
+                            <select id="gradeFilterRecord">
                                 <option value="" hidden selected>All Grades</option>
                                 <?php
                                 $getlvl = mysqli_query($conn, "SELECT level FROM grade_levels");
@@ -116,7 +116,7 @@ include 'component/head.php';
                 <div class="card-content">
                     <div class="b-table has-pagination">
                         <div class="table-wrapper has-mobile-cards">
-                            <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                            <table id="recordToDownload" class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead>
                                     <tr>
                                         <th class="is-checkbox-cell">
@@ -186,12 +186,15 @@ include 'component/head.php';
                     </div>
                 </div>
                 <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
-                    <button class="button is-success download-cert">Download Certificate</button>
+                    <button class="button is-success download-cert" id="downloadPDFButton">Download Certificate</button>
                     <button class="button jb-modal-close">Cancel</button>
                 </div>
             </div>
 
 
+        </div>
+        <div id="contentToDownload" style="display: none">
+        
         </div>
 
         <?php require 'component/footer.php' ?>

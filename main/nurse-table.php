@@ -73,7 +73,7 @@ include 'component/head.php';
                     <div class="b-table has-pagination">
                         <div class="table-wrapper has-mobile-cards">
                             <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
-                                <thead>
+                                <thead id="nurseTableHeader">
                                     <tr>
                                         <th class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox ">
@@ -81,7 +81,6 @@ include 'component/head.php';
                                                 <span class="check"></span>
                                             </label>
                                         </th>
-                                        <th></th>
                                         <th>Name</th>
                                         <th>Grade Level</th>
                                         <th>Parent's Name</th>
@@ -89,7 +88,8 @@ include 'component/head.php';
                                         <th>Date Created</th>
                                         <th>Date of Clinic</th>
                                         <th>Status</th>
-                                        <th>Consultation</th>
+                                        <!-- <th></th> -->
+                                        <th>Action</th>
                                         <th></th>
                                     </tr>
                                 </thead>

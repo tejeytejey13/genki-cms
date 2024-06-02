@@ -14,8 +14,8 @@
     $med_quantity = $_POST['quantity_med'];
     $treatment = $_POST['special_trtmnt'];
 
-    $sql = "INSERT INTO medical_certificate (user_id, findings, reasons, medications, quantity, special_treatment) VALUES 
-    ('$user_id', '$type', '$reasons', '$medication', '$med_quantity', '$treatment')";
+    $sql = "INSERT INTO medical_certificate (user_id, medical_form_id, findings, reasons, medications, quantity, special_treatment) VALUES 
+    ('$user_id', '$stud_form_id','$type', '$reasons', '$medication', '$med_quantity', '$treatment')";
     $query = mysqli_query($conn, $sql);
     $response = [];
 

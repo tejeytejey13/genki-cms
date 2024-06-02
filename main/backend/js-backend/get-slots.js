@@ -1,4 +1,5 @@
 $(function () {
+
   $.ajax({
     type: "POST",
     url: "backend/get-slots-clearance.php",
@@ -44,3 +45,32 @@ $(function () {
     return dateObj.toLocaleDateString("en-US", options);
   }
 });
+
+function deleteClearanceSlot(slot_id){
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: 'backend/delete_users_slot.php',
+        type: 'POST',
+        data: {
+          slotUID: slot_id
+        },
+        success: function(response){
+          console.log(response);
+        },
+        error: function(xhr, status, error){
+          console.log(xhr.responseText);
+        }
+      });
+    }
+  });
+  
+}

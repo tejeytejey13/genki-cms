@@ -73,7 +73,7 @@ include 'component/head.php';
                         </div> -->
                     </div>
                 <?php else :
-                    
+
                     $getuserinfo = $conn->query("SELECT * FROM user_slot_clearance WHERE user_id = $user_id");
                     $getrow = $getuserinfo->fetch_assoc();
                     $slotid = $getrow['slot_id'];
@@ -100,7 +100,12 @@ include 'component/head.php';
 
                             <div class="content">
                                 <div class="photo">
-                                    <img src="img/assets/john.jpg" alt="Student Photo">
+                                    <img src="<?php
+                                                if (!empty($profile)) {
+                                                    echo $pfpImg = './img/profile/' . $profile;
+                                                } else {
+                                                    echo $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+                                                } ?>" alt="Student Photo">
                                 </div>
                                 <div class="info">
                                     <div class="logo">
@@ -111,11 +116,11 @@ include 'component/head.php';
                                 <div class="details">
                                     <div class="barcode1" id="barcode1"></div>
 
-                                    <p>Student Name:<br><?=ucfirst($user_fname)?>, <?=ucfirst($user_lname)?> </p>
-                                    <p>Time: <?=$slotinfo['time']?></p>
-                                    <p>Date: <?=date('F d, Y', strtotime($slotinfo['date']));?></p>
-                                    <p>Grade: <?=ucfirst($grade)?></p>
-                                    <p>Section: <?=ucfirst($section)?></p>
+                                    <p>Student Name:<br><?= ucfirst($user_fname) ?>, <?= ucfirst($user_lname) ?> </p>
+                                    <p>Time: <?= $slotinfo['time'] ?></p>
+                                    <p>Date: <?= date('F d, Y', strtotime($slotinfo['date'])); ?></p>
+                                    <p>Grade: <?= ucfirst($grade) ?></p>
+                                    <p>Section: <?= ucfirst($section) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +221,7 @@ include 'component/head.php';
             barcodeContainer1.appendChild(space1);
         }
     </script>
-     <script>
+    <script>
         document.getElementById('downloadMedicalSlip').addEventListener('click', function() {
             html2canvas(document.getElementById('slipToDownload')).then(function(canvas) {
                 // Create an anchor element

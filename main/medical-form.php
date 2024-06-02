@@ -51,7 +51,7 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select id="grade-level" name="grade-level">
+                                <select id="grade-level" name="grade-level" required>
                                     <option selected hidden>Grade Level</option>
                                     <?php
                                     $sql = "SELECT * FROM grade_levels";
@@ -72,16 +72,16 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select id="section" name="section">
+                                <select id="section" name="section" required>
                                     <option selected hidden>Section</option>
                                     <?php
                                     $sql = "SELECT * FROM section";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         if($userrow['section'] == $row['section_name']){
-                                            echo "<option value='" . $row['section_num'] . "' selected>" . $row['section_name'] . "</option>";
+                                            echo "<option value='" . $row['section_name'] . "' selected>" . $row['section_name'] . "</option>";
                                         }else{
-                                            echo "<option value='" . $row['section_num'] . "'>" . $row['section_name'] . "</option>";
+                                            echo "<option value='" . $row['section_name'] . "'>" . $row['section_name'] . "</option>";
                                         }
                                         
                                     }
@@ -92,7 +92,7 @@
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="adviser" type="text" value="<?=$userrow['adviser']?>" placeholder="Adviser">
+                            <input class="input" name="adviser" type="text" value="<?=$userrow['adviser']?>" placeholder="Adviser" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                         </p>
@@ -106,13 +106,13 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="birthdate" type="date" value="<?=$userrow['birthdate']?>" placeholder="Date of Birth">
+                            <input class="input" name="birthdate" type="date" value="<?=$userrow['birthdate']?>" placeholder="Date of Birth" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="birthplace" type="text" value="<?=$userrow['place_of_birth']?>"  placeholder="Place of Birth">
+                            <input class="input" name="birthplace" type="text" value="<?=$userrow['place_of_birth']?>"  placeholder="Place of Birth" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                         </p>
@@ -126,7 +126,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input" name="address" type="text" value="<?=$userrow['address']?>" placeholder="Address">
+                            <input class="input" name="address" type="text" value="<?=$userrow['address']?>" placeholder="Address" required>
                             <span class="icon is-small is-left" id="icon"><i class="mdi mdi-mail"></i></span>
                             <span class="icon is-small is-right" id="icon"><i class="mdi mdi-check"></i></span>
                         </p>
@@ -159,13 +159,13 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="parent_name" type="text" placeholder="Parent/Gurdian's Name">
+                            <input class="input" name="parent_name" type="text" placeholder="Parent/Gurdian's Name" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="rel_to_stud" type="text" placeholder="Relationship to Student">
+                            <input class="input" name="rel_to_stud" type="text" placeholder="Relationship to Student" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
@@ -182,7 +182,7 @@
                                 </a>
                             </p>
                             <p class="control is-expanded">
-                                <input class="input" name="contact_num" type="tel" placeholder="Phone number">
+                                <input class="input" name="contact_num" type="tel" placeholder="Phone number" required>
                             </p>
                         </div>
                         <p class="help">Do not enter the first zero</p>
@@ -215,7 +215,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="emerg_name" type="text" placeholder="Name">
+                            <input class="input" name="emerg_name" type="text" placeholder="Name" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                         <p class="help">Other Contact Person/s during emergency</p>
@@ -228,7 +228,7 @@
                                 </a>
                             </p>
                             <p class="control is-expanded">
-                                <input class="input" name="emerg_num" type="tel" placeholder="Phone number">
+                                <input class="input" name="emerg_num" type="tel" placeholder="Phone number" required>
                             </p>
                         </div>
                         <p class="help">Do not enter the first zero</p>
@@ -244,7 +244,7 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select name="alergy">
+                                <select name="alergy" required>
                                     <option selected hidden>Alergy Selection</option>
                                     <option value="medicine">Medicine</option>
                                     <option value="food">Food</option>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="field">
                         <p class="control">
-                            <input class="input" name="reason" type="text" placeholder="Reason/s">
+                            <input class="input" name="reason" type="text" placeholder="Reason/s" required>
                         </p>
                     </div>
                     <!-- <div class="field">
@@ -278,7 +278,7 @@
                     <div class="field">
                         <div class="control">
                             <input class="input" name="treatment" type="text"
-                                placeholder="Specify treatment for these allergies">
+                                placeholder="Specify treatment for these allergies" required>
                         </div>
                     </div>
                     <!-- <div class="field">
@@ -327,7 +327,7 @@
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select name="time">
+                                <select name="time" required>
                                     <option selected hidden>Time Selection</option>
                                     <option value="am">AM</option>
                                     <option value="pm">PM</option>
@@ -337,7 +337,7 @@
                     </div>
                     <div class="field">
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="date_med" type="date" placeholder="#">
+                            <input class="input" name="date_med" type="date" placeholder="#" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>

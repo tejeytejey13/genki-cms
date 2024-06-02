@@ -98,10 +98,11 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                                         // $getClearance = $conn->query("SELECT * FROM `user_slot_clearance`");
                                         while ($row = $getClearance->fetch_assoc()) {
                                             $client_uid = $row['user_id'];
-                                            $getUserInfo = $conn->query("SELECT * FROM `medical_form` WHERE `user_id` = '$client_uid'");
+                                            $getUserInfo = $conn->query("SELECT * FROM `client` WHERE `user_id` = '$client_uid'");
                                             $user = $getUserInfo->fetch_assoc();
                                             $fn = $user['first_name'].' '.$user['last_name'];
-                                            $getSlotInfo = $conn->query("SELECT * FROM `clearance_slots` WHERE `id` = '$row[slot_id]'");
+                                            $slotsuid = $row['slot_id'];
+                                            $getSlotInfo = $conn->query("SELECT * FROM `clearance_slots` WHERE `id` = '$slotsuid'");
                                             $slot = $getSlotInfo->fetch_assoc();
                                             $time = $slot['time'];
 
@@ -110,6 +111,8 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                                             }else{
                                                 $slots = '12:00 - 5:00 '.$time;
                                             }
+                                            
+                                            
                                     ?>
                                     <tr>
                                         <td class="is-checkbox-cell">
@@ -125,7 +128,7 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                                             </div>
                                         </td>
                                         <td data-label="Name"><?=ucwords($fn);?></td>
-                                        <td data-label="Company"><?=$user['grade']?></td>
+                                        <td data-label="Company"><?=$user['grade_level']?></td>
                                         <td data-label="City"><?=$user['section']?></td>
                                         <!-- <td data-label="Progress" class="is-progress-cell">
                                             <progress max="100" class="progress is-small is-primary"
@@ -142,7 +145,7 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                                                 <!-- <button class="button is-small is-primary" type="button">
                                                     <span class="icon"><i class="mdi mdi-eye"></i></span>
                                                 </button> -->
-                                                <button class="button is-small is-danger" type="button">
+                                                <button class="button is-small is-danger" onclick="deleteClearanceSlot(<?=$slotsuid?>)" type="button">
                                                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                                                 </button>
                                             </div>

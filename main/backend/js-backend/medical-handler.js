@@ -82,7 +82,6 @@ $(function () {
         select.empty();
         select.append('<option selected hidden>Section</option>');
         var data = JSON.parse(response);
-        
         $.each(data, function (key, value) {
           select.append(
             '<option value="' + value.section_name + '">' + value.section_name + "</option>"

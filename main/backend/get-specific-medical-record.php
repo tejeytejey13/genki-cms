@@ -3,7 +3,7 @@
 
     $id = $_GET['uid'];
 
-    $getMedCert = $conn->query("SELECT * FROM medical_certificate WHERE id = '$id'");
+    $getMedCert = $conn->query("SELECT * FROM medical_certificate WHERE medical_form_id = '$id'");
     $row = $getMedCert->fetch_assoc();
     $getMedForm = $conn->query("SELECT * FROM medical_form WHERE id = '$id'");
     $row2 = $getMedForm->fetch_assoc();

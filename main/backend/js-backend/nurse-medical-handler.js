@@ -201,8 +201,6 @@ $(function () {
         //   $("#nurseHistoryTable").append(trhistoryNurse);
         //   $("#nurseMedicalRecord").append(trMedicalRecord);
         // });
-
-        
       },
       error: function (xhr, status, error) {
         console.log(xhr.responseText);
@@ -221,13 +219,24 @@ $(function () {
     //   const baseurl = window.location.href.split("?")[1];
     //   console.log(row.status);
     // });
+    const baseurl = window.location.href.split("?")[1];
+    if(baseurl == "status=approved"){
+      var trNurseHeading = "<th>Status</th>";
+      var NurseTableHeading = $('thead tr th:nth-child(8)');
+      NurseTableHeading.after(trNurseHeading);
+
+    }
     $.each(tableData, function (index, row) {
+      var firstName =
+        row.first_name.charAt(0).toUpperCase() +
+        row.first_name.slice(1).toLowerCase();
+      var lastName =
+        row.last_name.charAt(0).toUpperCase() +
+        row.last_name.slice(1).toLowerCase();
+      var paentGuardian =
+        row.parent_guardian.charAt(0).toUpperCase() +
+        row.parent_guardian.slice(1).toLowerCase();
 
-      var firstName = row.first_name.charAt(0).toUpperCase() + row.first_name.slice(1).toLowerCase();
-      var lastName = row.last_name.charAt(0).toUpperCase() + row.last_name.slice(1).toLowerCase();
-      var paentGuardian = row.parent_guardian.charAt(0).toUpperCase() + row.parent_guardian.slice(1).toLowerCase();
-
-      const baseurl = window.location.href.split("?")[1];
       // console.log(baseurl);
       if (baseurl == "status=pending") {
         if (row.status == "pending") {
@@ -235,13 +244,10 @@ $(function () {
           trNurse +=
             '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
           trNurse +=
-            "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-          trNurse +=
             "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
           trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
-          trNurse +=
-            "<td data-label='parent_name'>" + paentGuardian + "</td>";
-          trNurse += "<td data-label='section'>aw</td>";
+          trNurse += "<td data-label='parent_name'>" + paentGuardian + "</td>";
+          trNurse += "<td data-label='section'>" + row.section + "</td>";
           //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
           trNurse +=
             "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
@@ -251,12 +257,9 @@ $(function () {
             "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
             formatDate(row.date_med) +
             "</small></td>";
+          trNurse += "<td data-label='status' class=''>" + row.status + "</td>";
           trNurse +=
-            "<td data-label='status' class='status in-progress'>" +
-            row.status +
-            "</td>";
-          trNurse +=
-            "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
+            "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
             row.form_id +
             "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
             "<button class='button is-small is-warning nurse-edit-btn' data-target-uid='" +
@@ -268,21 +271,16 @@ $(function () {
           trNurse += "</tr>";
         }
       } else {
-        if (
-          row.status == "approved" &&
-          row.consultation_status == "pending"
-        ) {
+        if (row.status == "approved" && row.consultation_status == "pending") {
           var trNurse = "<tr>";
           trNurse +=
             '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-          trNurse +=
-            "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
+          
           trNurse +=
             "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
           trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
-          trNurse +=
-            "<td data-label='parent_name'>" + paentGuardian + "</td>";
-          trNurse += "<td data-label='section'>aw</td>";
+          trNurse += "<td data-label='parent_name'>" + paentGuardian + "</td>";
+          trNurse += "<td data-label='section'>" + row.section + "</td>";
           //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
           trNurse +=
             "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
@@ -293,22 +291,17 @@ $(function () {
             formatDate(row.date_med) +
             "</small></td>";
           trNurse +=
-            "<td data-label='status' class='status open'>" +
+            "<td data-label='status' class=''>" +
             row.status +
             "</td>";
-          trNurse +=
-            "<td data-label='consultation'>" +
-            row.consultation_status +
-            "</td>";
+          trNurse += "<td data-label='consultation'>" + row.consultation_status + "</td>";
           trNurse +=
             "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
             row.form_id +
             "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-            "<button class='button is-small is-warning nurse-consultation-form' data-target-uid='" +
-            row.user_id +
-            "' data-target-uid2='" +
-            row.form_id +
-            "' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button>";
+            "<button class='button is-small is-warning nurse-consultation-form' data-target-uid='" + row.user_id + "' data-target-uid2='" + row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button>" +
+            "</div></td>";
+          // trNurse += "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" + row.form_id + "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" + "<button class='button is-small is-warning nurse-consultation-form' data-target-uid='" + row.user_id + "' data-target-uid2='" + row.form_id +"' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button></div></td>";
           trNurse += "</tr>";
         }
       }
@@ -340,9 +333,7 @@ $(function () {
           formatDate(row.date_med) +
           "</small></td>";
         trhistoryNurse +=
-          "<td data-label='status' class='status open'>" +
-          row.status +
-          "</td>";
+          "<td data-label='status' class='status open'>" + row.status + "</td>";
         trhistoryNurse +=
           "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='" +
           row.form_id +
@@ -365,8 +356,7 @@ $(function () {
         trMedicalRecord += "<td data-label='Grade'>" + row.grade + "</td>";
         trMedicalRecord +=
           "<td data-label='parent_name'>" + paentGuardian + "</td>";
-        trMedicalRecord +=
-          "<td data-label='section'>" + row.section + "</td>";
+        trMedicalRecord += "<td data-label='section'>" + row.section + "</td>";
         //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
         trMedicalRecord +=
           "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
@@ -402,9 +392,11 @@ $(function () {
         },
         success: function (response) {
           var data = response.data.medical_cert;
-          console.log(data);
+          // console.log(data);
           $("#student-name").html(
-            response.data.first_name + " " + response.data.last_name
+            capitalizeFirstLetter(response.data.first_name) +
+              " " +
+              capitalizeFirstLetter(response.data.last_name)
           );
           $("#student-date-med").html(formatDate(response.data.date_med));
           $("#student-findings").html(data.findings);
@@ -438,7 +430,10 @@ $(function () {
           var object = response[0];
           // console.log(object);
           $("#heading-name").html(
-            "Name of Patient: " + object.first_name + " " + object.last_name
+            "Name of Patient: " +
+              capitalizeFirstLetter(object.first_name) +
+              " " +
+              capitalizeFirstLetter(object.last_name)
           );
           $("#heading-date").html(
             "Date Created: " + formatDate(object.date_created)
@@ -473,7 +468,10 @@ $(function () {
           var object = response[0];
           // console.log(object);
           $("#heading-name").html(
-            "Name of Patient: " + object.first_name + " " + object.last_name
+            "Name of Patient: " +
+              capitalizeFirstLetter(object.first_name) +
+              " " +
+              capitalizeFirstLetter(object.last_name)
           );
           $("#heading-date").html(
             "Date Created: " + formatDate(object.date_created)
@@ -482,9 +480,7 @@ $(function () {
             "Date of Clinic: " + formatDate(object.date_med)
           );
           $("#heading-status").html("Status: " + object.status);
-          $("#attending-nurse").html(
-            "Attending Nurse: " + object.nurse_name
-          );
+          $("#attending-nurse").html("Attending Nurse: " + object.nurse_name);
         },
         error: function (xhr, status, error) {
           console.log(xhr.responseText);
@@ -533,7 +529,10 @@ $(function () {
           var object = response[0];
           //   console.log(object);
           $("#heading-name-edit").html(
-            "Name of Patient: " + object.first_name + " " + object.last_name
+            "Name of Patient: " +
+              capitalizeFirstLetter(object.first_name) +
+              " " +
+              capitalizeFirstLetter(object.last_name)
           );
           //   $('#heading-status-edit').val(object.status);
           $("#update-form-btn").attr("data-target-form-id", object.form_id);
@@ -956,5 +955,12 @@ function downloadPDFRecord() {
 $(".download-cert").click(function () {
   var form_id = $(this).data("target-uid");
   var url = "backend/medical-history.php?form_id=" + form_id;
-  window.open(url, "_blank");
+  var contentWindow = window.open(url, "_blank");
+  contentWindow.onload = function () {
+    contentWindow.postMessage("generatePdf", "*");
+  };
 });
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

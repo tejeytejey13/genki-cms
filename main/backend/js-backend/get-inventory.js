@@ -28,9 +28,7 @@ function renderTable(data) {
       '<input type="checkbox" value="false">' +
       '<span class="check"></span></label></td>';
     tr +=
-      '<td class="is-image-cell"><div class="image">' +
-      '<img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg" class="is-rounded">' +
-      "</div></td>";
+      '<td class="is-image-cell"></td>';
     tr += '<td data-label="ItemId">' + item.item_id + "</td>";
     tr += '<td data-label="Name">' + item.name + "</td>";
     tr += '<td data-label="Quantity">' + item.quantity + "</td>";
@@ -46,7 +44,7 @@ function renderTable(data) {
       "</small></td>";
     tr +=
       '<td class="is-actions-cell">' +
-      '<div class="buttons is-right">' +
+      '<div class="buttons is-left">' +
       '<button class="button is-small is-primary edit-inventory" id="edit-med-item" data-target-item-id="' +
       item.id +
       '" data-target-item-quantity="' +

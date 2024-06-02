@@ -74,7 +74,7 @@ if ($user_type == 'client') {
     if (!empty($profile)) {
         $pfpImg = $profile;
     } else {
-        $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+        $pfpImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
     }
 } else if ($user_type == 'nurse') {
     $sql = "SELECT * FROM nurse WHERE user_id = '$user_id'";
@@ -87,7 +87,7 @@ if ($user_type == 'client') {
     if (!empty($profile)) {
         $pfpImg = $profile;
     } else {
-        $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+        $pfpImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
     }
 } else if ($user_type == 'admin') {
     $sql = "SELECT * FROM admin WHERE user_id = '$user_id'";
@@ -100,7 +100,7 @@ if ($user_type == 'client') {
     if (!empty($profile)) {
         $pfpImg = $profile;
     } else {
-        $profileImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
+        $pfpImg = 'https://avatars.dicebear.com/v2/initials/john-doe.svg';
     }
 } else {
 

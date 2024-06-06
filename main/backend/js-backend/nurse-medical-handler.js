@@ -307,11 +307,7 @@ $(function () {
       }
 
       // row.sess_nurse_id == row.nurse_id || row.consultation_status !== 'pending' && row.sess_nurse_id == 3
-      if (
-        (row.consultation_status !== "pending" &&
-          row.sess_nurse_id == row.nurse_id) ||
-        (row.sess_nurse_id == 1 && row.consultation_status !== "pending")
-      ) {
+      if ((row.consultation_status == "approved" && row.sess_nurse_id == row.nurse_id) || (row.sess_nurse_id == 1 && row.consultation_status == "approved")) {
         var trhistoryNurse =
           "<tr data-target-section='" +
           row.section +
@@ -338,7 +334,7 @@ $(function () {
           "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='" +
           row.form_id +
           "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-          "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
+          "<button class='button is-small is-danger' type='button' onclick='delRecordAppointment(" + row.form_id + ")'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
         trhistoryNurse += "</tr>";
 
         var trMedicalRecord =
@@ -371,7 +367,7 @@ $(function () {
           "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary view-medical-certificate' data-target-muid='" +
           row.form_id +
           "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-          "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
+          "<button class='button is-small is-danger' type='button' onclick='delRecordAppointment(" + row.form_id + ")'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
         trMedicalRecord += "</tr>";
       }
 
@@ -687,6 +683,42 @@ function restoreAppointment(formuid) {
     });
   });
 }
+function delRecordAppointment(formuid){
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, archive it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "backend/delete-specific-consultation-form.php",
+        type: "POST",
+        data: {
+          form_id: formuid,
+        },
+        success: function (response) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been archived.",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            window.location.reload();
+          });
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        },
+      });
+    }
+  });
+}
+
 function deleteAppointment(formuid) {
   Swal.fire({
     title: "Are you sure?",

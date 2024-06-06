@@ -64,7 +64,7 @@
                                         <p class="member-name">Irish Go</p>
                                     </div>
                                     <div class="team-member">
-                                        <img src="./img/assets/avatar.jpg" alt="Team Member 3" class="avatar">
+                                        <img src="./img/assets/avatar3.png" alt="Team Member 3" class="avatar">
                                         <p class="member-name">Khelly Rabe</p>
                                     </div>
                                 </div>

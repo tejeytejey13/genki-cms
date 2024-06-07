@@ -23,10 +23,10 @@ function renderTable(data) {
 
   $.each(data, function (index, item) {
     var tr = "<tr>";
-    tr +=
-      '<td class="is-checkbox-cell"><label class="b-checkbox checkbox">' +
-      '<input type="checkbox" value="false">' +
-      '<span class="check"></span></label></td>';
+    // tr +=
+    //   '<td class="is-checkbox-cell"><label class="b-checkbox checkbox">' +
+    //   '<input type="checkbox" value="false">' +
+    //   '<span class="check"></span></label></td>';
     tr +=
       '<td class="is-image-cell"></td>';
     tr += '<td data-label="ItemId">' + item.item_id + "</td>";
@@ -50,7 +50,7 @@ function renderTable(data) {
       '" data-target-item-quantity="' +
       item.quantity +
       '" type="button">' +
-      '<span class="icon"><i class="mdi mdi-eye"></i></span>' +
+      '<span class="icon"><i class="mdi mdi-pen"></i></span>' +
       "</button>" +
       '<button class="button is-small is-danger" type="button" onclick="delInventory('+item.id+')">' +
       '<span class="icon"><i class="mdi mdi-trash-can"></i></span>' +

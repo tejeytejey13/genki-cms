@@ -1,4 +1,10 @@
 <?php
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+    require '../../vendor/autoload.php';
     include('config.php');
 
     $user = $_GET['user'];
@@ -65,10 +71,39 @@
         $insert = "INSERT INTO user_slot_clearance (slot_id, user_id) VALUES ('$slot_id', '$user_id')";
         $ins = mysqli_query($conn, $insert);
 
+        $user = $conn->query("SELECT * FROM client WHERE user_id = $user_id");
+        $info = $user->fetch_assoc();
+        $email = $info['email'];
+        $fullname = $info['first_name'] . " " . $info['last_name'];
+        $mail = new PHPMailer(true);
+        try {
+            // $mail->SMTPDebug = 2;                                      
+            $mail->isSMTP();
+            $mail->Host       = 'smtp-relay.sendinblue.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'ryonuzuke@gmail.com';
+            $mail->Password   = 'H7qjcmAVzkyhF3RJ';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port       = 587;
+
+            $mail->setFrom("genkipnjkis@gmail.com", 'Genki Clinic - Medical');
+            $mail->addAddress($email, $fullname);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Genki - Clinic Management System';
+            $mail->AddEmbeddedImage('../img/email-tmp/CLEARANCE 1 (1).png', 'sched_submit');
+            $mail->Body    = '<img alt="PHPMailer" src="cid:sched_submit">';
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    
         $response = [
             'status' => 'success',
             'message' => 'Slot successfully assigned'
         ];
+        
     }
 
     echo json_encode($response);

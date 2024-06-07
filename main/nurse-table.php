@@ -2,6 +2,9 @@
 <html lang="en" class="has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded">
 <?php
 include 'component/head.php';
+if(isset($_GET['status'])){
+    $getURL = $_GET['status'];
+}
 ?>
 
 <body>
@@ -16,7 +19,7 @@ include 'component/head.php';
                     <div class="level-item">
                         <ul>
                             <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Clinic Appointments</li>
+                            <li>Clinic <?=ucfirst($getURL) ?> Appointments</li>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +41,7 @@ include 'component/head.php';
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Clinic Appointments
+                                Clinic <?=ucfirst($getURL) ?> Appointments
                             </h1>
                         </div>
                     </div>
@@ -75,12 +78,12 @@ include 'component/head.php';
                             <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead id="nurseTableHeader">
                                     <tr>
-                                        <th class="is-checkbox-cell">
+                                        <!-- <th class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox ">
                                                 <input type="checkbox" class="selectAll" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </th>
+                                        </th> -->
                                         <th>Name</th>
                                         <th>Grade Level</th>
                                         <th>Parent's Name</th>

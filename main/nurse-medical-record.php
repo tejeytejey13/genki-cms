@@ -120,12 +120,12 @@ include 'component/head.php';
                                 class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead>
                                     <tr>
-                                        <th class="is-checkbox-cell">
+                                        <!-- <th class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox ">
                                                 <input type="checkbox" class="selectAll" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </th>
+                                        </th> -->
                                         <th></th>
                                         <th>Name</th>
                                         <th>Grade Level</th>

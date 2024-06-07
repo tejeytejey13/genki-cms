@@ -241,8 +241,7 @@ $(function () {
       if (baseurl == "status=pending") {
         if (row.status == "pending") {
           var trNurse = "<tr>";
-          trNurse +=
-            '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+          // trNurse +='<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
           trNurse +=
             "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
           trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
@@ -273,8 +272,7 @@ $(function () {
       } else {
         if (row.status == "approved" && row.consultation_status == "pending") {
           var trNurse = "<tr>";
-          trNurse +=
-            '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+          // trNurse +='<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
           
           trNurse +=
             "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
@@ -314,8 +312,7 @@ $(function () {
           "' data-target-grade='" +
           row.grade +
           "'>";
-        trhistoryNurse +=
-          '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+        // trhistoryNurse += '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
         trhistoryNurse +=
           "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
         trhistoryNurse +=
@@ -343,8 +340,7 @@ $(function () {
           "' data-target-grade='" +
           row.grade +
           "'>";
-        trMedicalRecord +=
-          '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+        // trMedicalRecord += '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
         trMedicalRecord +=
           "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
         trMedicalRecord +=

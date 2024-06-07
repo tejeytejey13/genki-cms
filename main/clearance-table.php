@@ -78,12 +78,12 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                             <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead>
                                     <tr>
-                                        <th class="is-checkbox-cell">
+                                        <!-- <th class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox ">
                                                 <input type="checkbox" class="selectAll" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </th>
+                                        </th> -->
                                         <th></th>
                                         <th>Name</th>
                                         <th>Grade</th>
@@ -115,12 +115,12 @@ $getClearance = $conn->query("SELECT * FROM `user_slot_clearance` LIMIT $start_f
                                             
                                     ?>
                                     <tr>
-                                        <td class="is-checkbox-cell">
+                                        <!-- <td class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox">
                                                 <input type="checkbox" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </td>
+                                        </td> -->
                                         <td class="is-image-cell">
                                             <div class="image">
                                                 <img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"

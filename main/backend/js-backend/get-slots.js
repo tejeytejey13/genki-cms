@@ -64,7 +64,7 @@ function deleteClearanceSlot(slot_id){
           slotUID: slot_id
         },
         success: function(response){
-          console.log(response);
+          window.location.reload();
         },
         error: function(xhr, status, error){
           console.log(xhr.responseText);

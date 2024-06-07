@@ -78,12 +78,12 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
                             <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
                                 <thead>
                                     <tr>
-                                        <th class="is-checkbox-cell">
+                                        <!-- <th class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox ">
                                                 <input type="checkbox" class="selectAll" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </th>
+                                        </th> -->
                                         <th></th>
                                         <th>User ID</th>
                                         <th>Name</th>
@@ -112,12 +112,12 @@ $getusers = $conn->query("SELECT * FROM `users` WHERE user_type = 'client' LIMIT
                                             $pfp = empty($profile) ? "https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg" : 'img/profile/' . $profile;
                                     ?>
                                     <tr>
-                                        <td class="is-checkbox-cell">
+                                        <!-- <td class="is-checkbox-cell">
                                             <label class="b-checkbox checkbox">
                                                 <input type="checkbox" value="false">
                                                 <span class="check"></span>
                                             </label>
-                                        </td>
+                                        </td> -->
                                         <td class="is-image-cell">
                                             <div class="image">
                                                 <img src="<?= $pfp ?>" class="is-rounded">

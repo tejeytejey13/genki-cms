@@ -48,7 +48,7 @@ include './component/head.php';
             <section class="section is-main-section">
                 <div class="tile is-ancestor">
                     <div class="tile is-parent">
-                        <div class="card tile is-child" onclick="alert('Coming Soon')">
+                        <div class="card tile is-child" onclick="">
                             <div class="overlay"></div>
                             <div class="card-content">
                                 <div class="level is-mobile">

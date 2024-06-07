@@ -11,7 +11,7 @@ $(function() {
 
             $.each(response, function(index, item) {
                 var tr = "<tr>";
-                tr += '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
+                // tr += '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
                 tr += '<td class="is-image-cell"><div class="image"><img src="https://avatars.dicebear.com/v2/initials/lonzo-steuber.svg"class="is-rounded"></div></td>';
                 tr += '<td data-label="UserID">' + item.user_id + '</td>';
                 tr += '<td data-label="Name">' + item.first_name + ' ' + item.last_name + '</td>';

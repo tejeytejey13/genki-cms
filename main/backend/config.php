@@ -15,13 +15,18 @@
     $date = date("Y-m-d", strtotime("2024-06-12"));
     $datenow = date("Y-m-d");
 
-    if($datenow > $date){
-        $conn = die();
-    }else{
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // if($datenow > $date){
+    //     $conn = die();
+    // }else{
+    //     $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    //     if (!$conn) {
+    //         die ("Connection failed: " . mysqli_connect_error());
+    //     }
+
+    // }
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
         if (!$conn) {
             die ("Connection failed: " . mysqli_connect_error());
         }
-
-    }

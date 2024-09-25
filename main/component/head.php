@@ -1,5 +1,7 @@
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -9,7 +11,7 @@
     <link rel="shortcut icon" href="./img/assets/PNJK PNG.png" />
 
     <!-- Bulma is included -->
-    <link rel="stylesheet" href="./css/main.min.css?ver=1.0">
+    <!-- <link rel="stylesheet" href="./css/main.min.css?ver=1.0"> -->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/404.css?ver=1.1">
     <link rel="stylesheet" href="./css/modal.css?ver=2.4">

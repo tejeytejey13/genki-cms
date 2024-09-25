@@ -57,6 +57,7 @@ include './component/head.php';
                                             <h3 class="subtitle is-spaced">
                                                 Students
                                             </h3>
+                                            <!-- <p class="help">Pending Appointments</p> -->
                                             <h1 class="title">
                                                 <?= $user_count ?>
                                             </h1>
@@ -102,9 +103,9 @@ include './component/head.php';
                     </div>
                     <div class="tile is-parent">
                         <div class="card tile is-child" onclick="window.location.href = 'clinic-inventory.php'">
-                        <div class="overlay"></div>
+                            <div class="overlay"></div>
 
-                        <div class="card-content">
+                            <div class="card-content">
                                 <div class="level is-mobile">
                                     <div class="level-item">
                                         <div class="is-widget-label">
@@ -124,7 +125,7 @@ include './component/head.php';
                             </div>
                         </div>
                     </div>
-                    <div class="tile is-parent">
+                    <!-- <div class="tile is-parent">
                         <div class="card tile is-child" onclick="window.location.href='account-management.php'">
                         <div class="overlay"></div>
 
@@ -147,38 +148,160 @@ include './component/head.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <!-- <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        <span class="icon"><i class="mdi mdi-finance"></i></span>
-                        Performance
-                    </p>
-                    <a href="#" class="card-header-icon">
-                        <span class="icon"><i class="mdi mdi-reload"></i></span>
-                    </a>
-                </header>
-                <div class="card-content">
-                    <div class="chart-area">
-                        <div style="height: 100%;">
-                            <div class="chartjs-size-monitor">
-                                <div class="chartjs-size-monitor-expand">
-                                    <div></div>
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            <span class="icon"><i class="mdi mdi-finance"></i></span>
+                            Performance
+                        </p>
+                        <a href="#" class="card-header-icon">
+                            <span class="icon"><i class="mdi mdi-reload"></i></span>
+                        </a>
+                    </header>
+                    <div class="card-content">
+                        <div class="chart-area">
+                            <div style="height: 100%;">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div></div>
+                                    </div>
                                 </div>
-                                <div class="chartjs-size-monitor-shrink">
-                                    <div></div>
-                                </div>
+                                <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
                             </div>
-                            <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
                         </div>
                     </div>
                 </div>
-            </div> -->
             </section>
-        <?php } else {
+        <?php
+            $query = $conn->query("SELECT findings, COUNT(*) as count FROM `medical_certificate` GROUP BY findings");
+            $labels = [];
+            while ($row = $query->fetch_assoc()) {
+                $labels[] = $row;
+            }
+        } else {
             include('user-index.php');
         }
         ?>
     </div>
+    <script>
+        $(document).ready(function() {
+            var randomChartData = function(r) {
+                    for (var o = [], a = 0; a < r; a++) o.push(Math.round(200 * Math.random()));
+                    return o;
+                },
+                chartColors = {
+                    default: {
+                        primary: "#00D1B2",
+                        info: "#209CEE",
+                        danger: "#FF3860"
+                    },
+                },
+            data = <?= json_encode($labels) ?>;
+            finding_labels = data.map(item => item.findings);
+            finding_counts = data.map(item => item.count);
+            var ctx = document.getElementById("big-line-chart").getContext("2d");
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    datasets: [
+                        {
+                            fill: !1,
+                            borderColor: chartColors.default.primary,
+                            borderWidth: 2,
+                            borderDash: [],
+                            borderDashOffset: 0,
+                            pointBackgroundColor: chartColors.default.primary,
+                            pointBorderColor: "rgba(255,255,255,0)",
+                            pointHoverBackgroundColor: chartColors.default.primary,
+                            pointBorderWidth: 20,
+                            pointHoverRadius: 4,
+                            pointHoverBorderWidth: 15,
+                            pointRadius: 4,
+                            data: finding_counts,
+                        },
+                        // {
+                        //     fill: !1,
+                        //     borderColor: chartColors.default.info,
+                        //     borderWidth: 2,
+                        //     borderDash: [],
+                        //     borderDashOffset: 0,
+                        //     pointBackgroundColor: chartColors.default.info,
+                        //     pointBorderColor: "rgba(255,255,255,0)",
+                        //     pointHoverBackgroundColor: chartColors.default.info,
+                        //     pointBorderWidth: 20,
+                        //     pointHoverRadius: 4,
+                        //     pointHoverBorderWidth: 15,
+                        //     pointRadius: 4,
+                        //     data: randomChartData(9),
+                        // },
+                        // {
+                        //     fill: !1,
+                        //     borderColor: chartColors.default.danger,
+                        //     borderWidth: 2,
+                        //     borderDash: [],
+                        //     borderDashOffset: 0,
+                        //     pointBackgroundColor: chartColors.default.danger,
+                        //     pointBorderColor: "rgba(255,255,255,0)",
+                        //     pointHoverBackgroundColor: chartColors.default.danger,
+                        //     pointBorderWidth: 20,
+                        //     pointHoverRadius: 4,
+                        //     pointHoverBorderWidth: 15,
+                        //     pointRadius: 4,
+                        //     data: randomChartData(9),
+                        // },
+                    ],
+                    // labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
+                    labels: finding_labels,
+                },
+                options: {
+                    maintainAspectRatio: !1,
+                    legend: {
+                        display: !1
+                    },
+                    responsive: !0,
+                    tooltips: {
+                        backgroundColor: "#f5f5f5",
+                        titleFontColor: "#333",
+                        bodyFontColor: "#666",
+                        bodySpacing: 4,
+                        xPadding: 12,
+                        mode: "nearest",
+                        intersect: 0,
+                        position: "nearest",
+                    },
+                    scales: {
+                        yAxes: [{
+                            barPercentage: 1.6,
+                            gridLines: {
+                                drawBorder: !1,
+                                color: "rgba(29,140,248,0.0)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#9a9a9a"
+                            },
+                        }, ],
+                        xAxes: [{
+                            barPercentage: 1.6,
+                            gridLines: {
+                                drawBorder: !1,
+                                color: "rgba(225,78,202,0.1)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#9a9a9a"
+                            },
+                        }, ],
+                    },
+                },
+            });
+        });
+    </script>
     <?php include './component/footer.php'; ?>

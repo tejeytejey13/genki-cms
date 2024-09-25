@@ -5,7 +5,7 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
 $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? $_GET['limit'] : 10;
 $start = ($page - 1) * $limit;
 
-$sql = "SELECT * FROM med_despensary LIMIT $start, $limit";
+$sql = "SELECT * FROM med_despensary ORDER BY id DESC LIMIT $start, $limit";
 $query = mysqli_query($conn, $sql);
 
 $all = "SELECT * FROM med_despensary";

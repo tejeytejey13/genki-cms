@@ -6,10 +6,10 @@ $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? $_GET['limit'] : 
 $start = ($page - 1) * $limit;
 
 $uid = $_SESSION['user_id'];
-$sql = "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id LIMIT $start, $limit";
+$sql = "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id ORDER BY med_form_status.id DESC LIMIT $start, $limit";
 $query = mysqli_query($conn, $sql);
 
-$sql2 = "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id ";
+$sql2 = "SELECT * FROM medical_form INNER JOIN med_form_status ON medical_form.id = med_form_status.form_id ORDER BY med_form_status.id DESC";
 $query2 = mysqli_query($conn, $sql2);
 
 $pagdata = [];

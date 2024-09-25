@@ -1,7 +1,60 @@
 <?php 
     $userforminfo = $conn->query("SELECT * FROM client WHERE user_id = $user_id");
     $userrow = $userforminfo->fetch_assoc();
+
+    $getextras = $conn->query("SELECT * FROM medical_form WHERE user_id = $user_id ORDER BY id DESC LIMIT 1");
+    if($getextras->num_rows > 0){
+        $rowform = $getextras->fetch_assoc();
+        $parentName = $rowform['parent_guardian'];
+        $rel_to_stud = $rowform['rel_to_stud'];
+        $con_num = $rowform['contact_num'];
+        $emergency_name = $rowform['emergency_name'];
+        $emergency_num = $rowform['emergency_num'];
+        $allergy = $rowform['alergy'];
+        $reason = $rowform['reason'];
+        $treatment = $rowform['treatment'];
+        $immunization = $rowform['immunization'];
+
+    }else{
+        $parentName = "";
+        $rel_to_stud = "";
+        $con_num = "";
+        $emergency_name = "";
+        $emergency_num = "";
+        $allergy = "";
+        $reason = "";
+        $treatment = "";
+        $immunization = "";
+    }
 ?>
+<script>
+    $(document).ready(function() {
+       var allergy = <?= json_encode($allergy) ?>;
+       switch(allergy){
+           case "medicine":
+               $("#yes").attr('checked', true);
+               break;
+           case "food":
+               $("#no").attr('checked', true);
+               break;
+            case "none":
+               $("#none").attr('checked', true);
+               break;
+           default:
+       }
+
+       var immunization = <?=json_encode($immunization)?>;
+       switch(immunization){
+           case "yes":
+               $('#immunizationyes').find('input').attr('checked', true);
+               break;
+           case "no":
+                $('#immunizationno').find('input').attr('checked', true);
+               break;
+           default:
+       }
+    });
+</script>
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">
@@ -158,14 +211,16 @@
                 </div>
                 <div class="field-body">
                     <div class="field">
+                        <label for="parent_name">Parent/Gurdian's Name</label>
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="parent_name" type="text" placeholder="Parent/Gurdian's Name" required>
+                            <input class="input" id="parent_name" name="parent_name" type="text" placeholder="" value="<?=$parentName?>" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
                     <div class="field">
+                        <label for="parent_name">Relationship to Student</label>
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="rel_to_stud" type="text" placeholder="Relationship to Student" required>
+                            <input class="input" name="rel_to_stud" type="text" placeholder="" value="<?=$rel_to_stud?>" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                     </div>
@@ -174,15 +229,18 @@
             <div class="field is-horizontal">
                 <div class="field-label"></div>
                 <div class="field-body">
+                    
                     <div class="field is-expanded">
+                    <label for="parent_name">Phone Number</label>
                         <div class="field has-addons">
+                            
                             <p class="control">
                                 <a class="button is-static">
                                     +63
                                 </a>
                             </p>
                             <p class="control is-expanded">
-                                <input class="input" name="contact_num" type="tel" placeholder="Phone number" required>
+                                <input class="input" name="contact_num" type="tel" placeholder="" value="<?=$con_num?>" required>
                             </p>
                         </div>
                         <p class="help">Do not enter the first zero</p>
@@ -214,13 +272,15 @@
                 </div>
                 <div class="field-body">
                     <div class="field">
+                    <label for="parent_name">Name</label>
                         <p class="control is-expanded has-icons-left">
-                            <input class="input" name="emerg_name" type="text" placeholder="Name" required>
+                            <input class="input" name="emerg_name" type="text" value="<?=$emergency_name?>" placeholder="" required>
                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                         </p>
                         <p class="help">Other Contact Person/s during emergency</p>
                     </div>
                     <div class="field is-expanded">
+                    <label for="parent_name">Phone number</label>
                         <div class="field has-addons">
                             <p class="control">
                                 <a class="button is-static">
@@ -228,7 +288,7 @@
                                 </a>
                             </p>
                             <p class="control is-expanded">
-                                <input class="input" name="emerg_num" type="tel" placeholder="Phone number" required>
+                                <input class="input" name="emerg_num" type="tel" value="<?=$emergency_num?>" placeholder="" required>
                             </p>
                         </div>
                         <p class="help">Do not enter the first zero</p>
@@ -242,7 +302,7 @@
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
-                        <div class="control">
+                        <!-- <div class="control">
                             <div class="select is-fullwidth">
                                 <select name="alergy" required>
                                     <option selected hidden>Alergy Selection</option>
@@ -252,11 +312,33 @@
                                     <option value="none">None</option>
                                 </select>
                             </div>
+                        </div> -->
+                        <div class="control mt-5">
+                            <label class="b-checkbox checkbox">
+                                <input class="checkbox selectedOption" name="alergy" value="medicine" id="yes"
+                                    type="checkbox">
+                                <span class="check"></span>
+                                &nbsp;
+                                Medicine
+                            </label>
+                            <label class="b-checkbox checkbox">
+                                <input class="checkbox selectedOption" name="alergy" value="food" id="no" type="checkbox">
+                                <span class="check"></span>
+                                &nbsp;
+                                Food
+                            </label>
+                            <label class="b-checkbox checkbox">
+                                <input class="checkbox selectedOption" name="alergy" value="none" id="none" type="checkbox">
+                                <span class="check"></span>
+                                &nbsp;
+                                None
+                            </label>
                         </div>
                     </div>
                     <div class="field">
+                        <label class="#">Reason/s</label>
                         <p class="control">
-                            <input class="input" name="reason" type="text" placeholder="Reason/s" required>
+                            <input class="input" name="reason" type="text" value="<?=$reason?>" placeholder="" required>
                         </p>
                     </div>
                     <!-- <div class="field">
@@ -275,10 +357,12 @@
                     <label class="label">Special Treatment</label>
                 </div>
                 <div class="field-body">
+                    
                     <div class="field">
+                    <label class="#">Specify treatment for these allergies</label>
                         <div class="control">
-                            <input class="input" name="treatment" type="text"
-                                placeholder="Specify treatment for these allergies" required>
+                            <input class="input" name="treatment" value="<?=$treatment?>" type="text"
+                                placeholder="" required>
                         </div>
                     </div>
                     <!-- <div class="field">
@@ -295,15 +379,15 @@
                 </div>
                 <div class="field-body">
                     <div class="field">
-                        <div class="control">
-                            <label class="b-checkbox checkbox">
+                        <div class="control mt-2">
+                            <label class="b-checkbox checkbox" id="immunizationyes">
                                 <input class="checkbox selectedOption" name="option" value="yes" id="yes"
                                     type="checkbox">
                                 <span class="check"></span>
                                 &nbsp;
                                 Yes
                             </label>
-                            <label class="b-checkbox checkbox">
+                            <label class="b-checkbox checkbox" id="immunizationno">
                                 <input class="checkbox selectedOption" name="option" value="no" id="no" type="checkbox">
                                 <span class="check"></span>
                                 &nbsp;
@@ -356,7 +440,7 @@
                                 <button type="submit" class="button is-primary">
                                     <span>Submit</span>
                                 </button>
-                            </div>
+                        </div>
                             <div class="control">
                                 <button type="button" id="reset-form" class="button is-primary is-outlined">
                                     <span>Reset</span>

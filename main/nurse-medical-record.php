@@ -166,8 +166,8 @@ include 'component/head.php';
             <div class="modal-background"></div>
             <div class="modal-content modal-content-main-1">
             <div class="modal-header">
-                    <h1 class="modal-title" style="font-weight: 900">Medical Record<button class="delete1 jb-modal-close"
-                            aria-label="close">&times</button>
+                    <h1 class="modal-title" style="font-weight: 900">Medical Record
+                        <button class="delete1 jb-modal-close" aria-label="close">&times</button>
                     </h1>
                 </div>
                 <div class="modal-body">
@@ -189,7 +189,7 @@ include 'component/head.php';
                 </div>
                 <div class="modal-footer" styles="display: flex; justify-content: center: gap: 30px;">
                     <button class="button is-success download-cert" id="downloadPDFButton">Download Certificate</button>
-                    <button class="button is-danger">Cancel</button>
+                    <button class="button is-danger " aria-label="close" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
 

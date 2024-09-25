@@ -19,7 +19,7 @@ var chartColors = {
 };
 var ctx = document.getElementById('big-line-chart').getContext('2d');
 new Chart(ctx, {
-  type: 'line',
+  type: 'bar',
   data: {
     datasets: [{
       fill: false,

@@ -20,187 +20,10 @@ $(function () {
         var alldata = response.historyData;
         pagTableData = response.data;
         totalPages = response.totalPages;
-        // renderTable(pagTableData.slice(0, limit));
-        renderTable(alldata);
+        renderTable(pagTableData.slice(0, limit));
+        // renderTable(alldata);
+        // console.log(totalPages);
         renderPagination(totalPages);
-        // $("#nurseTable").empty();
-        // $("#nurseHistoryTable").empty();
-        // $("#nurseMedicalRecord").empty();
-
-        // $.each(alldata, function (index, row) {
-        //   // console.log(row);
-        //   var firstName =
-        //     row.first_name.charAt(0).toUpperCase() +
-        //     row.first_name.slice(1).toLowerCase();
-        //   var lastName =
-        //     row.last_name.charAt(0).toUpperCase() +
-        //     row.last_name.slice(1).toLowerCase();
-        //   var paentGuardian =
-        //     row.parent_guardian.charAt(0).toUpperCase() +
-        //     row.parent_guardian.slice(1).toLowerCase();
-
-        //   const baseurl = window.location.href.split("?")[1];
-        //   // console.log(baseurl);
-        //   if (baseurl == "status=pending") {
-        //     if (row.status == "pending") {
-        //       var trNurse = "<tr>";
-        //       trNurse +=
-        //         '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-        //       trNurse +=
-        //         "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-        //       trNurse +=
-        //         "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
-        //       trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
-        //       trNurse +=
-        //         "<td data-label='parent_name'>" + paentGuardian + "</td>";
-        //       trNurse += "<td data-label='section'>aw</td>";
-        //       //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
-        //       trNurse +=
-        //         "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //         formatDate(row.date_created) +
-        //         "</small></td>";
-        //       trNurse +=
-        //         "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //         formatDate(row.date_med) +
-        //         "</small></td>";
-        //       trNurse +=
-        //         "<td data-label='status' class='status in-progress'>" +
-        //         row.status +
-        //         "</td>";
-        //       trNurse +=
-        //         "<td class='is-actions-cell'><div class='buttons is-right'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
-        //         row.form_id +
-        //         "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-        //         "<button class='button is-small is-warning nurse-edit-btn' data-target-uid='" +
-        //         row.form_id +
-        //         "' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button>" +
-        //         "<button class='button is-small is-danger' type='button' onclick='deleteAppointment(" +
-        //         row.form_id +
-        //         ")'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
-        //       trNurse += "</tr>";
-        //     }
-        //   } else {
-        //     if (
-        //       row.status == "approved" &&
-        //       row.consultation_status == "pending"
-        //     ) {
-        //       var trNurse = "<tr>";
-        //       trNurse +=
-        //         '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-        //       trNurse +=
-        //         "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-        //       trNurse +=
-        //         "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
-        //       trNurse += "<td data-label='Grade'>" + row.grade + "</td>";
-        //       trNurse +=
-        //         "<td data-label='parent_name'>" + paentGuardian + "</td>";
-        //       trNurse += "<td data-label='section'>aw</td>";
-        //       //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
-        //       trNurse +=
-        //         "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //         formatDate(row.date_created) +
-        //         "</small></td>";
-        //       trNurse +=
-        //         "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //         formatDate(row.date_med) +
-        //         "</small></td>";
-        //       trNurse +=
-        //         "<td data-label='status' class='status open'>" +
-        //         row.status +
-        //         "</td>";
-        //       trNurse +=
-        //         "<td data-label='consultation'>" +
-        //         row.consultation_status +
-        //         "</td>";
-        //       trNurse +=
-        //         "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-view-btn' data-target-uid='" +
-        //         row.form_id +
-        //         "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-        //         "<button class='button is-small is-warning nurse-consultation-form' data-target-uid='" +
-        //         row.user_id +
-        //         "' data-target-uid2='" +
-        //         row.form_id +
-        //         "' type='button'><span class='icon'><i class='mdi mdi-pen'></i></span></button>";
-        //       trNurse += "</tr>";
-        //     }
-        //   }
-
-        //   // row.sess_nurse_id == row.nurse_id || row.consultation_status !== 'pending' && row.sess_nurse_id == 3
-        //   if (
-        //     (row.consultation_status !== "pending" &&
-        //       row.sess_nurse_id == row.nurse_id) ||
-        //     (row.sess_nurse_id == 1 && row.consultation_status !== "pending")
-        //   ) {
-        //     var trhistoryNurse =
-        //       "<tr data-target-section='" +
-        //       row.section +
-        //       "' data-target-grade='" +
-        //       row.grade +
-        //       "'>";
-        //     trhistoryNurse +=
-        //       '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-        //     trhistoryNurse +=
-        //       "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-        //     trhistoryNurse +=
-        //       "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
-        //     trhistoryNurse +=
-        //       "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //       formatDate(row.date_created) +
-        //       "</small></td>";
-        //     trhistoryNurse +=
-        //       "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //       formatDate(row.date_med) +
-        //       "</small></td>";
-        //     trhistoryNurse +=
-        //       "<td data-label='status' class='status open'>" +
-        //       row.status +
-        //       "</td>";
-        //     trhistoryNurse +=
-        //       "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='" +
-        //       row.form_id +
-        //       "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-        //       "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
-        //     trhistoryNurse += "</tr>";
-
-        //     var trMedicalRecord =
-        //       "<tr data-target-section='" +
-        //       row.section +
-        //       "' data-target-grade='" +
-        //       row.grade +
-        //       "'>";
-        //     trMedicalRecord +=
-        //       '<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
-        //     trMedicalRecord +=
-        //       "<td class='is-image-cell'><div class='image'><img src='' class='is-rounded'></div></td>";
-        //     trMedicalRecord +=
-        //       "<td data-label='Name'>" + firstName + " " + lastName + "</td>";
-        //     trMedicalRecord += "<td data-label='Grade'>" + row.grade + "</td>";
-        //     trMedicalRecord +=
-        //       "<td data-label='parent_name'>" + paentGuardian + "</td>";
-        //     trMedicalRecord +=
-        //       "<td data-label='section'>" + row.section + "</td>";
-        //     //   tr += "<td data-label='Progress' class='is-progress-cell'><progress max='100' class='progress is-small is-primary' value=''></progress></td>";
-        //     trMedicalRecord +=
-        //       "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //       formatDate(row.date_created) +
-        //       "</small></td>";
-        //     trMedicalRecord +=
-        //       "<td data-label='Created'><small class='has-text-grey is-abbr-like' title='#'>" +
-        //       formatDate(row.date_med) +
-        //       "</small></td>";
-        //     // trMedicalRecord += "<td data-label='status'>" + row.status + "</td>";
-        //     trMedicalRecord +=
-        //       "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary view-medical-certificate' data-target-muid='" +
-        //       row.form_id +
-        //       "' type='button'><span class='icon'><i class='mdi mdi-eye'></i></span></button>" +
-        //       "<button class='button is-small is-danger' type='button' onclick='deleteData()'><span class='icon'><i class='mdi mdi-trash-can'></i></span></button></div></td>";
-        //     trMedicalRecord += "</tr>";
-        //   }
-
-        //   $("#nurseTable").append(trNurse);
-        //   $("#nurseHistoryTable").append(trhistoryNurse);
-        //   $("#nurseMedicalRecord").append(trMedicalRecord);
-        // });
       },
       error: function (xhr, status, error) {
         console.log(xhr.responseText);
@@ -211,21 +34,14 @@ $(function () {
     $("#nurseTable").empty();
     $("#nurseHistoryTable").empty();
     $("#nurseMedicalRecord").empty();
-    // $.each(tableData, function (index, row) {
-    //   var firstName = row.first_name.charAt(0).toUpperCase() + row.first_name.slice(1).toLowerCase();
-    //   var lastName = row.last_name.charAt(0).toUpperCase() + row.last_name.slice(1).toLowerCase();
-    //   var paentGuardian = row.parent_guardian.charAt(0).toUpperCase() + row.parent_guardian.slice(1).toLowerCase();
 
-    //   const baseurl = window.location.href.split("?")[1];
-    //   console.log(row.status);
-    // });
     const baseurl = window.location.href.split("?")[1];
-    if(baseurl == "status=approved"){
-      var trNurseHeading = "<th>Status</th>";
-      var NurseTableHeading = $('thead tr th:nth-child(8)');
-      NurseTableHeading.after(trNurseHeading);
+    // if(baseurl == "status=approved"){
+    //   var trNurseHeading = "<th>Status</th>";
+    //   var NurseTableHeading = $('thead tr th:nth-child(8)');
+    //   NurseTableHeading.after(trNurseHeading);
+    // }
 
-    }
     $.each(tableData, function (index, row) {
       var firstName =
         row.first_name.charAt(0).toUpperCase() +
@@ -239,7 +55,7 @@ $(function () {
 
       // console.log(baseurl);
       if (baseurl == "status=pending") {
-        if (row.status == "pending") {
+        if (row.status !== "archived" ) {
           var trNurse = "<tr>";
           // trNurse +='<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
           trNurse +=
@@ -642,7 +458,7 @@ $(function () {
       },
       success: function (response) {
         $("#loading-show").removeClass("loading");
-        console.log(response);
+        // console.log(response);
       },
       error: function (xhr, status, error) {
         console.log(xhr.responseText);

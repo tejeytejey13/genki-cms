@@ -12,13 +12,26 @@ $(function () {
   $("input").on("input", checkInputs);
 
   function toggleCheckbox(checkbox) {
-    var otherCheckbox = checkbox.attr("id") === "yes" ? $("#no") : $("#yes");
     if (checkbox.prop("checked")) {
       otherCheckbox.prop("checked", false);
     }
   }
   $(".selectedOption").change(function () {
-    toggleCheckbox($(this));
+    // 
+    var otherCheckbox = $(this).parent().siblings().find(".selectedOption");
+    switch($(this).attr("id")) {
+      case "yes":
+        otherCheckbox.prop("checked", false);
+        break;
+      case "no":
+        otherCheckbox.prop("checked", false);
+        break;
+      case "none":
+        otherCheckbox.prop("checked", false);
+        break;
+      default:
+        // code block
+    }
   });
 
   $("#medical-form").submit(function (event) {

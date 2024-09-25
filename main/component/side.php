@@ -73,13 +73,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <li>
                         <a href="nurse-table.php?status=pending"
                             class="<?php echo ($current_page == 'nurse-table.php?status=pending') ? 'is-active' : ''; ?>">
-                            <span><i class="mdi mdi-view-list"></i> Pending Appointments</span>
+                            <span><i class="mdi mdi-view-list"></i> Clinic Appointments</span>
                         </a>
                     </li>
                     <li>
                         <a href="nurse-table.php?status=approved"
                             class="<?php echo ($current_page == 'nurse-table.php?status=approved') ? 'is-active' : ''; ?>">
-                            <span><i class="mdi mdi-view-list"></i> Approved Appointments</span>
+                            <span><i class="mdi mdi-view-list"></i> Consultation Appointments</span>
                         </a>
                     </li>
                     <!-- <li>

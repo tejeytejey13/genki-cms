@@ -139,7 +139,7 @@ if ($nurseid == 1) {
             </div>
             <div class="consultation">
                 <h2>CONSULTATION</h2>
-                <p><strong><?= $row['grade'] ?></strong></p>
+                <p><strong>Grade: </strong><?= $row['grade'] ?></p>
                 <p><strong>Adviser:</strong> <?= ucwords($row['adviser']) ?></p>
                 <p><strong>Allergies:</strong> <?= ucfirst($row['alergy']) ?></p>
                 <p><strong>Illness:</strong> <?= ucfirst($row['findings']) ?></p>

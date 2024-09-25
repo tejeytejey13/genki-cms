@@ -19,7 +19,7 @@ if(isset($_GET['status'])){
                     <div class="level-item">
                         <ul>
                             <?= ($user_type == 'nurse') ? '<li>Nurse</li>' : '<li>Admin</li>'; ?>
-                            <li>Clinic <?=ucfirst($getURL) ?> Appointments</li>
+                            <li>Clinic <?=ucfirst($getURL == 'approved' ? 'Consultation' : ' ') ?> Appointments</li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ if(isset($_GET['status'])){
                     <div class="level-left">
                         <div class="level-item">
                             <h1 class="title">
-                                Clinic <?=ucfirst($getURL) ?> Appointments
+                                Clinic <?=ucfirst($getURL == 'approved' ? 'Consultation' : ' ') ?> Appointments
                             </h1>
                         </div>
                     </div>
@@ -71,11 +71,11 @@ if(isset($_GET['status'])){
             </div> -->
 
 
-            <div class="card has-table has-table-container-upper-radius">
+            <div class="card has-table has-table-container-upper-radius is-fullwidth">
                 <div class="card-content">
                     <div class="b-table has-pagination">
                         <div class="table-wrapper has-mobile-cards">
-                            <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                            <table class="table is-fullwidth is-striped is-hoverable">
                                 <thead id="nurseTableHeader">
                                     <tr>
                                         <!-- <th class="is-checkbox-cell">
@@ -90,10 +90,10 @@ if(isset($_GET['status'])){
                                         <th>Section</th>
                                         <th>Date Created</th>
                                         <th>Date of Clinic</th>
-                                        <th>Status</th>
-                                        <!-- <th></th> -->
+                                        <th>Clinic Status</th>
+                                        <?=ucfirst($getURL == 'approved' ? '<th> Form Status </th>' : ' ')?>
                                         <th>Action</th>
-                                        <th></th>
+                                        <!-- <th></th> -->
                                     </tr>
                                 </thead>
                                 <tbody id="nurseTable">
@@ -177,7 +177,7 @@ if(isset($_GET['status'])){
                                         <div class="select is-narrow">
                                             <select id="heading-status-edit" name="status">
                                                 <option selected hidden>Select Status</option>
-                                                <option value="pending">Pending</option>
+                                                <!-- <option value="pending">Pending</option> -->
                                                 <option value="approved">Approved</option>
                                                 <option value="rejected">Rejected</option>
                                             </select>

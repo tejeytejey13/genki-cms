@@ -7,8 +7,6 @@
 include 'component/head.php';
 ?>
 
-
-
 <body>
     <div id="app">
         <?php
@@ -294,7 +292,15 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field is-narrow">
                                     <p class="control">
-                                        <input class="input" name="type_findings" type="text" placeholder="Type">
+                                        <!-- <input class="input" id="type_findings" name="type_findings" type="text" placeholder="Type">
+                                        <div id="autocompleteList"></div> -->
+                                        <select class="select is-fullwidth" id="type_findings" placeholder="Input Type" name="type_findings">
+                                            <option value="1">A</option>
+                                            <option value="2">E</option>
+                                            <option value="3">O</option>
+                                            <option value="4">U</option>
+                                            <option value="5">S</option>
+                                        </select>
                                     </p>
                                 </div>
                                 <div class="field">
@@ -384,6 +390,6 @@ include 'component/head.php';
 
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
     <?php require 'component/footer.php' ?>

@@ -17,8 +17,9 @@ $(function () {
       dataType: "json",
       data: { page: page, limit: limit },
       success: function (response) {
+        // console.log(response);
         renderUserTable(response.all.slice(0, limit));
-        renderPaginationUser(response.totalPages);
+        renderPaginationUser(response.totalPages, 1);
         updatePaginationUserStatus(page, response.totalPages);
       },
     });

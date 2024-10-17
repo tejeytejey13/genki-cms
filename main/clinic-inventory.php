@@ -77,7 +77,7 @@ include 'component/head.php';
                                         <th>Item Name</th>
                                         <th>Item Quantity</th>
                                         <th>Date Placed</th>
-                                        <th>Date Updated</th>
+                                        <th>Date Expiry</th>
                                         <th>Action</th>
                                         <th></th>
                                     </tr>
@@ -125,32 +125,42 @@ include 'component/head.php';
                         <div class="row">
                             <div class="col">
                                 <label for="iten_id">Item ID</label>
-                                <input id="#" name="Item_id" type="text" placeholder="Item ID" />
+                                <input id="item_uid" name="Item_id" type="text" placeholder="Item ID" readonly />
                             </div>
 
                             <div class="col">
                                 <label for="item_quantity">Item Quantity</label>
                                 <input id="item_quantity" name="Item_quantity" type="number" placeholder="Item Quantity" />
                             </div>
-
+                        </div>
+                        <!-- style="width: 30vw;" -->
+                        <div class="col-md-12">
+                            <label for="item_name">Item Name</label>
+                            <input id="item_name" name="Item_name" type="text" placeholder="Item Name" />
                         </div>
 
-                        <div class="col">
-                            <label for="item_name">Item Name</label>
-                            <input id="item_name" name="Item_name" type="text" placeholder="Item Name"
-                                style="width: 30vw;" />
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="iten_id">Date Expiry</label>
+                                <div class="control">
+                                    <div class="input">
+                                        <input id="date_expiration" name="date_expiration" type="date" style="width: 100%;"/>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer" style="display: flex; justify-content: end; gap: 5px;">
-                        <button class="button is-success " type="submit">Save</button>
-                        <button class="button is-danger ">Cancel</button>
+                        <button class="button is-success" type="submit">Save</button>
+                        <!-- <button class="button is-danger"> Cancel</button> -->
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-   
+
 
     <!-- Modal View Quantity -->
     <div id="modal1" class="modal">
@@ -175,66 +185,67 @@ include 'component/head.php';
             </form>
         </div>
     </div>
+    <!-- -->
     <?php require 'component/footer.php' ?>
 
     <style>
-    .modal-lead {
-        max-height: 100%;
-    }
-
-    .modal-lead .input-group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 30px auto;
-    }
-
-    .modal-lead .group {
-        margin-right: 20px;
-    }
-
-    .modal-lead label {
-        font-size: 16px;
-        color: #333;
-        margin-bottom: 5px;
-    }
-
-    .modal-lead input[type="number"],
-    .modal-lead input[type="text"] {
-        width: 120px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-
-    .modal-lead input[type="number"]:focus,
-    .modal-lead input[type="text"]:focus {
-        outline: none;
-        border-color: #007bff;
-    }
-
-    @media (max-width: 768px) {
         .modal-lead {
-            width: 80vw;
-
-        }
-    }
-
-    @media (max-width: 576px) {
-        .modal-lead {
-            width: 90vw;
-
+            max-height: 100%;
         }
 
         .modal-lead .input-group {
-            flex-direction: column;
-            align-items: flex-start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px auto;
         }
 
         .modal-lead .group {
-            margin-right: 0;
-            margin-bottom: 10px;
+            margin-right: 20px;
         }
-    }
+
+        .modal-lead label {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .modal-lead input[type="number"],
+        .modal-lead input[type="text"] {
+            width: 120px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .modal-lead input[type="number"]:focus,
+        .modal-lead input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .modal-lead {
+                width: 80vw;
+
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modal-lead {
+                width: 90vw;
+
+            }
+
+            .modal-lead .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal-lead .group {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
     </style>

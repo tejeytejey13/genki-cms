@@ -21,7 +21,8 @@ $(function () {
         pagTableData = response.data;
         totalPages = response.totalPages;
         renderTable(pagTableData.slice(0, limit));
-        // renderTable(alldata);
+        
+        // renderTable(pagTableData);
         // console.log(totalPages);
         renderPagination(totalPages);
       },
@@ -43,6 +44,7 @@ $(function () {
     // }
 
     $.each(tableData, function (index, row) {
+      console.log(row);
       var firstName =
         row.first_name.charAt(0).toUpperCase() +
         row.first_name.slice(1).toLowerCase();
@@ -142,7 +144,7 @@ $(function () {
           formatDate(row.date_med) +
           "</small></td>";
         trhistoryNurse +=
-          "<td data-label='status' class='status open'>" + row.status + "</td>";
+          "<td data-label='status' class='status open'>" + (row.status ? "Cleared" : "Pending") + "</td>";        
         trhistoryNurse +=
           "<td class='is-actions-cell'><div class='buttons is-left'><button class='button is-small is-primary nurse-med-view-btn' data-target-uid='" +
           row.form_id +

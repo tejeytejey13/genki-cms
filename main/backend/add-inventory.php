@@ -4,8 +4,11 @@
     $id = $_POST['Item_id'];
     $name = $_POST['Item_name'];
     $quantity = $_POST['Item_quantity'];
+    $date_expiry = $_POST['date_expiration'];
 
-    $sql = "INSERT INTO med_despensary (item_id, name, quantity) VALUES ('$id', '$name', '$quantity')";
+    $date = date("Y-m-d H:i:s", strtotime($date_expiry));
+
+    $sql = "INSERT INTO med_despensary (item_id, name, quantity, date_expiry) VALUES ('$id', '$name', '$quantity', '$date')";
     $query = mysqli_query($conn, $sql);
 
     if($query) {

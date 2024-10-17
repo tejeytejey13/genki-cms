@@ -37,11 +37,16 @@ function renderTable(data) {
       '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
       formatDate(item.date_created) +
       "</small></td>";
-    tr +=
+      tr +=
       '<td data-label="Created">' +
       '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
-      (item.date_updated == '0000-00-00 00:00:00' ? 'Not Updated Yet!' : formatDate(item.date_updated)) +
+      formatDate(item.date_expiry) +
       "</small></td>";
+    // tr +=
+    //   '<td data-label="Created">' +
+    //   '<small class="has-text-grey is-abbr-like" title="DateCreated">' +
+    //   (item.date_updated == '0000-00-00 00:00:00' ? 'Not Updated Yet!' : formatDate(item.date_updated)) +
+    //   "</small></td>";
     tr +=
       '<td class="is-actions-cell">' +
       '<div class="buttons is-left">' +
@@ -85,12 +90,12 @@ function searchTable() {
   var search = $("#searchInput").val().toLowerCase();
 
   if (search.trim() === "") {
-    inventoryTable(1, 10); // Return to page 1 with 10 results if search input is empty
+    inventoryTable(1, 10); 
   } else {
     var filteredData = allInventoryData.filter(function(item) {
       var id = item.item_id.toLowerCase();
       var name = item.name.toLowerCase();
-      return id.indexOf(search) > -1 || name.indexOf(search) > -1;
+      return id.indexOf(search) > -1 || name.startsWith(search);
     });
     renderTable(filteredData);
   }
@@ -140,6 +145,11 @@ function formatDate(date) {
 function openModal() {
   const modal = document.getElementById("modal");
   modal.style.display = "block";
+
+  var randomUID = Math.floor(1000000 + Math.random() * 9000000).toString();
+  var formattedId = randomUID.slice(0, 3) + '-' + randomUID.slice(3, 6) + '-' + randomUID.slice(6);
+  $('#item_uid').val(formattedId);
+
 }
 
 function closeModal() {

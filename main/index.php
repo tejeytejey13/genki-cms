@@ -154,7 +154,7 @@ include './component/head.php';
                     <header class="card-header">
                         <p class="card-header-title">
                             <span class="icon"><i class="mdi mdi-finance"></i></span>
-                            Performance
+                            Total Cases
                         </p>
                         <a href="#" class="card-header-icon">
                             <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -172,6 +172,33 @@ include './component/head.php';
                                     </div>
                                 </div>
                                 <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            <span class="icon"><i class="mdi mdi-finance"></i></span>
+                            Total Cases
+                        </p>
+                        <a href="#" class="card-header-icon">
+                            <span class="icon"><i class="mdi mdi-reload"></i></span>
+                        </a>
+                    </header>
+                    <div class="card-content">
+                        <div class="chart-area">
+                            <div style="height: 100%;">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div></div>
+                                    </div>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <canvas id="big-bar-graph" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -201,15 +228,14 @@ include './component/head.php';
                         danger: "#FF3860"
                     },
                 },
-            data = <?= json_encode($labels) ?>;
+                data = <?= json_encode($labels) ?>;
             finding_labels = data.map(item => item.findings);
             finding_counts = data.map(item => item.count);
             var ctx = document.getElementById("big-line-chart").getContext("2d");
             new Chart(ctx, {
                 type: "line",
                 data: {
-                    datasets: [
-                        {
+                    datasets: [{
                             fill: !1,
                             borderColor: chartColors.default.primary,
                             borderWidth: 2,
@@ -302,6 +328,78 @@ include './component/head.php';
                     },
                 },
             });
+
+            var ctz = document.getElementById("big-bar-graph").getContext("2d");
+            new Chart(ctz, {
+                type: "bar",
+                data: {
+                    datasets: [{
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1,
+                        data: finding_counts,
+                    }, ],
+                    labels: finding_labels,
+                },
+                options: {
+                    maintainAspectRatio: !1,
+                    legend: {
+                        display: !1
+                    },
+                    responsive: !0,
+                    tooltips: {
+                        backgroundColor: "#f5f5f5",
+                        titleFontColor: "#333",
+                        bodyFontColor: "#666",
+                        bodySpacing: 4,
+                        xPadding: 12,
+                        mode: "nearest",
+                        intersect: 0,
+                        position: "nearest",
+                    },
+                    scales: {
+                        yAxes: [{
+                            barPercentage: 1.6,
+                            gridLines: {
+                                drawBorder: !1,
+                                color: "rgba(29,140,248,0.0)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#9a9a9a"
+                            },
+                        }, ],
+                        xAxes: [{
+                            barPercentage: 1.6,
+                            gridLines: {
+                                drawBorder: !1,
+                                color: "rgba(225,78,202,0.1)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#9a9a9a"
+                            },
+                        }, ],
+                    },
+                },
+            });
+
         });
     </script>
     <?php include './component/footer.php'; ?>

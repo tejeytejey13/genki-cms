@@ -1,3 +1,9 @@
+$(window).on('load', function() {
+  $("#loading-show").fadeOut("slow");
+});
+$(window).on('beforeunload', function() {
+  $("#loading-show").addClass("loading");
+});
 $(function () {
   $("#login-form").submit(function (event) {
     event.preventDefault();

@@ -28,7 +28,7 @@ include './component/head.php';
         </section>
         <?php
         if ($user_type == 'nurse' || $user_type == 'admin') {
-        ?>
+            ?>
             <section class="hero is-hero-bar">
                 <div class="hero-body">
                     <div class="level">
@@ -64,7 +64,8 @@ include './component/head.php';
                                         </div>
                                     </div>
                                     <div class="level-item has-widget-icon">
-                                        <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+                                        <div class="is-widget-icon"><span class="icon has-text-primary is-large"><i
+                                                    class="mdi mdi-account-multiple mdi-48px"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +119,8 @@ include './component/head.php';
                                         </div>
                                     </div>
                                     <div class="level-item has-widget-icon">
-                                        <div class="is-widget-icon"><span class="icon has-text-success is-large"><i class="mdi mdi-finance mdi-48px"></i></span>
+                                        <div class="is-widget-icon"><span class="icon has-text-success is-large"><i
+                                                    class="mdi mdi-finance mdi-48px"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +173,8 @@ include './component/head.php';
                                         <div></div>
                                     </div>
                                 </div>
-                                <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
+                                <canvas id="big-line-chart" width="2992" height="1000" class="chartjs-render-monitor"
+                                    style="display: block; height: 400px; width: 1197px;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -198,14 +201,15 @@ include './component/head.php';
                                         <div></div>
                                     </div>
                                 </div>
-                                <canvas id="big-bar-graph" width="2992" height="1000" class="chartjs-render-monitor" style="display: block; height: 400px; width: 1197px;"></canvas>
+                                <canvas id="big-bar-graph" width="2992" height="1000" class="chartjs-render-monitor"
+                                    style="display: block; height: 400px; width: 1197px;"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        <?php
-            $query = $conn->query("SELECT findings, COUNT(*) as count FROM `medical_certificate` GROUP BY findings");
+            <?php
+            $query = $conn->query("SELECT created_at, findings, COUNT(*) as count FROM `medical_certificate` GROUP BY created_at, findings");
             $labels = [];
             while ($row = $query->fetch_assoc()) {
                 $labels[] = $row;
@@ -216,11 +220,11 @@ include './component/head.php';
         ?>
     </div>
     <script>
-        $(document).ready(function() {
-            var randomChartData = function(r) {
-                    for (var o = [], a = 0; a < r; a++) o.push(Math.round(200 * Math.random()));
-                    return o;
-                },
+        $(document).ready(function () {
+            var randomChartData = function (r) {
+                for (var o = [], a = 0; a < r; a++) o.push(Math.round(200 * Math.random()));
+                return o;
+            },
                 chartColors = {
                     default: {
                         primary: "#00D1B2",
@@ -231,25 +235,27 @@ include './component/head.php';
                 data = <?= json_encode($labels) ?>;
             finding_labels = data.map(item => item.findings);
             finding_counts = data.map(item => item.count);
+            findings_date = data.map(item => item.created_at);
+
             var ctx = document.getElementById("big-line-chart").getContext("2d");
             new Chart(ctx, {
                 type: "line",
                 data: {
                     datasets: [{
-                            fill: !1,
-                            borderColor: chartColors.default.primary,
-                            borderWidth: 2,
-                            borderDash: [],
-                            borderDashOffset: 0,
-                            pointBackgroundColor: chartColors.default.primary,
-                            pointBorderColor: "rgba(255,255,255,0)",
-                            pointHoverBackgroundColor: chartColors.default.primary,
-                            pointBorderWidth: 20,
-                            pointHoverRadius: 4,
-                            pointHoverBorderWidth: 15,
-                            pointRadius: 4,
-                            data: finding_counts,
-                        },
+                        fill: !1,
+                        borderColor: chartColors.default.primary,
+                        borderWidth: 2,
+                        borderDash: [],
+                        borderDashOffset: 0,
+                        pointBackgroundColor: chartColors.default.primary,
+                        pointBorderColor: "rgba(255,255,255,0)",
+                        pointHoverBackgroundColor: chartColors.default.primary,
+                        pointBorderWidth: 20,
+                        pointHoverRadius: 4,
+                        pointHoverBorderWidth: 15,
+                        pointRadius: 4,
+                        data: finding_counts,
+                    },
                         // {
                         //     fill: !1,
                         //     borderColor: chartColors.default.info,
@@ -312,7 +318,7 @@ include './component/head.php';
                                 padding: 20,
                                 fontColor: "#9a9a9a"
                             },
-                        }, ],
+                        },],
                         xAxes: [{
                             barPercentage: 1.6,
                             gridLines: {
@@ -324,44 +330,55 @@ include './component/head.php';
                                 padding: 20,
                                 fontColor: "#9a9a9a"
                             },
-                        }, ],
+                        },],
                     },
                 },
             });
 
-            var ctz = document.getElementById("big-bar-graph").getContext("2d");
+            const groupedData = data.reduce((acc, item) => {
+                const formattedDate = new Date(item.created_at).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                if (!acc[formattedDate]) {
+                    acc[formattedDate] = [];
+                }
+                acc[formattedDate].push({ finding: item.findings, count: item.count });
+                return acc;
+            }, {});
+
+            const dates = Object.keys(groupedData);
+
+            const datasets = dates.flatMap(date =>
+                groupedData[date].map(findingData => ({
+                    label: `${findingData.finding} on ${date}`,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: Array(dates.length).fill(0).map((_, i) => (dates[i] === date ? findingData.count : 0)),
+                }))
+            );
+
+            const ctz = document.getElementById("big-bar-graph").getContext("2d");
             new Chart(ctz, {
                 type: "bar",
                 data: {
-                    datasets: [{
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1,
-                        data: finding_counts,
-                    }, ],
-                    labels: finding_labels,
+                    labels: dates,
+                    datasets: datasets
                 },
                 options: {
                     maintainAspectRatio: !1,
-                    legend: {
-                        display: !1
-                    },
                     responsive: !0,
-                    tooltips: {
+                    // legend: {
+                    //     display: !1,
+                    // },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `${tooltipItem.dataset.label}: ${tooltipItem.raw} cases`;
+                            }
+                        },
                         backgroundColor: "#f5f5f5",
                         titleFontColor: "#333",
                         bodyFontColor: "#666",
@@ -372,33 +389,91 @@ include './component/head.php';
                         position: "nearest",
                     },
                     scales: {
-                        yAxes: [{
-                            barPercentage: 1.6,
-                            gridLines: {
-                                drawBorder: !1,
-                                color: "rgba(29,140,248,0.0)",
-                                zeroLineColor: "transparent",
-                            },
+                        y: {
+                            beginAtZero: true,
                             ticks: {
-                                padding: 20,
-                                fontColor: "#9a9a9a"
-                            },
-                        }, ],
-                        xAxes: [{
-                            barPercentage: 1.6,
-                            gridLines: {
-                                drawBorder: !1,
-                                color: "rgba(225,78,202,0.1)",
-                                zeroLineColor: "transparent",
-                            },
+                                color: "#9a9a9a"
+                            }
+                        },
+                        x: {
                             ticks: {
-                                padding: 20,
-                                fontColor: "#9a9a9a"
-                            },
-                        }, ],
-                    },
-                },
+                                color: "#9a9a9a"
+                            }
+                        }
+                    }
+                }
             });
+
+            // var ctz = document.getElementById("big-bar-graph").getContext("2d");
+            // new Chart(ctz, {
+            //     type: "bar",
+            //     data: {
+            //         datasets: [{
+            //             backgroundColor: [
+            //                 'rgba(255, 99, 132, 0.2)',
+            //                 'rgba(54, 162, 235, 0.2)',
+            //                 'rgba(255, 206, 86, 0.2)',
+            //                 'rgba(75, 192, 192, 0.2)',
+            //                 'rgba(153, 102, 255, 0.2)',
+            //                 'rgba(255, 159, 64, 0.2)'
+            //             ],
+            //             borderColor: [
+            //                 'rgba(255, 99, 132, 1)',
+            //                 'rgba(54, 162, 235, 1)',
+            //                 'rgba(255, 206, 86, 1)',
+            //                 'rgba(75, 192, 192, 1)',
+            //                 'rgba(153, 102, 255, 1)',
+            //                 'rgba(255, 159, 64, 1)'
+            //             ],
+            //             borderWidth: 1,
+            //             data: finding_counts,
+            //         }, ],
+            //         labels: findings_date,
+            //     },
+            //     options: {
+            //         maintainAspectRatio: !1,
+            //         legend: {
+            //             display: !1
+            //         },
+            //         responsive: !0,
+            //         tooltips: {
+            //             backgroundColor: "#f5f5f5",
+            //             titleFontColor: "#333",
+            //             bodyFontColor: "#666",
+            //             bodySpacing: 4,
+            //             xPadding: 12,
+            //             mode: "nearest",
+            //             intersect: 0,
+            //             position: "nearest",
+            //         },
+            //         scales: {
+            //             yAxes: [{
+            //                 barPercentage: 1.6,
+            //                 gridLines: {
+            //                     drawBorder: !1,
+            //                     color: "rgba(29,140,248,0.0)",
+            //                     zeroLineColor: "transparent",
+            //                 },
+            //                 ticks: {
+            //                     padding: 20,
+            //                     fontColor: "#9a9a9a"
+            //                 },
+            //             }, ],
+            //             xAxes: [{
+            //                 barPercentage: 1.6,
+            //                 gridLines: {
+            //                     drawBorder: !1,
+            //                     color: "rgba(225,78,202,0.1)",
+            //                     zeroLineColor: "transparent",
+            //                 },
+            //                 ticks: {
+            //                     padding: 20,
+            //                     fontColor: "#9a9a9a"
+            //                 },
+            //             }, ],
+            //         },
+            //     },
+            // });
 
         });
     </script>

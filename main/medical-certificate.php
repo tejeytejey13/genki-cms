@@ -62,7 +62,7 @@ include 'component/head.php';
                 $immunization = $row['immunization'];
                 ?>
                 <script>
-                    $(document).ready(function() {
+                    $(document).ready(function () {
                         var alergy = <?= json_encode($alergy) ?>;
                         var immunization = <?= json_encode($immunization) ?>;
 
@@ -101,7 +101,8 @@ include 'component/head.php';
                                         <p class="control is-expanded has-icons-left suggestions-container">
                                             <input name="stud_user_id" type="text" value="<?= $studid ?>" hidden>
                                             <input name="stud_form_id" type="text" value="<?= $formuid ?>" hidden>
-                                            <input class="input" id="stud_id" name="student_id" type="text" value="<?= $row['school_id'] ?>" placeholder="Student ID" readonly>
+                                            <input class="input" id="stud_id" name="student_id" type="text"
+                                                value="<?= $row['school_id'] ?>" placeholder="Student ID" readonly>
                                             <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                         </p>
                                     </div>
@@ -109,7 +110,9 @@ include 'component/head.php';
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left has-icons-right">
                                         <input class="input" name="student_name" id="student_fullname" type="text"
-                                            placeholder="Student Name" value="<?= ucfirst($row['first_name']) . ' ' . ucfirst($row['middle_initial']) . ', ' . ucfirst($row['last_name']) ?>" readonly>
+                                            placeholder="Student Name"
+                                            value="<?= ucfirst($row['first_name']) . ' ' . ucfirst($row['middle_initial']) . ', ' . ucfirst($row['last_name']) ?>"
+                                            readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-mail"></i></span>
                                         <span class="icon is-small is-right"><i class="mdi mdi-check"></i></span>
                                     </p>
@@ -189,14 +192,16 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="parent_name" type="text" placeholder="Parent/Guardian's Name"
+                                        <input class="input" name="parent_name" type="text"
+                                            placeholder="Parent/Guardian's Name"
                                             value="<?= ucfirst($row['parent_guardian']) ?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                 </div>
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="parent_name" type="text" placeholder="Relationship to Student"
+                                        <input class="input" name="parent_name" type="text"
+                                            placeholder="Relationship to Student"
                                             value="<?= ucfirst($row['rel_to_stud']) ?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
@@ -215,20 +220,22 @@ include 'component/head.php';
                                 <div class="field is-narrow mt-5">
                                     <div class="control">
                                         <label class="b-checkbox checkbox">
-                                            <input class="checkbox selectedOption" name="alergy" value="medicine" id="yes"
-                                                type="checkbox">
+                                            <input class="checkbox selectedOption" name="alergy" value="medicine"
+                                                id="yes" type="checkbox">
                                             <span class="check"></span>
                                             &nbsp;
                                             Medicine
                                         </label>
                                         <label class="b-checkbox checkbox">
-                                            <input class="checkbox selectedOption" name="alergy" value="food" id="no" type="checkbox">
+                                            <input class="checkbox selectedOption" name="alergy" value="food" id="no"
+                                                type="checkbox">
                                             <span class="check"></span>
                                             &nbsp;
                                             Food
                                         </label>
                                         <label class="b-checkbox checkbox">
-                                            <input class="checkbox selectedOption" name="alergy" value="none" id="none" type="checkbox">
+                                            <input class="checkbox selectedOption" name="alergy" value="none" id="none"
+                                                type="checkbox">
                                             <span class="check"></span>
                                             &nbsp;
                                             None
@@ -238,7 +245,8 @@ include 'component/head.php';
                                 <div class="field">
                                     <label class="#">Reason/s</label>
                                     <p class="control">
-                                        <input class="input" name="reason" type="text" value="<?= $row['reason'] ?>" placeholder="" required>
+                                        <input class="input" name="reason" type="text" value="<?= $row['reason'] ?>"
+                                            placeholder="" required>
                                     </p>
                                 </div>
                             </div>
@@ -252,8 +260,8 @@ include 'component/head.php';
                                 <div class="field">
                                     <label class="#">Specify treatment for these allergies</label>
                                     <div class="control">
-                                        <input class="input" name="treatment" value="<?= $row['treatment'] ?>" type="text"
-                                            placeholder="" required>
+                                        <input class="input" name="treatment" value="<?= $row['treatment'] ?>"
+                                            type="text" placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +281,8 @@ include 'component/head.php';
                                             Yes
                                         </label>
                                         <label class="b-checkbox checkbox" id="immunizationno">
-                                            <input class="checkbox selectedOption" name="option" value="no" id="no" type="checkbox">
+                                            <input class="checkbox selectedOption" name="option" value="no" id="no"
+                                                type="checkbox">
                                             <span class="check"></span>
                                             &nbsp;
                                             No
@@ -291,17 +300,19 @@ include 'component/head.php';
                             </div>
                             <div class="field-body">
                                 <div class="field is-narrow">
-                                    <p class="control">
-                                        <!-- <input class="input" id="type_findings" name="type_findings" type="text" placeholder="Type">
-                                        <div id="autocompleteList"></div> -->
-                                        <select class="select is-fullwidth" id="type_findings" placeholder="Input Type" name="type_findings">
-                                            <option value="1">A</option>
-                                            <option value="2">E</option>
-                                            <option value="3">O</option>
-                                            <option value="4">U</option>
-                                            <option value="5">S</option>
-                                        </select>
-                                    </p>
+                                    <!-- <p class="control is-expanded suggestions-container">
+                                        <div class="select is-fullwidth">
+                                            <input class="input" id="type_findings" name="type_findings" type="text"
+                                                placeholder="Findings">
+                                            <div id="suggestions" class="suggestions-list"> </div>
+                                        </div>
+                                    </p> -->
+                                    <p class="control is-expanded has-icons-left suggestions-container">
+                                        <input class="input" id="type_findings" name="type_findings" type="text"
+                                            placeholder="Search Findings">
+                                        <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
+                                    <div id="suggestions" class="suggestions-list">
+                                    </div>
                                 </div>
                                 <div class="field">
                                     <p class="control">
@@ -353,7 +364,8 @@ include 'component/head.php';
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control is-expanded has-icons-left">
-                                        <input class="input" name="date_med" type="text" placeholder="#" value="<?= $datemed ?>" readonly>
+                                        <input class="input" name="date_med" type="text" placeholder="#"
+                                            value="<?= $datemed ?>" readonly>
                                         <span class="icon is-small is-left"><i class="mdi mdi-account"></i></span>
                                     </p>
                                 </div>
@@ -374,7 +386,8 @@ include 'component/head.php';
                                             </button>
                                         </div>
                                         <div class="control">
-                                            <button type="button" onclick="window.history.back()" class="button is-primary is-outlined">
+                                            <button type="button" onclick="window.history.back()"
+                                                class="button is-primary is-outlined">
                                                 <span>Cancel</span>
                                             </button>
                                         </div>
@@ -384,7 +397,7 @@ include 'component/head.php';
                         </div>
                     </form>
                 </div>
-                <?php  ?>
+                <?php ?>
             </div>
         </section>
 

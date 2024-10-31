@@ -57,7 +57,7 @@ $(function () {
 
       // console.log(baseurl);
       if (baseurl == "status=pending") {
-        if (row.status !== "archived" ) {
+        if (row.status !== "archived"  && row.status !== "approved") {
           var trNurse = "<tr>";
           // trNurse +='<td class="is-checkbox-cell"><label class="b-checkbox checkbox"><input type="checkbox" class="selectRow"><span class="check"></span></label></td>';
           trNurse +=

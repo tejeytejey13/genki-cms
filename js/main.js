@@ -1,80 +1,70 @@
-(function($) {
+
+(function ($) {
     "use strict";
 
-    /*-------------------------------------
-	Background image
-	-------------------------------------*/
-    $("[data-bg-image]").each(function() {
-        var img = $(this).data("bg-image");
-        $(this).css({
-            backgroundImage: "url(" + img + ")"
+
+    /*==================================================================
+    [ Focus Contact2 ]*/
+    $('.input100').each(function(){
+        $(this).on('blur', function(){
+            if($(this).val().trim() != "") {
+                $(this).addClass('has-val');
+            }
+            else {
+                $(this).removeClass('has-val');
+            }
+        })    
+    })
+  
+  
+    /*==================================================================
+    [ Validate ]*/
+    var input = $('.validate-input .input100');
+
+    $('.validate-form').on('submit',function(){
+        var check = true;
+
+        for(var i=0; i<input.length; i++) {
+            if(validate(input[i]) == false){
+                showValidate(input[i]);
+                check=false;
+            }
+        }
+
+        return check;
+    });
+
+
+    $('.validate-form .input100').each(function(){
+        $(this).focus(function(){
+           hideValidate(this);
         });
     });
 
-    /*-------------------------------------
-    After Load All Content Add a Class
-    -------------------------------------*/
-    window.onload = addNewClass();
-
-    function addNewClass() {
-        $('.fxt-template-animation').imagesLoaded().done(function(instance) {
-            $('.fxt-template-animation').addClass('loaded');
-        });
-    }
-
-    /*-------------------------------------
-    Toggle Class
-    -------------------------------------*/
-    $(".toggle-password").on('click', function() {
-        $(this).toggleClass("fa-eye fa-eye-slash");
-        var input = $($(this).attr("toggle"));
-        if (input.attr("type") == "password") {
-            input.attr("type", "text");
-        } else {
-            input.attr("type", "password");
+    function validate (input) {
+        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+                return false;
+            }
         }
-    });
-
-    /*-------------------------------------
-    Youtube Video
-    -------------------------------------*/
-    if ($.fn.YTPlayer !== undefined && $("#fxtVideo").length) {
-        $("#fxtVideo").YTPlayer({ useOnMobile: true });
-    }
-
-    /*-------------------------------------
-    Vegas Slider
-    -------------------------------------*/
-    if ($.fn.vegas !== undefined && $("#vegas-slide").length) {
-        var target_slider = $("#vegas-slide"),
-            vegas_options = target_slider.data('vegas-options');
-        if (typeof vegas_options === "object") {
-            target_slider.vegas(vegas_options);
+        else {
+            if($(input).val().trim() == ''){
+                return false;
+            }
         }
     }
 
-    /*-------------------------------------
-    OTP Form (Focusing on next input)
-    -------------------------------------*/
-    $("#otp-form .otp-input").keyup(function() {
-        if (this.value.length == this.maxLength) {
-            $(this).next('.otp-input').focus();
-        }
-    });
+    function showValidate(input) {
+        var thisAlert = $(input).parent();
 
-    /*-------------------------------------
-	Social Animation
-	-------------------------------------*/
-    $('#fxt-login-option >ul >li').hover(function() {
-        $('#fxt-login-option >ul >li').removeClass('active');
-        $(this).addClass('active');
-    });
+        $(thisAlert).addClass('alert-validate');
+    }
 
-    /*-------------------------------------
-    Preloader
-    -------------------------------------*/
-    $('#preloader').fadeOut('slow', function() {
-        $(this).remove();
-    });
+    function hideValidate(input) {
+        var thisAlert = $(input).parent();
+
+        $(thisAlert).removeClass('alert-validate');
+    }
+    
 
 })(jQuery);
